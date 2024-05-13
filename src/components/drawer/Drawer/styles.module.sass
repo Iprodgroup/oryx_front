@@ -1,0 +1,30 @@
+.drawer
+    padding: 40px
+
+    .top
+        display: flex
+        justify-content: flex-end
+
+    .bottom ul
+        display: flex
+        flex-direction: column
+        gap: 20px
+        font-size: 18px
+        text-align: end
+
+        a
+            position: relative
+            display: block
+            padding-right: 20px
+
+            &::before
+                content: ''
+                position: absolute
+                top: 0
+                right: 0
+                bottom: 0
+                width: 12px
+                height: 12px
+                background: url('/arrow-right.svg') no-repeat center center
+                background-size: contain
+                margin: auto
