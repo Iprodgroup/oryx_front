@@ -6,6 +6,7 @@ import PopularStores from '@/blocks/home/PopularStores/PopularStores';
 import Calculator from '@/blocks/home/Calculator/Calculator';
 import FAQ from '@/blocks/home/FAQ/FAQ';
 import Advantages from '@/blocks/home/Advantages/Advantages';
+import About from '@/blocks/home/About/About';
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <Calculator />
       <FAQ />
       <Advantages />
+      <About />
     </>
   );
 }

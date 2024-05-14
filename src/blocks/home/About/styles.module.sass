@@ -1,0 +1,44 @@
+@import '@/styles/mixins'
+
+.wrapper
+    @include container(30px)
+
+    display: flex
+    align-items: center
+
+    & > div
+        width: 100%
+
+    .left
+        h2
+            font-size: clamp(2.313rem, 1.903rem + 2.05vw, 3.438rem)
+
+        p
+            margin: 20px 0
+
+        a
+            @include red-btn(50px)
+
+            width: 260px
+            height: 40px
+            margin-left: 0
+
+    .right img
+        max-height: 320px
+
+@media (max-width: 768px)
+    .wrapper
+        flex-direction: column-reverse
+        gap: 30px
+
+@media (max-width: 576px)
+    .wrapper
+        .left
+            p
+                font-size: 12px
+
+            a
+                width: 100%
+
+        .right img
+            max-height: 210px
