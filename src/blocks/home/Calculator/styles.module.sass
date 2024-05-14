@@ -1,0 +1,77 @@
+@import '@/styles/mixins'
+
+.calculator
+    background-color: #F4F5FE
+
+    .wrapper
+        @include container(150px)
+
+        display: flex
+
+        & > div
+            width: 100%
+
+        .left
+            display: flex
+            flex-direction: column
+            gap: 30px
+            padding: 50px 0
+
+            h2
+                font-size: clamp(1.125rem, 0.398rem + 3.64vw, 3.125rem)
+
+            .calc
+                display: grid
+                grid-template-columns: repeat(3, 1fr)
+                align-items: center
+                gap: 20px
+
+                select, input
+                    width: 100%
+                    height: 70px
+                    outline: none
+                    border: 0
+                    border-radius: 75px
+                    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+                    background-color: white
+                    padding-left: 20px
+
+                strong
+                    font-size: 20px
+
+            b
+                font-size: clamp(1.25rem, 0.977rem + 1.36vw, 2rem)
+
+            hr
+                width: 100%
+                border: 1px solid black
+                opacity: 0.5
+
+            p
+                opacity: 0.7
+
+        .right img
+            max-height: 600px
+            object-fit: contain
+            margin-top: -120px
+
+@media (max-width: 768px)
+    .calculator
+        background-color: white
+
+        .wrapper
+            flex-direction: column-reverse
+
+            .left
+                .calc
+                    grid-template-columns: repeat(2, 1fr)
+                    row-gap: 30px
+
+                    select, input
+                        height: 60px
+
+                hr
+                    display: none
+
+            .right img
+                max-height: 300px
