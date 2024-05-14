@@ -1,0 +1,39 @@
+@import '@/styles/mixins'
+
+.advantages
+    background-color: #F4F5FE
+    padding: 100px 0
+
+    .wrapper
+        @include container(0)
+
+        ul
+            display: grid
+            grid-template-columns: repeat(4, 1fr)
+            gap: 50px
+
+            li
+                display: flex
+                align-items: flex-start
+                gap: 10px
+
+                img
+                    margin-top: 10px
+
+                b
+                    font-size: clamp(1rem, 0.75rem + 1.25vw, 1.688rem)
+
+@media (max-width: 992px)
+    .advantages
+        padding: 50px 0
+
+        .wrapper ul
+            grid-template-columns: repeat(2, 1fr)
+
+            img
+                width: 53px
+                height: 53px
+
+@media (max-width: 576px)
+    .advantages .wrapper ul
+        grid-template-columns: 1fr
