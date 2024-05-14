@@ -5,6 +5,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Gilroy-Medium ☞', sans-serif;
+  overflow-x: hidden;
 }
 
 * {
