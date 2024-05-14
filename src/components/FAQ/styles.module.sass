@@ -1,0 +1,22 @@
+.accordions
+    user-select: none
+    margin-top: 20px
+
+    .accordion__button
+        background-color: white
+        font-size: clamp(1rem, 0.909rem + 0.45vw, 1.25rem)
+        display: flex
+        align-items: center
+        justify-content: space-between
+        padding: 0
+
+        &::before
+            content: none
+
+        .icon
+            font-size: 40px
+
+    .accordion__panel
+        text-align: start
+        font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem)
+        padding: 0 0 20px 0
