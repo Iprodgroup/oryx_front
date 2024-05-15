@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import Hero from '@/blocks/about/Hero/Hero';
+import Warehouse from '@/blocks/about/Warehouse/Warehouse';
 
 const About = () => {
   return (
@@ -12,6 +13,7 @@ const About = () => {
       </Head>
 
       <Hero />
+      <Warehouse />
     </>
   );
 };
