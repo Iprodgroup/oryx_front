@@ -1,0 +1,108 @@
+@import '@/styles/mixins'
+
+.footer
+    background-color: #222222
+    color: white
+    padding: 20px 0 60px 0
+
+    .wrapper
+        @include container(0)
+
+        .top
+            display: flex
+            justify-content: space-between
+
+            .left
+                display: flex
+                align-items: center
+                gap: 20px
+
+                a
+                    display: flex
+                    align-items: center
+                    gap: 10px
+
+            .right
+                display: flex
+                gap: 10px
+
+                a
+                    border: 2px solid white
+                    border-radius: 50px
+                    background: rgba(255, 255, 255, 0.1)
+                    padding: 7px 20px
+
+        .middle
+            margin: 50px 0 20px 0
+
+            form
+                max-width: 500px
+                display: flex
+                flex-direction: column
+                gap: 20px
+
+                input
+                    width: 100%
+                    height: 40px
+                    outline: none
+                    border: 0
+                    padding-left: 20px
+
+                    &[type="text"]
+                        border-radius: 50px
+
+                .pn
+                    position: relative
+                    display: flex
+                    border-radius: 50px
+                    overflow: hidden
+
+                    button
+                        @include red-btn(50px)
+
+                        width: 110px
+                        height: 40px
+                        position: absolute
+                        top: 0
+                        bottom: 0
+                        right: 0
+
+        .bottom
+            border-top: 1px solid rgba(68, 68, 68, 1)
+            border-bottom: 1px solid rgba(68, 68, 68, 1)
+            display: flex
+            gap: 50px
+            padding: 50px 0
+
+            nav
+                display: grid
+                grid-template-columns: repeat(3, 1fr)
+                gap: 50px
+
+                ul
+                    display: flex
+                    flex-direction: column
+                    gap: 10px
+
+@media (max-width: 992px)
+    .footer .wrapper .top
+        flex-direction: column
+        align-items: center
+        gap: 20px
+
+@media (max-width: 768px)
+    .footer .wrapper
+        .top .right
+            flex-direction: column
+
+            a
+                width: fit-content
+                margin: 0 auto
+
+        .bottom
+            flex-direction: column
+            gap: 20px
+
+            nav
+                grid-template-columns: repeat(2, 1fr)
+                gap: 20px
