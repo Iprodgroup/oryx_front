@@ -1,0 +1,69 @@
+@import './_mixins'
+
+.wrapper
+    @include container(70px)
+
+    display: flex
+    gap: 20px
+
+    & > div
+        width: 100%
+
+    .left
+        h2
+            font-size: clamp(1.375rem, 0.92rem + 2.27vw, 2.625rem)
+
+        span
+            color: #444444
+            display: block
+            margin-top: 20px
+
+        ul
+            display: grid
+            gap: 30px
+
+            li
+                display: flex
+                flex-direction: column
+
+                b
+                    font-size: 18px
+                    color: #E65A57
+
+                p, a
+                    color: #444444
+
+                &:last-child
+                    gap: 5px
+
+                    b
+                        color: black
+
+                    strong
+                        font-size: 30px
+                        color: #444444
+
+    .right .map
+        width: 100%
+        height: 100%
+
+        iframe
+            width: 100%
+            height: 100%
+
+@media (max-width: 768px)
+    .wrapper
+        flex-direction: column
+
+        .left ul
+            grid-template-columns: repeat(2, 1fr)
+            margin-top: 40px
+
+            li:first-child
+                grid-column: 1 / 3
+
+            li:last-child
+                display: none
+
+        .right iframe
+            min-height: 350px
