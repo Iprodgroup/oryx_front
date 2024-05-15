@@ -12,6 +12,7 @@
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "next": "14.2.3",
+    "nextjs-toploader": "^1.6.12",
     "react": "^18",
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "^18",
