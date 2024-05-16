@@ -18,7 +18,7 @@ const Calculator = () => {
   };
 
   return (
-    <section className={styles.calculator}>
+    <section className={styles.calculator} id='calculator'>
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <h2>Калькулятор стоимости доставки</h2>
