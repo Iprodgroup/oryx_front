@@ -1,0 +1,31 @@
+@import './_mixins'
+
+.wrapper
+    @include container(50px)
+
+    h1
+        font-size: clamp(1.063rem, 0.494rem + 2.84vw, 2.625rem)
+        font-family: 'Gilroy-Bold ☞', sans-serif
+        color: #222222
+
+    .description
+        margin: 40px 0
+
+    ul
+        display: flex
+        flex-direction: column
+        gap: 40px
+
+        li
+            display: flex
+            flex-direction: column
+            gap: 20px
+
+            *:not(b)
+                padding-left: 40px
+
+            b
+                font-family: 'Gilroy-Bold ☞', sans-serif
+
+            .list
+                gap: 10px
