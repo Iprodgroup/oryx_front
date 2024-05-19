@@ -33,7 +33,7 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
         </ul>
       </nav>
       <section>
-        <div className={styles.wrapper}>{children}</div>
+        <div className={styles.container}>{children}</div>
       </section>
     </>
   );

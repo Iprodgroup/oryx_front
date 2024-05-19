@@ -7,7 +7,7 @@ import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 const Profile = () => {
   return (
     <ProfileLayout>
-      <div className={styles.cards}>
+      <div className={styles.wrapper}>
         <div className={styles.card}>
           <b>irina admin</b>
           <ul>
