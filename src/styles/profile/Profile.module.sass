@@ -1,0 +1,46 @@
+.cards
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 20px
+
+    .card
+        width: 100%
+        border-radius: 25px
+        background-color: white
+        display: flex
+        flex-direction: column
+        gap: 10px
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+        padding: 30px
+
+        *:not(p)
+            font-family: 'Gilroy-Bold ☞', sans-serif
+
+        b, strong
+            font-size: 20px
+
+        ul
+            display: flex
+            flex-direction: column
+            gap: 10px
+            margin: 0
+
+            *
+                font-family: 'Gilroy-Medium ☞', sans-serif
+
+            span
+                color: gray
+
+        a, strong
+            color: #e65a57
+
+        a
+            text-decoration: underline
+
+@media (max-width: 992px)
+    .cards
+        grid-template-columns: repeat(2, 1fr)
+
+@media (max-width: 576px)
+    .cards
+        grid-template-columns: 1fr

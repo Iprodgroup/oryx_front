@@ -1,0 +1,43 @@
+@import '@/styles/mixins'
+
+.nav
+    background-color: #E84438
+    color: white
+
+    ul
+        @include container(0)
+
+        height: 50px
+        display: flex
+        align-items: center
+        gap: 20px
+
+.wrapper
+    @include container(50px)
+
+@media (max-width: 576px)
+    .nav
+        background-color: transparent
+
+        ul
+            height: 100%
+            flex-direction: column
+            gap: 10px
+
+            li
+                width: 100%
+                border: 2px solid #E65A57
+                border-radius: 7px
+                color: #E65A57
+                text-align: center
+
+                &:hover
+                    background-color: #E65A57
+                    color: white
+
+                a
+                    width: 100%
+                    height: 30px
+                    display: flex
+                    align-items: center
+                    justify-content: center
