@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '@/styles/profile/ProfileParcels.module.sass';
 
-import { ArrowDownIcon, ArrowRightIcon } from '@/components/icons/Arrows';
+import { ArrowDownIcon, ArrowRightIcon } from '@/components/icons/arrows';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import AddParcel from '@/components/AddParcel/AddParcel';
 import TrashIcon from '@/components/icons/Trash';

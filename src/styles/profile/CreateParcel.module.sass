@@ -1,0 +1,141 @@
+@import '../_mixins'
+
+.wrapper
+    display: flex
+    gap: 50px
+
+    .left
+        width: 100%
+
+        h1
+            font-size: clamp(1.375rem, 1.148rem + 1.14vw, 2rem)
+
+        .card
+            border-radius: 25px
+            background-color: white
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+            display: flex
+            flex-direction: column
+            gap: 30px
+            margin-top: 30px
+            padding: 30px
+
+            label
+                display: flex
+                flex-direction: column
+                gap: 10px
+
+            input, select
+                width: 100%
+                height: 50px
+                outline: none
+                border: 2px solid black
+                border-radius: 5px
+                padding: 0 20px
+
+            select
+                width: 50px
+                padding: 0
+
+            .head
+                display: flex
+                justify-content: space-between
+                gap: 50px
+
+                p
+                    max-width: 300px
+
+            ul
+                display: flex
+                flex-direction: column
+                gap: 20px
+
+                li
+                    display: flex
+                    align-items: flex-end
+                    justify-content: space-between
+                    gap: 20px
+
+                    button
+                        @include red-btn(50%)
+
+                        min-width: 33px
+                        height: 33px
+                        transform: translateY(-10px)
+
+            strong
+                font-size: 20px
+                font-family: 'Gilroy-Bold ☞', sans-serif
+
+            .product__btn
+                @include red-btn(17px)
+
+                height: 50px
+                margin-left: 0
+                padding: 0 20px
+
+            .recipient
+                width: fit-content
+                border: 1px solid gray
+                background-color: #F7F7F7
+                color: gray
+                padding: 20px 15px
+
+                span
+                    border: 1px solid #E84438
+                    border-radius: 5px
+                    background-color: white
+                    margin-left: 20px
+                    padding: 5px 10px
+
+            .btns
+                display: flex
+                gap: 10px
+
+                button
+                    height: 50px
+                    padding: 0 20px
+
+                button[type="submit"]
+                    @include red-btn(600px)
+
+                    margin: 0
+
+                button[type="reset"]
+                    border-radius: 600px
+                    background-color: #868D99
+                    color: white
+
+    .right
+        width: 50%
+
+        p
+            border: 2px solid black
+            border-radius: 7px
+            margin: 30px 0
+            padding: 20px
+
+        a
+            @include red-btn(50px)
+
+            width: 100%
+            height: 50px
+            text-align: center
+
+@media (max-width: 992px)
+    .wrapper
+        flex-direction: column
+
+        .right
+            width: 100%
+
+            a
+                height: 40px
+
+@media (max-width: 768px)
+    .wrapper .left .card .head
+        flex-direction: column
+        gap: 20px
+
+        p
+            max-width: 100%
