@@ -25,13 +25,24 @@
             gap: 10px
             margin: 30px auto
 
-            input
+            input:not(input[type="checkbox"])
                 width: 100%
                 height: 50px
                 outline: none
                 border: 1px solid #CECECE
                 border-radius: 50px
                 padding: 0 20px
+
+            .confirm
+                display: flex
+                gap: 10px
+                margin: 10px 0
+
+                label
+                    text-align: start
+
+                    a
+                        text-decoration: underline
 
             button
                 @include red-btn(50px)
