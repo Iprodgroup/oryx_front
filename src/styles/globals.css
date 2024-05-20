@@ -38,3 +38,13 @@ ul {
   width: 80%;
   margin: 0 auto;
 }
+
+.login {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #f4f5fe;
+  z-index: -1;
+}

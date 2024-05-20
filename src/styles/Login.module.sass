@@ -1,0 +1,68 @@
+@import './_mixins'
+
+.wrapper
+    @include container(50px)
+
+    display: flex
+    align-items: center
+
+    & > div
+        width: 100%
+        text-align: center
+
+    h2
+        font-family: 'Gilroy-Bold ☞', sans-serif
+
+    p
+        color: #6F6F6F
+        margin-top: 10px
+
+    .left
+        form
+            max-width: 400px
+            display: flex
+            flex-direction: column
+            gap: 10px
+            margin: 30px auto
+
+            input
+                width: 100%
+                height: 50px
+                outline: none
+                border: 1px solid #CECECE
+                border-radius: 50px
+                padding: 0 20px
+
+            button
+                @include red-btn(50px)
+
+                width: 100%
+                height: 50px
+
+        .flx
+            display: flex
+            justify-content: center
+            gap: 20px
+
+            a
+                display: flex
+                align-items: center
+                gap: 10px
+                text-decoration: underline
+
+                &:first-child
+                    border-right: 2px solid #C5C5C5
+                    padding-right: 20px
+
+    .right button
+        height: 50px
+        border-radius: 50px
+        background-color: #5086F7
+        color: white
+        margin-top: 20px
+        padding: 0 20px
+
+@media (max-width: 768px)
+    .wrapper
+        flex-direction: column
+        gap: 50px
