@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: 'localhost',
         protocol: 'http',
       },
+      {
+        hostname: 'oryx.kz',
+        protocol: 'https',
+      },
     ],
   },
 };
