@@ -15,11 +15,11 @@ import classNames from 'classnames';
 import { Question } from '@/types/question.interface';
 import instance from '@/utils/axios';
 
-const fetcher = (arg: string): Promise<Question[]> =>
+const fetcher = (arg: string): Promise<{ questions: Question[] }> =>
   instance(arg).then((res) => res.data);
 
 const FAQComponent = () => {
-  const { data } = useSWR('/faq', fetcher);
+  const { data } = useSWR('/help', fetcher);
   const [isExpanded, setIsExpanded] = useState<ID[]>([]);
 
   return (
@@ -28,7 +28,7 @@ const FAQComponent = () => {
       className={styles.accordions}
       onChange={(args) => setIsExpanded(args)}
     >
-      {data?.map((question) => (
+      {data?.questions.map((question) => (
         <AccordionItem key={question.id} uuid={question.id}>
           <AccordionItemHeading>
             <AccordionItemButton

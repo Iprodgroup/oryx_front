@@ -10,11 +10,11 @@ import { Store } from '@/types/store.interface';
 import instance from '@/utils/axios';
 import settings from './slider.settings';
 
-const fetcher = (arg: string): Promise<Store[]> =>
+const fetcher = (arg: string): Promise<{ stores: Store[] }> =>
   instance(arg).then((res) => res.data);
 
 const PopularStores = () => {
-  const { data } = useSWR('/stores', fetcher);
+  const { data } = useSWR('/popular-stores', fetcher);
 
   return (
     <section>
@@ -24,7 +24,7 @@ const PopularStores = () => {
           {...settings}
           className={classNames('stores-slider', styles.slider)}
         >
-          {data?.map((store) => (
+          {data?.stores.map((store) => (
             <Image
               key={store.id}
               src={store.img}

@@ -7,8 +7,8 @@ import { Category } from '@/types/category.interface';
 import instance from '@/utils/axios';
 
 export const getServerSideProps = (async () => {
-  const res = await instance.get('/categories');
-  const categories: Category[] = await res.data;
+  const res = await instance.get<{ categories: Category[] }>('/popular-stores');
+  const categories = res.data.categories;
 
   return { props: { categories } };
 }) satisfies GetServerSideProps<{ categories: Category[] }>;
