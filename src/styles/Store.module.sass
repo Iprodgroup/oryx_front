@@ -1,0 +1,18 @@
+@import './_mixins'
+
+.wrapper
+    @include container(50px)
+
+    h1
+        font-size: clamp(1.25rem, 0.795rem + 2.27vw, 2.5rem)
+
+    img
+        object-fit: contain
+        margin: 50px 0
+
+    .btn
+        @include red-btn(50px)
+
+        width: fit-content
+        margin-left: 0
+        padding: 15px 45px
