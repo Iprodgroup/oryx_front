@@ -3,6 +3,14 @@ import styles from '@/styles/Login.module.sass';
 
 import Link from 'next/link';
 
+import withAuthServerSide from '@/utils/withAuthServerSide';
+
+export const getServerSideProps = withAuthServerSide('/profile')(async () => {
+  return {
+    props: {},
+  };
+});
+
 const Register = () => {
   useEffect(() => {
     const body = document.body;

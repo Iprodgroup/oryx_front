@@ -5,8 +5,11 @@ import Image from 'next/image';
 import DrawerComponent from 'react-modern-drawer';
 import Link from 'next/link';
 
+import useAuth from '@/hooks/useAuth';
+
 const Drawer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isAuthenticated = useAuth();
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -46,6 +49,11 @@ const Drawer = () => {
               <li>
                 <Link href='/#calculator'>Калькулятор</Link>
               </li>
+              {isAuthenticated && (
+                <li>
+                  <Link href='/logout'>Выход</Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>

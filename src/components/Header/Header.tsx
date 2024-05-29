@@ -4,10 +4,13 @@ import { useIsClient, useMediaQuery } from 'usehooks-ts';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import useAuth from '@/hooks/useAuth';
 import Drawer from '../drawer/Drawer/Drawer';
 
 const Header = () => {
   const isClient = useIsClient();
+  const isAuthenticated = useAuth();
+
   const matches = {
     576: useMediaQuery('(min-width: 576px)'),
     1200: useMediaQuery('(min-width: 1200px)'),
@@ -50,12 +53,23 @@ const Header = () => {
             )}
           </div>
           <div className={styles.right}>
-            <Link href='/login' className={styles.login__btn}>
-              <Image src='/login.svg' alt='' width={16} height={20} /> Вход
-            </Link>
-            <Link href='/register' className={styles.register__btn}>
-              Регистрация
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link href='/profile'>Личный кабинет</Link>
+                <Link href='/logout' className={styles.register__btn}>
+                  Выход
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href='/login' className={styles.login__btn}>
+                  <Image src='/login.svg' alt='' width={16} height={20} /> Вход
+                </Link>
+                <Link href='/register' className={styles.register__btn}>
+                  Регистрация
+                </Link>
+              </>
+            )}
             {!matches[1200] && <Drawer />}
           </div>
         </div>

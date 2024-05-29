@@ -4,8 +4,12 @@ import { useIsClient, useMediaQuery } from 'usehooks-ts';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import useAuth from '@/hooks/useAuth';
+
 const Footer = () => {
   const isClient = useIsClient();
+  const isAuthenticated = useAuth();
+
   const matches = {
     768: useMediaQuery('(min-width: 768px)'),
   };
@@ -43,8 +47,14 @@ const Footer = () => {
               </div>
             )}
             <div className={styles.right}>
-              <Link href='/login'>Войти в личный кабинет</Link>
-              <Link href='/register'>Регистрация в ЛК</Link>
+              {isAuthenticated ? (
+                <Link href='/profile'>Личный кабинет</Link>
+              ) : (
+                <>
+                  <Link href='/login'>Войти в личный кабинет</Link>
+                  <Link href='/register'>Регистрация в ЛК</Link>
+                </>
+              )}
             </div>
           </div>
           <div className={styles.middle}>

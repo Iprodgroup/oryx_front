@@ -1,28 +1,41 @@
 import styles from '@/styles/profile/Profile.module.sass';
 
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import Link from 'next/link';
 
+import { User } from '@/types/user.interface';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
+import instance from '@/utils/axios';
+import passToken from '@/utils/passToken';
 
-const Profile = () => {
+export const getServerSideProps = (async (context) => {
+  const res = await instance.get('/user', { ...passToken(context) });
+  const user: User = await res.data;
+
+  return { props: { user } };
+}) satisfies GetServerSideProps<{ user: User }>;
+
+const Profile = ({
+  user,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <ProfileLayout>
       <div className={styles.wrapper}>
         <div className={styles.card}>
-          <b>irina admin</b>
+          {user.fio && <b>{user.fio}</b>}
           <ul>
             <li>
-              <span>ID:</span> #15730
+              <span>ID:</span> #{user.id}
             </li>
             <li>
-              <span>Email:</span> erke-naz342@mail.ru
+              <span>Email:</span> {user.email}
             </li>
             <li>
-              <span>Телефон:</span> +5 (555) 555-55-55
+              <span>Телефон:</span> +{user.phone}
             </li>
           </ul>
           <Link href='/profile/settings'>Посмотреть все данные</Link>
-          <strong>VIP</strong>
+          {user.email === 'erke-naz342@mail.ru' && <strong>VIP</strong>}
         </div>
         <div className={styles.card}>
           <b>Мои посылки</b>
