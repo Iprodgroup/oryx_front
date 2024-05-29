@@ -1,21 +1,45 @@
 import styles from '@/styles/PopularStores.module.sass';
 
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import { Category } from '@/types/category.interface';
+import { Store } from '@/types/store.interface';
+import { responsiveImg } from '@/utils/image';
 import instance from '@/utils/axios';
 
-export const getServerSideProps = (async () => {
-  const res = await instance.get<{ categories: Category[] }>('/popular-stores');
+export const getServerSideProps = (async ({ query }) => {
+  const res = await instance.get<{ categories: Category[]; stores: Store[] }>(
+    '/popular-stores',
+    {
+      params: {
+        category_id: query.categoryId,
+      },
+    }
+  );
   const categories = res.data.categories;
+  const stores = res.data.stores;
 
-  return { props: { categories } };
-}) satisfies GetServerSideProps<{ categories: Category[] }>;
+  return { props: { categories, stores } };
+}) satisfies GetServerSideProps<{ categories: Category[]; stores: Store[] }>;
 
 const PopularStores = ({
   categories,
+  stores,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const router = useRouter();
+  const categoryId = +router.query.categoryId!;
+
+  const changeCategory = (categoryId: number) => {
+    router.replace({
+      pathname: router.pathname,
+      query: { ...router.query, categoryId },
+    });
+  };
+
   return (
     <>
       <Head>
@@ -30,11 +54,24 @@ const PopularStores = ({
               Мы подготовили для вас список самых популярных магазинов одежды,
               которые диктуют тренды каждого сезона
             </p>
-            <ul>
+            <div className={styles.categories}>
               {categories.map((category) => (
-                <li key={category.id}>{category.name}</li>
+                <button
+                  key={category.id}
+                  className={categoryId === category.id ? styles.active : ''}
+                  onClick={() => changeCategory(category.id)}
+                >
+                  {category.name}
+                </button>
               ))}
-            </ul>
+            </div>
+            <div className={styles.stores}>
+              {stores.map((store) => (
+                <Link key={store.id} href={`/popular-stores/${store.slug}`}>
+                  <Image src={store.img} alt='' {...responsiveImg} />
+                </Link>
+              ))}
+            </div>
           </div>
           <div className={styles.bottom}>
             <h1>Что чаще всего покупают в США?</h1>
