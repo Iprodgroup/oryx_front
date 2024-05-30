@@ -1,0 +1,49 @@
+@import '@/styles/mixins'
+
+.wrapper
+    @include container(30px)
+
+    display: flex
+    justify-content: space-between
+
+    .right
+        display: flex
+        align-items: center
+        gap: 20px
+
+        .profile__btn
+            display: flex
+            gap: 10px
+
+        .login__btn
+            @include red-btn(50px)
+
+            width: 117px
+            height: 48px
+            gap: 10px
+
+            img
+                object-fit: contain
+
+        .register__btn
+            color: #E65A57
+            text-decoration: underline
+
+@media (max-width: 576px)
+    .wrapper
+        .left img
+            width: 100px
+            height: 50px
+
+        .right
+            .login__btn
+                width: 90px
+                height: 40px
+                gap: 5px
+
+                img
+                    width: 12px
+                    height: 12px
+
+            .register__btn
+                display: none

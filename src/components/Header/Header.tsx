@@ -37,7 +37,9 @@ const Header = () => {
                     <Link href='/o-kompanii'>О нас</Link>
                   </li>
                   <li>
-                    <Link href='/populyarnye-magaziny'>Популярные магазины</Link>
+                    <Link href='/populyarnye-magaziny'>
+                      Популярные магазины
+                    </Link>
                   </li>
                   <li>
                     <Link href='/buy-me'>Купи вместо меня</Link>
@@ -55,7 +57,10 @@ const Header = () => {
           <div className={styles.right}>
             {isAuthenticated ? (
               <>
-                <Link href='/profile'>Личный кабинет</Link>
+                <Link href='/profile' className={styles.profile__btn}>
+                  <Image src='/lock-red.svg' alt='' width={16} height={16} />{' '}
+                  Личный кабинет
+                </Link>
                 <Link href='/logout' className={styles.register__btn}>
                   Выход
                 </Link>

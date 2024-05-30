@@ -48,3 +48,7 @@ ul {
   background: #f4f5fe;
   z-index: -1;
 }
+
+.EZDrawer {
+  position: absolute;
+}
