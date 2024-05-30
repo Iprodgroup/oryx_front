@@ -25,33 +25,33 @@ const ProfileSettings = ({
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const [surname, name, fname, email, phone, password] = [
-      'surname',
-      'name',
-      'fname',
-      'email',
-      'phone',
-      'password',
-    ].map((name) => formData.get(name));
-
     const loadingToastId = toast.loading('Загрузка...');
 
-    const { status } = await axios.post('/api/profile/settings', {
-      surname,
-      name,
-      fname,
-      email,
-      phone,
-      password,
-    });
+    try {
+      const formData = new FormData(event.currentTarget);
+      const [surname, name, fname, email, phone, password] = [
+        'surname',
+        'name',
+        'fname',
+        'email',
+        'phone',
+        'password',
+      ].map((name) => formData.get(name));
 
-    toast.dismiss(loadingToastId);
+      await axios.post('/api/profile/settings', {
+        surname,
+        name,
+        fname,
+        email,
+        phone,
+        password,
+      });
 
-    if (status === 200) {
       toast.success('Данные обновлены');
-    } else {
-      toast.error('Что-то пошло не так');
+    } catch (error) {
+      toast.error('Ошибка при обновлении данных');
+    } finally {
+      toast.dismiss(loadingToastId);
     }
   };
 

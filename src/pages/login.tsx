@@ -24,20 +24,23 @@ const Login = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get('email');
-    const password = formData.get('password');
-
     const loadingToastId = toast.loading('Загрузка...');
 
-    const { status } = await axios.post('/api/auth/login', { email, password });
+    try {
+      const formData = new FormData(event.currentTarget);
+      const email = formData.get('email');
+      const password = formData.get('password');
 
-    toast.dismiss(loadingToastId);
+      await axios.post('/api/auth/login', {
+        email,
+        password,
+      });
 
-    if (status === 200) {
       router.push('/profile');
-    } else {
-      toast.error('Что-то пошло не так');
+    } catch (error) {
+      toast.error('Ошибка при логине');
+    } finally {
+      toast.dismiss(loadingToastId);
     }
   };
 
