@@ -35,7 +35,7 @@ const PopularStores = () => {
             />
           ))}
         </Slider>
-        <Link href='/popular-stores'>Смотреть все</Link>
+        <Link href='/populyarnye-magaziny'>Смотреть все</Link>
       </div>
     </section>
   );

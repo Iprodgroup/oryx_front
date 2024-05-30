@@ -35,16 +35,16 @@ const Drawer = () => {
           <nav>
             <ul>
               <li>
-                <Link href='/about'>О нас</Link>
+                <Link href='/o-kompanii'>О нас</Link>
               </li>
               <li>
-                <Link href='/popular-stores'>Популярные магазины</Link>
+                <Link href='/populyarnye-magaziny'>Популярные магазины</Link>
               </li>
               <li>
-                <Link href='/buy-it-for-me'>Купи вместо меня</Link>
+                <Link href='/buy-me'>Купи вместо меня</Link>
               </li>
               <li>
-                <Link href='/contacts'>Контакты</Link>
+                <Link href='/kontakty'>Контакты</Link>
               </li>
               <li>
                 <Link href='/#calculator'>Калькулятор</Link>

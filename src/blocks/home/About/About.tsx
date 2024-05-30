@@ -25,7 +25,7 @@ const About = () => {
               сотрудничаем с лучшими перевозчиками долго и плодотворно благодаря
               этому готовы предложить доступную стоимость доставки.
             </p>
-            <Link href='/about'>Узнать больше</Link>
+            <Link href='/o-kompanii'>Узнать больше</Link>
           </div>
           <div className={styles.right}>
             <Image

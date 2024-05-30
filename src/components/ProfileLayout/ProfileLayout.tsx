@@ -28,7 +28,7 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
             <Link href='/profile/settings'>Личные данные</Link>
           </li>
           <li>
-            <Link href='/profile/notifications'>Настройка уведомлений</Link>
+            <Link href='/profile/nsettings'>Настройка уведомлений</Link>
           </li>
         </ul>
       </nav>

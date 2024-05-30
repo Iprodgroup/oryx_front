@@ -99,7 +99,7 @@ const Register = () => {
               <input type='checkbox' id='pp' required />
               <label htmlFor='pp'>
                 Я принимаю условия{' '}
-                <Link href='/privacy-policy'>пользовательского соглашения</Link>
+                <Link href='/politika-konfidentsialnosti'>пользовательского соглашения</Link>
               </label>
             </div>
             <button type='submit'>Зарегистрироваться</button>

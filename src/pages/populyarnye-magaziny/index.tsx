@@ -67,7 +67,7 @@ const PopularStores = ({
             </div>
             <div className={styles.stores}>
               {stores.map((store) => (
-                <Link key={store.id} href={`/popular-stores/${store.slug}`}>
+                <Link key={store.id} href={`/populyarnye-magaziny/${store.slug}`}>
                   <Image src={store.img} alt='' {...responsiveImg} />
                 </Link>
               ))}

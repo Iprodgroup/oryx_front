@@ -71,28 +71,28 @@ const Footer = () => {
             <nav>
               <ul>
                 <li>
-                  <Link href='/about'>О компании</Link>
+                  <Link href='/o-kompanii'>О компании</Link>
                 </li>
                 <li>
-                  <Link href='/popular-stores'>Популярные магазины в США</Link>
-                </li>
-              </ul>
-              <ul>
-                <li>
-                  <Link href='/contacts'>Контакты</Link>
-                </li>
-                <li>
-                  <Link href='/support'>Помощь в работе с сервисом</Link>
+                  <Link href='/populyarnye-magaziny'>Популярные магазины в США</Link>
                 </li>
               </ul>
               <ul>
                 <li>
-                  <Link href='/privacy-policy'>
+                  <Link href='/kontakty'>Контакты</Link>
+                </li>
+                <li>
+                  <Link href='/usloviya-servisa'>Помощь в работе с сервисом</Link>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <Link href='/politika-konfidentsialnosti'>
                     Политика конфиденциальности
                   </Link>
                 </li>
                 <li>
-                  <Link href='/terms'>Общие условия</Link>
+                  <Link href='/obshchie-usloviya'>Общие условия</Link>
                 </li>
               </ul>
             </nav>
