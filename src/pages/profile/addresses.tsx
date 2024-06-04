@@ -35,7 +35,15 @@ const ProfileAddresses = () => {
           <div className={styles.fields}>
             <label>
               Address 1:
-              <input type='text' value='3047 Emmons Avenue Brooklyn' disabled />
+              <input
+                type='text'
+                value={
+                  state === 'delaware'
+                    ? '705 Carson drive'
+                    : '3047 Emmons Avenue Brooklyn'
+                }
+                disabled
+              />
             </label>
             <label>
               Address 2:
@@ -43,15 +51,27 @@ const ProfileAddresses = () => {
             </label>
             <label>
               City:
-              <input type='text' value='New York' disabled />
+              <input
+                type='text'
+                value={state === 'delaware' ? 'Bear' : 'New York'}
+                disabled
+              />
             </label>
             <label>
               State:
-              <input type='text' value='New York (NY)' disabled />
+              <input
+                type='text'
+                value={state === 'delaware' ? 'DE' : 'New York (NY)'}
+                disabled
+              />
             </label>
             <label>
               Zip code:
-              <input type='number' value={11235} disabled />
+              <input
+                type='number'
+                value={state === 'delaware' ? 19701 : 11235}
+                disabled
+              />
             </label>
             <label>
               Country:
