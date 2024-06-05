@@ -1,18 +1,67 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import styles from '@/styles/profile/ProfileParcels.module.sass';
 
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+
 import { ArrowDownIcon, ArrowRightIcon } from '@/components/icons/arrows';
+import { Parcel } from '@/types/parcel.interface';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import AddParcel from '@/components/AddParcel/AddParcel';
 import TrashIcon from '@/components/icons/Trash';
 import PenIcon from '@/components/icons/Pen';
+import instance from '@/utils/axios';
+import passToken from '@/utils/passToken';
+import statuses from '@/utils/statuses';
+import formatDate from '@/utils/formatDate';
 
-const ProfileParcels = () => {
-  const [isDisplay, setIsDisplay] = useState(true);
+export const getServerSideProps = (async (context) => {
+  const res = await instance.get<{ items: Parcel[] }>('/profile/parcels', {
+    ...passToken(context),
+    params: {
+      status: context.query.status,
+    },
+  });
+  const parcels = res.data.items;
 
-  const toggleDisplay = () => {
-    setIsDisplay((prev) => !prev);
+  return { props: { parcels } };
+}) satisfies GetServerSideProps<{ parcels: Parcel[] }>;
+
+const ProfileParcels = ({
+  parcels,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const [isDisplay, setIsDisplay] = useState<{
+    state: boolean;
+    data: Partial<Parcel>;
+  }>({
+    state: false,
+    data: {},
+  });
+  const [search, setSearch] = useState('');
+
+  const router = useRouter();
+
+  const toggleDisplay = (data: Parcel) => {
+    setIsDisplay((prev) => ({ state: !prev.state, data }));
   };
+
+  const changeStatus = (event: ChangeEvent<HTMLSelectElement>) => {
+    router.replace({
+      pathname: router.pathname,
+      query: { ...router.query, status: event.target.value },
+    });
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // @ts-ignore
+    setSearch(event.target[0].value);
+  };
+
+  useEffect(() => {
+    setIsDisplay({ state: false, data: {} });
+  }, [router]);
 
   return (
     <ProfileLayout>
@@ -20,15 +69,21 @@ const ProfileParcels = () => {
         <div className={styles.left}>
           <h1>Список ваших посылок</h1>
           <p>Вся информация о ваших посылках и их статусах</p>
-          <form className={styles.formik}>
+          <form className={styles.formik} onSubmit={handleSubmit}>
             <input type='search' placeholder='Поиск по треку' />
-            <select name='status' defaultValue=''>
+            <select
+              name='status'
+              defaultValue={router.query.status}
+              onChange={changeStatus}
+            >
               <option value='' disabled>
                 Статус посылки
               </option>
-              <option value='1'>Статус 1</option>
-              <option value='2'>Статус 2</option>
-              <option value='3'>Статус 3</option>
+              {statuses.map((status) => (
+                <option key={status.key} value={status.key}>
+                  {status.value}
+                </option>
+              ))}
             </select>
             <button type='submit'>Поиск</button>
             <button type='reset'>Очистить</button>
@@ -39,54 +94,75 @@ const ProfileParcels = () => {
                 <tr>
                   <th>Трек-код</th>
                   <th>Статус</th>
-                  <th>Наименование</th>
                   <th>Стоимость</th>
                   <th>Дата добавления</th>
                   <th>Направление</th>
                   <th></th>
                 </tr>
-                <tr>
-                  <td>TEST</td>
-                  <td>TEST</td>
-                  <td>TEST</td>
-                  <td>TEST</td>
-                  <td>TEST</td>
-                  <td>TEST</td>
-                  <td>
-                    <button>
-                      <TrashIcon />
-                    </button>
-                    <button>
-                      <PenIcon />
-                    </button>
-                    <button onClick={toggleDisplay}>
-                      {isDisplay ? <ArrowDownIcon /> : <ArrowRightIcon />}
-                    </button>
-                  </td>
-                </tr>
+                {parcels
+                  .filter((parcel) => parcel.track.includes(search))
+                  .map((parcel) => (
+                    <tr key={parcel.id}>
+                      <td>{parcel.track}</td>
+                      <td>{statuses[+parcel.status].value}</td>
+                      <td>
+                        {parcel.goods.reduce((acc, cur) => acc + +cur.price, 0)}
+                        $
+                      </td>
+                      <td>{formatDate(parcel.created_at)}</td>
+                      <td>
+                        {+parcel.city_out === 1 ? 'Нью-Йорк' : 'Делавэр'} -{' '}
+                        {parcel.city}
+                      </td>
+                      <td>
+                        <button>
+                          <TrashIcon />
+                        </button>
+                        <button>
+                          <PenIcon />
+                        </button>
+                        <button onClick={() => toggleDisplay(parcel)}>
+                          {isDisplay.state &&
+                          isDisplay.data.id === parcel.id ? (
+                            <ArrowDownIcon />
+                          ) : (
+                            <ArrowRightIcon />
+                          )}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
-            {isDisplay && (
+            {isDisplay.state && (
               <div className={styles.bottom}>
                 <table>
                   <tbody>
                     <tr>
                       <th>Наименование товара</th>
-                      <td>TEST</td>
+                      {isDisplay.data.goods?.map((item) => (
+                        <td key={item.id}>{item.name}</td>
+                      ))}
                     </tr>
                     <tr>
                       <th>Стоимость</th>
-                      <td>TEST</td>
+                      {isDisplay.data.goods?.map((item) => (
+                        <td key={item.id}>{item.price}$</td>
+                      ))}
                     </tr>
-                    <tr>
+                    {/* <tr>
                       <th>Получатель</th>
-                      <td>TEST</td>
-                    </tr>
+                      {isDisplay.data.goods?.map((item) => (
+                        <td key={item.id}>{isDisplay.data.recipient_id}</td>
+                      ))}
+                    </tr> */}
                     <tr>
                       <th>Город</th>
-                      <td>TEST</td>
+                      {isDisplay.data.goods?.map((item) => (
+                        <td key={item.id}>{isDisplay.data.city}</td>
+                      ))}
                     </tr>
-                    <tr>
+                    {/* <tr>
                       <th>Адрес</th>
                       <td>TEST</td>
                     </tr>
@@ -97,7 +173,7 @@ const ProfileParcels = () => {
                     <tr>
                       <th>Оплата</th>
                       <td>TEST</td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
