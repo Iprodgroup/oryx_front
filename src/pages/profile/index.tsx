@@ -40,7 +40,7 @@ const Profile = ({
         <div className={styles.card}>
           <b>Мои посылки</b>
           <p>Просмотр статуса и добавление новых посылок</p>
-          <p>Активных посылок (2)</p>
+          <p>Активных посылок ({user.parcelActiveCount})</p>
           <Link href='/profile/parcels'>Узнать подробнее</Link>
         </div>
         <div className={styles.card}>

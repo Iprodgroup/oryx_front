@@ -28,4 +28,5 @@ export interface User {
   fio: string;
   ref_id: string;
   id_orx: string;
+  parcelActiveCount: number;
 }
