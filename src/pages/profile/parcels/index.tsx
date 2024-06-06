@@ -3,6 +3,8 @@ import styles from '@/styles/profile/ProfileParcels.module.sass';
 
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 import { ArrowDownIcon, ArrowRightIcon } from '@/components/icons/arrows';
 import { Parcel } from '@/types/parcel.interface';
@@ -57,6 +59,22 @@ const ProfileParcels = ({
 
     // @ts-ignore
     setSearch(event.target[0].value);
+  };
+
+  const deleteParcel = async (id: number) => {
+    const loadingToastId = toast.loading('Загрузка...');
+
+    try {
+      await axios.delete(`/api/profile/delete-parcel/${id}`);
+
+      toast.success('Посылка удалена');
+
+      router.replace(router.asPath);
+    } catch (error) {
+      toast.error('Ошибка при удалении посылки');
+    } finally {
+      toast.dismiss(loadingToastId);
+    }
   };
 
   useEffect(() => {
@@ -115,7 +133,7 @@ const ProfileParcels = ({
                         {parcel.city}
                       </td>
                       <td>
-                        <button>
+                        <button onClick={() => deleteParcel(parcel.id)}>
                           <TrashIcon />
                         </button>
                         <button>
