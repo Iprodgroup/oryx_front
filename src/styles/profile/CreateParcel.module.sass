@@ -33,14 +33,15 @@
                 border-radius: 5px
                 padding: 0 20px
 
-            select
-                width: 50px
-                padding: 0
-
             .head
                 display: flex
-                justify-content: space-between
-                gap: 50px
+                flex-direction: column
+                gap: 30px
+
+                .flex
+                    display: flex
+                    justify-content: space-between
+                    gap: 50px
 
                 p
                     max-width: 300px
@@ -55,6 +56,10 @@
                     align-items: flex-end
                     justify-content: space-between
                     gap: 20px
+
+                    select
+                        width: 50px
+                        padding: 0
 
                     button
                         @include red-btn(50%)
@@ -79,14 +84,17 @@
                 border: 1px solid gray
                 background-color: #F7F7F7
                 color: gray
-                padding: 20px 15px
+                display: flex
+                align-items: center
+                gap: 20px
+                padding: 10px 15px
 
-                span
-                    border: 1px solid #E84438
+                select
+                    border: 2px solid #E84438
                     border-radius: 5px
                     background-color: white
                     color: #E84438
-                    margin-left: 20px
+                    text-transform: uppercase
                     padding: 5px 10px
 
             .btns
@@ -134,9 +142,15 @@
                 height: 40px
 
 @media (max-width: 768px)
-    .wrapper .left .card .head
+    .wrapper .left .card .head .flex
         flex-direction: column
         gap: 20px
 
         p
             max-width: 100%
+
+@media (max-width: 576px)
+    .wrapper .left .card .recipient
+        flex-direction: column
+        align-items: flex-start
+        gap: 10px
