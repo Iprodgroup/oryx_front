@@ -8,10 +8,14 @@ const nextConfig = {
         protocol: 'http',
       },
       {
-        hostname: 'oryx.kz',
+        hostname: 'cms.oryx.kz',
         protocol: 'https',
       },
     ],
+  },
+  experimental: {
+    workerThreads: false,
+    cpus: 4,
   },
 };
 
