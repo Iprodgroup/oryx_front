@@ -6,6 +6,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import { User } from '@/types/user.interface';
+import { Recipient } from '@/types/recipient.interface';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import CheckIcon from '@/components/icons/Check';
 import AddRecipientModal from '@/components/modal/AddRecipientModal/AddRecipientModal';
@@ -14,13 +15,18 @@ import passToken from '@/utils/passToken';
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get('/user', { ...passToken(context) });
-  const user: User = await res.data;
+  const res2 = await instance.get('/profile/settings', {
+    ...passToken(context),
+  });
+  const user: User = res.data;
+  const recipients: Recipient[] = res2.data.recipients;
 
-  return { props: { user } };
-}) satisfies GetServerSideProps<{ user: User }>;
+  return { props: { user, recipients } };
+}) satisfies GetServerSideProps<{ user: User; recipients: Recipient[] }>;
 
 const ProfileSettings = ({
   user,
+  recipients,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -111,36 +117,17 @@ const ProfileSettings = ({
           <b>Получатели</b>
           <p>Добавить получателя</p>
           <ul>
-            <li>
-              <div className={styles.flx}>
-                <CheckIcon />
-                <span>Подтвержден</span>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
-                adipisci.
-              </p>
-            </li>
-            <li>
-              <div className={styles.flx}>
-                <CheckIcon />
-                <span>Подтвержден</span>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Quisquam, voluptatem.
-              </p>
-            </li>
-            <li>
-              <div className={styles.flx}>
-                <CheckIcon />
-                <span>Подтвержден</span>
-              </div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deserunt, doloremque.
-              </p>
-            </li>
+            {recipients.map((recipient) => (
+              <li key={recipient.id}>
+                <div className={styles.flx}>
+                  <CheckIcon />
+                  <span>Подтвержден</span>
+                </div>
+                <p>
+                  {recipient.surname} {recipient.name} {recipient.fname}
+                </p>
+              </li>
+            ))}
           </ul>
           <AddRecipientModal />
         </div>
