@@ -25,17 +25,20 @@ const PopularStores = () => {
           className={classNames('stores-slider', styles.slider)}
         >
           {data?.stores.map((store) => (
-            <Image
-              key={store.id}
-              src={store.img}
-              alt=''
-              width={170}
-              height={170}
-              className={styles.slider__img}
-            />
+            <Link key={store.id} href={`/populyarnye-magaziny/${store.slug}`}>
+              <Image
+                src={store.img}
+                alt=''
+                width={170}
+                height={170}
+                className={styles.slider__img}
+              />
+            </Link>
           ))}
         </Slider>
-        <Link href='/populyarnye-magaziny'>Смотреть все</Link>
+        <Link href='/populyarnye-magaziny' className={styles.all__btn}>
+          Смотреть все
+        </Link>
       </div>
     </section>
   );

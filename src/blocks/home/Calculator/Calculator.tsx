@@ -6,12 +6,9 @@ import Image from 'next/image';
 import { responsiveImg } from '@/utils/image';
 
 const Calculator = () => {
-  const [country, setCountry] = useState('');
   const [result, setResult] = useState<number>();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (!country) return alert('Выберите страну');
-
     const value = event.target.value;
 
     setResult(+value * 13);
@@ -23,11 +20,7 @@ const Calculator = () => {
         <div className={styles.left}>
           <h2>Калькулятор стоимости доставки</h2>
           <div className={styles.calc}>
-            <select
-              name='country'
-              defaultValue=''
-              onChange={(event) => setCountry(event.target.value)}
-            >
+            <select name='country' defaultValue='usa'>
               <option value='' disabled>
                 Выбрать страну
               </option>

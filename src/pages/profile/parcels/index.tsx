@@ -48,6 +48,17 @@ const ProfileParcels = ({
   };
 
   const changeStatus = (event: ChangeEvent<HTMLSelectElement>) => {
+    if (event.target.value === '') {
+      const { status, ...restQuery } = router.query;
+
+      router.replace({
+        pathname: router.pathname,
+        query: restQuery,
+      });
+
+      return;
+    }
+
     router.replace({
       pathname: router.pathname,
       query: { ...router.query, status: event.target.value },
@@ -94,9 +105,7 @@ const ProfileParcels = ({
               defaultValue={router.query.status}
               onChange={changeStatus}
             >
-              <option value='' disabled>
-                Статус посылки
-              </option>
+              <option value=''>Все</option>
               {statuses.map((status) => (
                 <option key={status.key} value={status.key}>
                   {status.value}
@@ -112,7 +121,7 @@ const ProfileParcels = ({
                 <tr>
                   <th>Трек-код</th>
                   <th>Статус</th>
-                  <th>Стоимость</th>
+                  <th>Стоимость доставки</th>
                   <th>Дата добавления</th>
                   <th>Направление</th>
                   <th></th>
@@ -123,10 +132,11 @@ const ProfileParcels = ({
                     <tr key={parcel.id}>
                       <td>{parcel.track}</td>
                       <td>{statuses[+parcel.status].value}</td>
-                      <td>
-                        {parcel.goods.reduce((acc, cur) => acc + +cur.price, 0)}
-                        $
-                      </td>
+                      {+parcel.prod_price > 0 ? (
+                        <td>{parcel.prod_price}$</td>
+                      ) : (
+                        <td>Не указано</td>
+                      )}
                       <td>{formatDate(parcel.created_at)}</td>
                       <td>
                         {+parcel.city_out === 1 ? 'Нью-Йорк' : 'Делавэр'} -{' '}

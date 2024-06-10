@@ -1,14 +1,27 @@
 import { useState } from 'react';
 import styles from '@/styles/profile/ProfileAddresses.module.sass';
 
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { responsiveImg } from '@/utils/image';
+import { User } from '@/types/user.interface';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import AddParcel from '@/components/AddParcel/AddParcel';
+import instance from '@/utils/axios';
+import passToken from '@/utils/passToken';
 
-const ProfileAddresses = () => {
+export const getServerSideProps = (async (context) => {
+  const res = await instance.get('/user', { ...passToken(context) });
+  const user: User = await res.data;
+
+  return { props: { user } };
+}) satisfies GetServerSideProps<{ user: User }>;
+
+const ProfileAddresses = ({
+  user,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [state, setState] = useState('delaware');
 
   return (
@@ -47,7 +60,7 @@ const ProfileAddresses = () => {
             </label>
             <label>
               Address 2:
-              <input type='text' value='ORX15730' disabled />
+              <input type='text' value={user.id_orx} disabled />
             </label>
             <label>
               City:
