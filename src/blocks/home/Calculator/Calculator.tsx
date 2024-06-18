@@ -10,8 +10,12 @@ const Calculator = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-
-    setResult(+value * 13);
+    if (parseInt(value) <= 0.100) {
+      setResult(1.3)
+    }else {
+      setResult(+value * 13);
+    }
+    
   };
 
   return (

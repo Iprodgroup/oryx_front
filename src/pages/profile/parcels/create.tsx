@@ -125,7 +125,7 @@ const CreateParcel = ({
             <div className={styles.head}>
               <label htmlFor='departure'>
                 Город отправки
-                <select name='city_out' id='departure' defaultValue='1'>
+                <select name='city_out' id='departure' defaultValue='2'>
                   <option value='1'>Адрес в Нью-Йорке</option>
                   <option value='2'>Адрес в Делавэр</option>
                 </select>
@@ -134,7 +134,7 @@ const CreateParcel = ({
                 Город доставки
                 <select name='city' id='delivery'>
                   {cities.map((city, index) => (
-                    <option key={index} value={city}>
+                    <option key={index} value={city} selected={city === "Алматы"}>
                       {city}
                     </option>
                   ))}
