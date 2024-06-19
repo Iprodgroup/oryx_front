@@ -17,7 +17,13 @@ const DefaultHeader = () => {
         <div className={styles.wrapper}>
           <div className={styles.left}>
             <Link href='/'>
-              <Image src='/logo-mobile.svg' alt='' width={140} height={60} />
+              <Image
+                src='/logo-mobile.svg'
+                alt=''
+                width={140}
+                height={60}
+                priority
+              />
             </Link>
           </div>
           <div className={styles.right}>

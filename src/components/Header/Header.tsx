@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 import useAuth from '@/hooks/useAuth';
 import Drawer from '../drawer/Drawer/Drawer';
+import LogoIcon from '../icons/Logo';
 
 const Header = () => {
   const isClient = useIsClient();
@@ -22,13 +23,17 @@ const Header = () => {
         <div className={styles.wrapper}>
           <div className={styles.left}>
             <Link href='/'>
-              <Image
-                src={matches[576] ? '/logo.svg' : '/logo-mobile.svg'}
-                alt=''
-                width={170}
-                height={70}
-                priority
-              />
+              {matches[576] ? (
+                <Image
+                  src='/logo.svg'
+                  alt=''
+                  width={170}
+                  height={70}
+                  priority
+                />
+              ) : (
+                <LogoIcon />
+              )}
             </Link>
             {matches[1200] && (
               <nav>

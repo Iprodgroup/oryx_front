@@ -3,11 +3,15 @@ import styles from '@/styles/profile/ProfileParcels.module.sass';
 
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { useIsClient, useMediaQuery } from 'usehooks-ts';
+import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
 import { ArrowDownIcon, ArrowRightIcon } from '@/components/icons/arrows';
 import { Parcel } from '@/types/parcel.interface';
+import { Recipient } from '@/types/recipient.interface';
+import { responsiveImg } from '@/utils/image';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import AddParcel from '@/components/AddParcel/AddParcel';
 import TrashIcon from '@/components/icons/Trash';
@@ -16,6 +20,7 @@ import instance from '@/utils/axios';
 import passToken from '@/utils/passToken';
 import statuses from '@/utils/statuses';
 import formatDate from '@/utils/formatDate';
+import Switch from '@/components/Switch/Switch';
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get<{ items: Parcel[] }>('/profile/parcels', {
@@ -24,13 +29,21 @@ export const getServerSideProps = (async (context) => {
       status: context.query.status,
     },
   });
+  const res2 = await instance.get<{ recipients: Recipient[] }>(
+    '/profile/settings',
+    {
+      ...passToken(context),
+    }
+  );
   const parcels = res.data.items;
+  const recipients = res2.data.recipients;
 
-  return { props: { parcels } };
-}) satisfies GetServerSideProps<{ parcels: Parcel[] }>;
+  return { props: { parcels, recipients } };
+}) satisfies GetServerSideProps<{ parcels: Parcel[]; recipients: Recipient[] }>;
 
 const ProfileParcels = ({
   parcels,
+  recipients,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [isDisplay, setIsDisplay] = useState<{
     state: boolean;
@@ -40,6 +53,8 @@ const ProfileParcels = ({
     data: {},
   });
   const [search, setSearch] = useState('');
+  const isClient = useIsClient();
+  const matches = useMediaQuery('(min-width: 576px)');
 
   const router = useRouter();
 
@@ -93,104 +108,228 @@ const ProfileParcels = ({
   }, [router]);
 
   return (
-    <ProfileLayout>
-      <div className={styles.wrapper}>
-        <div className={styles.left}>
-          <h1>Список ваших посылок</h1>
-          <p>Вся информация о ваших посылках и их статусах</p>
-          <form className={styles.formik} onSubmit={handleSubmit}>
-            <input type='search' placeholder='Поиск по треку' />
-            <select
-              name='status'
-              defaultValue={router.query.status}
-              onChange={changeStatus}
-            >
-              <option value=''>Все</option>
-              {statuses.map((status) => (
-                <option key={status.key} value={status.key}>
-                  {status.value}
-                </option>
-              ))}
-            </select>
-            <button type='submit'>Поиск</button>
-            <button type='reset'>Очистить</button>
-          </form>
-          <div className={styles.data}>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Трек-код</th>
-                  <th>Статус</th>
-                  <th>Стоимость доставки</th>
-                  <th>Дата добавления</th>
-                  <th>Направление</th>
-                  <th></th>
-                </tr>
-                {parcels
-                  .filter((parcel) => parcel.track.includes(search))
-                  .map((parcel) => (
-                    <tr key={parcel.id}>
-                      <td>{parcel.track}</td>
-                      <td>{statuses[+parcel.status].value}</td>
-                      {+parcel.prod_price > 0 ? (
-                        <td>{parcel.prod_price}$</td>
-                      ) : (
-                        <td>Не указано</td>
-                      )}
-                      <td>{formatDate(parcel.created_at)}</td>
-                      <td>
-                        {+parcel.city_out === 1 ? 'Нью-Йорк' : 'Делавэр'} -{' '}
-                        {parcel.city}
-                      </td>
-                      <td>
-                        <button onClick={() => deleteParcel(parcel.id)}>
-                          <TrashIcon />
-                        </button>
-                        <button>
-                          <PenIcon />
-                        </button>
-                        <button onClick={() => toggleDisplay(parcel)}>
-                          {isDisplay.state &&
-                          isDisplay.data.id === parcel.id ? (
-                            <ArrowDownIcon />
-                          ) : (
-                            <ArrowRightIcon />
-                          )}
-                        </button>
-                      </td>
-                    </tr>
+    isClient && (
+      <ProfileLayout>
+        <div className={styles.wrapper}>
+          <div className={styles.left}>
+            <h1>Список ваших посылок</h1>
+            <p>Вся информация о ваших посылках и их статусах</p>
+            {!matches && (
+              <>
+                <AddParcel />
+                <Switch />
+              </>
+            )}
+            <form className={styles.formik} onSubmit={handleSubmit}>
+              {matches ? (
+                <input type='search' placeholder='Поиск по треку' />
+              ) : (
+                <label htmlFor='track'>
+                  Поиск по трек-номеру
+                  <input type='text' id='track' placeholder='Трек-номер' />
+                  <button type='submit' className={styles.search__btn}>
+                    <Image src='/search.svg' alt='' width={24} height={24} />
+                  </button>
+                </label>
+              )}
+              {matches && (
+                <select
+                  name='status'
+                  defaultValue={router.query.status}
+                  onChange={changeStatus}
+                >
+                  <option value=''>Все</option>
+                  {statuses.map((status) => (
+                    <option key={status.key} value={status.key}>
+                      {status.value}
+                    </option>
                   ))}
-              </tbody>
-            </table>
-            {isDisplay.state && (
-              <div className={styles.bottom}>
+                </select>
+              )}
+              <button type='submit'>Поиск</button>
+              <button type='reset'>Очистить</button>
+            </form>
+            {!matches && isDisplay.state ? (
+              <div className={styles.card}>
+                <b>Трек-номер</b>
+                <div className={styles.card__head}>
+                  <button
+                    onClick={() => setIsDisplay({ state: false, data: {} })}
+                  >
+                    <Image
+                      src='/arrow-left.svg'
+                      alt=''
+                      width={16}
+                      height={16}
+                    />
+                  </button>
+                  <span>{isDisplay.data.track}</span>
+                  <Image src='/warn.svg' alt='' width={24} height={24} />
+                </div>
+                <div className={styles.card__fields}>
+                  <label htmlFor='status'>
+                    <span>Статус</span>
+                    <input
+                      type='text'
+                      id='status'
+                      value={statuses[+isDisplay.data.status!].value}
+                      disabled
+                    />
+                  </label>
+                  <label htmlFor='recipient'>
+                    <span>Получатель</span>
+                    <input
+                      type='text'
+                      id='recipient'
+                      value={
+                        recipients.find(
+                          (recipient) =>
+                            recipient.id === +isDisplay.data.recipient_id!
+                        )?.fio
+                      }
+                      disabled
+                    />
+                  </label>
+                  <label htmlFor='weight'>
+                    <span>Вес</span>
+                    <input
+                      type='text'
+                      id='weight'
+                      value={isDisplay.data.weight! || 'Не указан'}
+                      disabled
+                    />
+                  </label>
+                  <label htmlFor='prod_price'>
+                    <span>Стоимость доставки</span>
+                    <input
+                      type='text'
+                      id='prod_price'
+                      value={
+                        +isDisplay.data.prod_price! > 0
+                          ? isDisplay.data.prod_price
+                          : 'Не указан'
+                      }
+                      disabled
+                    />
+                  </label>
+                </div>
+                <div className={styles.card__info}>
+                  <strong>
+                    Оплачен:{' '}
+                    <span>{isDisplay.data.payed === '1' ? 'Да' : 'Нет'}</span>
+                  </strong>
+                  <strong>Товары:</strong>
+                  <ul>
+                    {isDisplay.data.goods?.map((item) => (
+                      <li key={item.id}>
+                        {item.name} {item.price}
+                        {item.currency === '$' ? '$' : '€'}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.data}>
                 <table>
                   <tbody>
                     <tr>
-                      <th>Наименование товара</th>
-                      {isDisplay.data.goods?.map((item) => (
-                        <td key={item.id}>{item.name}</td>
-                      ))}
+                      <th>Трек-код</th>
+                      <th>Статус</th>
+                      {matches && (
+                        <>
+                          <th>Стоимость доставки</th>
+                          <th>Дата добавления</th>
+                          <th>Направление</th>
+                          <th></th>
+                        </>
+                      )}
                     </tr>
-                    <tr>
-                      <th>Стоимость</th>
-                      {isDisplay.data.goods?.map((item) => (
-                        <td key={item.id}>{item.price}$</td>
+                    {parcels
+                      .filter((parcel) => parcel.track.includes(search))
+                      .map((parcel) => (
+                        <tr key={parcel.id}>
+                          <td>{parcel.track}</td>
+                          {matches ? (
+                            <td>{statuses[+parcel.status].value}</td>
+                          ) : (
+                            <td>
+                              <b>{statuses[+parcel.status].value}</b>
+                              <button onClick={() => toggleDisplay(parcel)}>
+                                {isDisplay.state &&
+                                isDisplay.data.id === parcel.id ? (
+                                  <ArrowDownIcon />
+                                ) : (
+                                  <ArrowRightIcon />
+                                )}
+                              </button>
+                            </td>
+                          )}
+                          {matches && (
+                            <>
+                              {+parcel.prod_price > 0 ? (
+                                <td>{parcel.prod_price}$</td>
+                              ) : (
+                                <td>Не указано</td>
+                              )}
+                              <td>{formatDate(parcel.created_at)}</td>
+                              <td>
+                                {+parcel.city_out === 1
+                                  ? 'Нью-Йорк'
+                                  : 'Делавэр'}{' '}
+                                - {parcel.city}
+                              </td>
+                              <td>
+                                <button onClick={() => deleteParcel(parcel.id)}>
+                                  <TrashIcon />
+                                </button>
+                                <button>
+                                  <PenIcon />
+                                </button>
+                                <button onClick={() => toggleDisplay(parcel)}>
+                                  {isDisplay.state &&
+                                  isDisplay.data.id === parcel.id ? (
+                                    <ArrowDownIcon />
+                                  ) : (
+                                    <ArrowRightIcon />
+                                  )}
+                                </button>
+                              </td>
+                            </>
+                          )}
+                        </tr>
                       ))}
-                    </tr>
-                    {/* <tr>
+                  </tbody>
+                </table>
+                {matches && isDisplay.state && (
+                  <div className={styles.bottom}>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <th>Наименование товара</th>
+                          {isDisplay.data.goods?.map((item) => (
+                            <td key={item.id}>{item.name}</td>
+                          ))}
+                        </tr>
+                        <tr>
+                          <th>Стоимость</th>
+                          {isDisplay.data.goods?.map((item) => (
+                            <td key={item.id}>{item.price}$</td>
+                          ))}
+                        </tr>
+                        {/* <tr>
                       <th>Получатель</th>
                       {isDisplay.data.goods?.map((item) => (
                         <td key={item.id}>{isDisplay.data.recipient_id}</td>
                       ))}
                     </tr> */}
-                    <tr>
-                      <th>Город</th>
-                      {isDisplay.data.goods?.map((item) => (
-                        <td key={item.id}>{isDisplay.data.city}</td>
-                      ))}
-                    </tr>
-                    {/* <tr>
+                        <tr>
+                          <th>Город</th>
+                          {isDisplay.data.goods?.map((item) => (
+                            <td key={item.id}>{isDisplay.data.city}</td>
+                          ))}
+                        </tr>
+                        {/* <tr>
                       <th>Адрес</th>
                       <td>TEST</td>
                     </tr>
@@ -202,17 +341,32 @@ const ProfileParcels = ({
                       <th>Оплата</th>
                       <td>TEST</td>
                     </tr> */}
-                  </tbody>
-                </table>
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             )}
           </div>
+          <div className={styles.right}>
+            {matches ? (
+              <AddParcel />
+            ) : (
+              <Image
+                src='/man.svg'
+                alt=''
+                {...responsiveImg}
+                style={{
+                  width: '100%',
+                  maxHeight: '400px',
+                }}
+                priority
+              />
+            )}
+          </div>
         </div>
-        <div className={styles.right}>
-          <AddParcel />
-        </div>
-      </div>
-    </ProfileLayout>
+      </ProfileLayout>
+    )
   );
 };
 

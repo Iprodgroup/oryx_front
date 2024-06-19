@@ -67,7 +67,7 @@ const Footer = () => {
             </form>
           </div>
           <div className={styles.bottom}>
-            <Image src='/logo-footer.svg' alt='' width={140} height={60} />
+            <Image src='/logo-footer.svg' alt='' width={140} height={60} priority />
             <nav>
               <ul>
                 <li>

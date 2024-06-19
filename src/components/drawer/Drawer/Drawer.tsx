@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './styles.module.sass';
 
+import { useMediaQuery } from 'usehooks-ts';
 import Image from 'next/image';
 import DrawerComponent from 'react-modern-drawer';
 import Link from 'next/link';
@@ -10,6 +11,7 @@ import useAuth from '@/hooks/useAuth';
 const Drawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isAuthenticated = useAuth();
+  const matches = useMediaQuery('(min-width: 576px)');
 
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -22,9 +24,8 @@ const Drawer = () => {
         onClose={toggleDrawer}
         direction='right'
         className={styles.drawer}
-        enableOverlay={false}
         lockBackgroundScroll
-        size={400}
+        size={matches ? 400 : '70%'}
       >
         <div className={styles.top}>
           <button onClick={toggleDrawer}>

@@ -18,6 +18,17 @@
             gap: 40px
             margin: 30px 0 50px 0
 
+            label
+                position: relative
+                display: flex
+                flex-direction: column
+                gap: 10px
+
+                .search__btn
+                    position: absolute
+                    top: 33px
+                    right: 10px
+
             input, select
                 height: 50px
                 outline: none
@@ -26,7 +37,7 @@
                 background-color: transparent
                 padding: 0 20px
 
-            button
+            button:not(.search__btn)
                 @include red-btn(60px)
 
                 width: 120px
@@ -47,11 +58,80 @@
                     border: 1px solid #e5e7eb
                     padding: 5px 15px
 
-                th
+                th, b
                     font-family: 'Gilroy-Bold ☞', sans-serif
 
             .bottom
                 margin: 50px 50px 20px 20px
+
+        .card
+            background-color: white
+            padding: 20px 0
+
+            b
+                font-family: 'Gilroy-Bold ☞', sans-serif
+                margin: 0 20px
+
+            &__head
+                display: flex
+                justify-content: space-between
+                border-top: 2px solid #858585
+                border-bottom: 2px solid #858585
+                margin-top: 20px
+                padding: 10px
+
+                button
+                    img
+                        width: 16px
+                        height: 16px
+
+                span
+                    text-transform: uppercase
+
+            &__fields
+                display: flex
+                flex-direction: column
+                gap: 20px
+                padding: 20px
+
+                label
+                    display: flex
+                    flex-direction: column
+                    gap: 10px
+                    text-align: center
+
+                    span
+                        font-size: 20px
+                        opacity: 0.7
+
+                    input
+                        height: 42px
+                        border: 1px solid black
+                        border-radius: 10px
+                        padding-left: 20px
+
+            &__info
+                display: flex
+                flex-direction: column
+                padding: 20px
+
+                strong
+                    font-family: 'Gilroy-Bold ☞', sans-serif
+                    font-size: 30px
+
+                    span
+                        font-weight: lighter
+                        font-family: 'Gilroy-Medium ☞', sans-serif
+                        font-size: 20px
+
+                ul
+                    display: flex
+                    flex-direction: column
+                    gap: 10px
+                    margin: 10px 0 0 0
+
+                    li
+                        font-size: 20px
 
     .right
         width: 50%
@@ -72,7 +152,16 @@
         gap: 20px
 
         input, select
+            width: 100%
             height: 40px
 
-        button
+        button:not(.search__btn)
             display: none
+
+@media (max-width: 576px)
+    .wrapper .left
+        p
+            margin-bottom: 20px
+
+        .data
+            background-color: white

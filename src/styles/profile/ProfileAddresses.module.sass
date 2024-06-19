@@ -42,10 +42,12 @@
             margin: 0 auto
 
             label
+                position: relative
                 display: flex
                 flex-direction: column
                 gap: 10px
                 color: gray
+                overflow: hidden
 
                 input
                     height: 50px
@@ -53,6 +55,12 @@
                     border: 2px solid black
                     border-radius: 10px
                     padding: 0 20px
+
+                button
+                    position: absolute
+                    top: 35px
+                    right: 10px
+                    background-color: #fafafa
 
         .schedule
             margin-top: 50px
@@ -97,3 +105,27 @@
 
             img
                 display: none
+
+@media (max-width: 576px)
+    .wrapper
+        .left
+            background: transparent
+            box-shadow: none
+
+            .switch button
+                height: 50px
+                background-color: white
+                padding: 0
+
+            .fields
+                label
+                    .id
+                        border-color: #E84438
+                        color: #E84438
+
+                    button
+                        background: #f2f3f9
+
+        .right img
+            display: block
+            margin: 0
