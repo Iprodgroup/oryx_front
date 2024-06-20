@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import styles from '@/styles/BuyItForMe.module.sass';
 
 import Head from 'next/head';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import Steps from '@/blocks/buy-it-for-me/Steps/Steps';
 import Info from '@/blocks/buy-it-for-me/Info/Info';
@@ -30,6 +32,45 @@ const BuyItForMe = () => {
     setPurchases((prev) => prev.filter((purchase) => purchase.id !== id));
   };
 
+  const handleInputChange = (
+    id: number,
+    field: keyof Purchase,
+    value: string
+  ) => {
+    setPurchases((prev) =>
+      prev.map((purchase) =>
+        purchase.id === id ? { ...purchase, [field]: value } : purchase
+      )
+    );
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const loadingToastId = toast.loading('Загрузка...');
+
+    try {
+      const formData = new FormData(event.currentTarget);
+
+      let text = `PHONE: ${formData.get('phone')}`;
+
+      purchases.forEach((purchase) => {
+        text += `\n\nLINK: ${purchase.url}\nINFO: ${purchase.characteristics}\nNAME: ${purchase.name}`;
+      });
+
+      await axios.post('/api/send', {
+        subject: 'Купите вместо меня',
+        text,
+      });
+
+      toast.success('Запрос отправлен');
+    } catch (error) {
+      toast.error('Ошибка при покупке');
+    } finally {
+      toast.dismiss(loadingToastId);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -40,17 +81,42 @@ const BuyItForMe = () => {
         <div className={styles.wrapper}>
           <h1>ORYX осуществит покупку вместо Вас</h1>
           <Steps />
-          <form className={styles.formik}>
+          <form className={styles.formik} onSubmit={handleSubmit}>
             <div className={styles.top}>
               <ul>
                 {purchases.map((purchase) => (
                   <li key={purchase.id}>
                     <input
-                      type='text'
+                      type='url'
                       placeholder='Скопируйте ссылку из магазина и вставьте сюда'
+                      value={purchase.url}
+                      onChange={(e) =>
+                        handleInputChange(purchase.id, 'url', e.target.value)
+                      }
+                      required
                     />
-                    <input type='text' placeholder='Характеристики' />
-                    <input type='text' placeholder='Введите имя товара' />
+                    <input
+                      type='text'
+                      placeholder='Характеристики'
+                      value={purchase.characteristics}
+                      onChange={(e) =>
+                        handleInputChange(
+                          purchase.id,
+                          'characteristics',
+                          e.target.value
+                        )
+                      }
+                      required
+                    />
+                    <input
+                      type='text'
+                      placeholder='Введите имя товара'
+                      value={purchase.name}
+                      onChange={(e) =>
+                        handleInputChange(purchase.id, 'name', e.target.value)
+                      }
+                      required
+                    />
                     {purchase.id !== 1 && (
                       <button
                         type='button'
@@ -67,7 +133,12 @@ const BuyItForMe = () => {
               </button>
             </div>
             <div className={styles.bottom}>
-              <input type='number' placeholder='Номер телефона' />
+              <input
+                type='tel'
+                name='phone'
+                placeholder='Номер телефона'
+                required
+              />
               <button type='submit'>Отправить</button>
             </div>
           </form>
