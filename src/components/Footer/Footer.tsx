@@ -1,8 +1,11 @@
+import { FormEvent } from 'react';
 import styles from './styles.module.sass';
 
 import { useIsClient, useMediaQuery } from 'usehooks-ts';
 import Image from 'next/image';
 import Link from 'next/link';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import useAuth from '@/hooks/useAuth';
 
@@ -12,6 +15,30 @@ const Footer = () => {
 
   const matches = {
     768: useMediaQuery('(min-width: 768px)'),
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const loadingToastId = toast.loading('Загрузка...');
+
+    try {
+      const formData = new FormData(event.currentTarget);
+      const { name, phem } = Object.fromEntries(formData);
+
+      let text = `Name: ${name}\n\nPhone or Email: ${phem}`;
+
+      await axios.post('/api/send', {
+        subject: 'Заявка с сайта',
+        text,
+      });
+
+      toast.success('Заявка отправлена');
+    } catch (error) {
+      toast.error('Ошибка при отправлении заявки');
+    } finally {
+      toast.dismiss(loadingToastId);
+    }
   };
 
   return (
@@ -58,23 +85,36 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.middle}>
-            <form>
-              <input type='text' placeholder='Имя' />
+            <form onSubmit={handleSubmit}>
+              <input type='text' name='name' placeholder='Имя' required />
               <div className={styles.pn}>
-                <input type='number' placeholder='Введите номер' />
+                <input
+                  type='text'
+                  name='phem'
+                  placeholder='Введите почту или номер'
+                  required
+                />
                 <button type='submit'>Отправить</button>
               </div>
             </form>
           </div>
           <div className={styles.bottom}>
-            <Image src='/logo-footer.svg' alt='' width={140} height={60} priority />
+            <Image
+              src='/logo-footer.svg'
+              alt=''
+              width={140}
+              height={60}
+              priority
+            />
             <nav>
               <ul>
                 <li>
                   <Link href='/o-kompanii'>О компании</Link>
                 </li>
                 <li>
-                  <Link href='/populyarnye-magaziny'>Популярные магазины в США</Link>
+                  <Link href='/populyarnye-magaziny'>
+                    Популярные магазины в США
+                  </Link>
                 </li>
               </ul>
               <ul>
@@ -82,7 +122,9 @@ const Footer = () => {
                   <Link href='/kontakty'>Контакты</Link>
                 </li>
                 <li>
-                  <Link href='/usloviya-servisa'>Помощь в работе с сервисом</Link>
+                  <Link href='/usloviya-servisa'>
+                    Помощь в работе с сервисом
+                  </Link>
                 </li>
               </ul>
               <ul>
