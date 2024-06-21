@@ -11,12 +11,12 @@ const CheckIcon = () => (
       cy='11.7765'
       r='9.98698'
       stroke='#22AD28'
-      stroke-width='2'
+      strokeWidth='2'
     ></circle>
     <path
       d='M7.75586 12.3501L11.3841 14.6416L14.8215 8.9126'
       stroke='#22AD28'
-      stroke-width='2'
+      strokeWidth='2'
     ></path>
   </svg>
 );
