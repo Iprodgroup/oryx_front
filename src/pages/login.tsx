@@ -37,8 +37,25 @@ const Login = () => {
       });
 
       router.push('/profile');
-    } catch (error) {
-      toast.error('Ошибка при логине');
+    } catch (error: any) {
+      switch (error.response.status) {
+        case 403:
+          const { id } = error.response.data;
+
+          await axios.post('/api/email/send-verification', { id }).then(() => {
+            router.push({
+              pathname: '/email/notif',
+              query: { ...router.query, id },
+            });
+          });
+          break;
+        case 401:
+          toast.error('Неверные учетные данные');
+          break;
+        default:
+          toast.error('Ошибка при логине');
+          break;
+      }
     } finally {
       toast.dismiss(loadingToastId);
     }

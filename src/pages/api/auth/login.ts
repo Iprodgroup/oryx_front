@@ -10,14 +10,29 @@ export default async function handler(
   try {
     const { email, password } = req.body;
 
-    const { data } = await instance.post('/login', {
+    const { data: loginData } = await instance.post('/login', {
       email,
       password,
     });
 
-    setCookie('access_token', data.access_token, { req, res });
+    const { data: userData } = await instance.get('/user', {
+      headers: {
+        Authorization: `Bearer ${loginData.access_token}`,
+      },
+    });
 
-    res.status(200).end();
+    if (!!userData.email_verified_at) {
+      setCookie('access_token', loginData.access_token, { req, res });
+      res.status(200).end();
+    } else {
+      setCookie('session_token', loginData.access_token, {
+        req,
+        res,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+      });
+      res.status(403).json({ id: userData.id });
+    }
   } catch (error) {
     res.status(401).end();
   }
