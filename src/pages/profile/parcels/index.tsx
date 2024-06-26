@@ -1,9 +1,16 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import styles from '@/styles/profile/ProfileParcels.module.sass';
 
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useIsClient, useMediaQuery } from 'usehooks-ts';
+import { useIsClient, useMediaQuery, useOnClickOutside } from 'usehooks-ts';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -55,12 +62,19 @@ const ProfileParcels = ({
   const [search, setSearch] = useState('');
   const isClient = useIsClient();
   const matches = useMediaQuery('(min-width: 576px)');
+  const ref = useRef(null);
 
   const router = useRouter();
 
-  const toggleDisplay = (data: Parcel) => {
-    setIsDisplay((prev) => ({ state: !prev.state, data }));
+  const onDisplay = (data: Parcel) => {
+    setIsDisplay({ state: true, data: data });
   };
+
+  const offDisplay = () => {
+    setIsDisplay({ state: false, data: {} });
+  };
+
+  useOnClickOutside(ref, offDisplay);
 
   const changeStatus = (event: ChangeEvent<HTMLSelectElement>) => {
     if (event.target.value === '') {
@@ -104,7 +118,7 @@ const ProfileParcels = ({
   };
 
   useEffect(() => {
-    setIsDisplay({ state: false, data: {} });
+    offDisplay();
   }, [router]);
 
   return (
@@ -230,7 +244,7 @@ const ProfileParcels = ({
                 </div>
               </div>
             ) : (
-              <div className={styles.data}>
+              <div ref={ref} className={styles.data}>
                 <table>
                   <tbody>
                     <tr>
@@ -248,45 +262,15 @@ const ProfileParcels = ({
                     {parcels
                       .filter((parcel) => parcel.track.includes(search))
                       .map((parcel) => (
-                        <tr key={parcel.id}>
-                          <td>{parcel.track}</td>
-                          {matches ? (
-                            <td>{statuses[+parcel.status].value}</td>
-                          ) : (
-                            <td>
-                              <b>{statuses[+parcel.status].value}</b>
-                              <button onClick={() => toggleDisplay(parcel)}>
-                                {isDisplay.state &&
-                                isDisplay.data.id === parcel.id ? (
-                                  <ArrowDownIcon />
-                                ) : (
-                                  <ArrowRightIcon />
-                                )}
-                              </button>
-                            </td>
-                          )}
-                          {matches && (
-                            <>
-                              {+parcel.prod_price > 0 ? (
-                                <td>{parcel.prod_price}$</td>
-                              ) : (
-                                <td>Не указано</td>
-                              )}
-                              <td>{formatDate(parcel.created_at)}</td>
+                        <Fragment key={parcel.id}>
+                          <tr>
+                            <td>{parcel.track}</td>
+                            {matches ? (
+                              <td>{statuses[+parcel.status].value}</td>
+                            ) : (
                               <td>
-                                {+parcel.city_out === 1
-                                  ? 'Нью-Йорк'
-                                  : 'Делавэр'}{' '}
-                                - {parcel.city}
-                              </td>
-                              <td>
-                                <button onClick={() => deleteParcel(parcel.id)}>
-                                  <TrashIcon />
-                                </button>
-                                <button>
-                                  <PenIcon />
-                                </button>
-                                <button onClick={() => toggleDisplay(parcel)}>
+                                <b>{statuses[+parcel.status].value}</b>
+                                <button onClick={() => onDisplay(parcel)}>
                                   {isDisplay.state &&
                                   isDisplay.data.id === parcel.id ? (
                                     <ArrowDownIcon />
@@ -295,56 +279,90 @@ const ProfileParcels = ({
                                   )}
                                 </button>
                               </td>
-                            </>
-                          )}
-                        </tr>
+                            )}
+                            {matches && (
+                              <>
+                                {+parcel.prod_price > 0 ? (
+                                  <td>{parcel.prod_price}$</td>
+                                ) : (
+                                  <td>Не указано</td>
+                                )}
+                                <td>{formatDate(parcel.created_at)}</td>
+                                <td>
+                                  {+parcel.city_out === 1
+                                    ? 'Нью-Йорк'
+                                    : 'Делавэр'}{' '}
+                                  - {parcel.city}
+                                </td>
+                                <td>
+                                  <button
+                                    onClick={() => deleteParcel(parcel.id)}
+                                  >
+                                    <TrashIcon />
+                                  </button>
+                                  <button>
+                                    <PenIcon />
+                                  </button>
+                                  <button onClick={() => onDisplay(parcel)}>
+                                    {isDisplay.state &&
+                                    isDisplay.data.id === parcel.id ? (
+                                      <ArrowDownIcon />
+                                    ) : (
+                                      <ArrowRightIcon />
+                                    )}
+                                  </button>
+                                </td>
+                              </>
+                            )}
+                          </tr>
+                          {matches &&
+                            isDisplay.state &&
+                            isDisplay.data.id === parcel.id && (
+                              <tr>
+                                <td colSpan={6} className={styles.bottom}>
+                                  <table>
+                                    <tbody>
+                                      <tr>
+                                        <th>Наименование товара</th>
+                                        <th>Стоимость</th>
+                                        <th>Город</th>
+                                      </tr>
+                                      {isDisplay.data.goods?.map((item) => (
+                                        <tr key={item.id}>
+                                          <td>{item.name}</td>
+                                          <td>{item.price}$</td>
+                                          <td>{isDisplay.data.city}</td>
+                                        </tr>
+                                      ))}
+                                      {/* <tr>
+                                        <th>Наименование товара</th>
+                                        {isDisplay.data.goods?.map((item) => (
+                                          <td key={item.id}>{item.name}</td>
+                                        ))}
+                                      </tr>
+                                      <tr>
+                                        <th>Стоимость</th>
+                                        {isDisplay.data.goods?.map((item) => (
+                                          <td key={item.id}>{item.price}$</td>
+                                        ))}
+                                      </tr>
+                                      <tr>
+                                        <th>Город</th>
+                                        {isDisplay.data.goods?.map((item) => (
+                                          <td key={item.id}>
+                                            {isDisplay.data.city}
+                                          </td>
+                                        ))}
+                                      </tr> */}
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            )}
+                        </Fragment>
                       ))}
                   </tbody>
                 </table>
-                {matches && isDisplay.state && (
-                  <div className={styles.bottom}>
-                    <table>
-                      <tbody>
-                        <tr>
-                          <th>Наименование товара</th>
-                          {isDisplay.data.goods?.map((item) => (
-                            <td key={item.id}>{item.name}</td>
-                          ))}
-                        </tr>
-                        <tr>
-                          <th>Стоимость</th>
-                          {isDisplay.data.goods?.map((item) => (
-                            <td key={item.id}>{item.price}$</td>
-                          ))}
-                        </tr>
-                        {/* <tr>
-                      <th>Получатель</th>
-                      {isDisplay.data.goods?.map((item) => (
-                        <td key={item.id}>{isDisplay.data.recipient_id}</td>
-                      ))}
-                    </tr> */}
-                        <tr>
-                          <th>Город</th>
-                          {isDisplay.data.goods?.map((item) => (
-                            <td key={item.id}>{isDisplay.data.city}</td>
-                          ))}
-                        </tr>
-                        {/* <tr>
-                      <th>Адрес</th>
-                      <td>TEST</td>
-                    </tr>
-                    <tr>
-                      <th>Телефон</th>
-                      <td>TEST</td>
-                    </tr>
-                    <tr>
-                      <th>Оплата</th>
-                      <td>TEST</td>
-                    </tr> */}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
               </div>
             )}
           </div>

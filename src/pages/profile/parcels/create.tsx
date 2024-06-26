@@ -104,7 +104,6 @@ const CreateParcel = ({
 
       await axios.post('/api/profile/add-parcel', {
         ...postData,
-        prod_price: total,
         goods,
       });
 
@@ -132,9 +131,9 @@ const CreateParcel = ({
               </label>
               <label htmlFor='delivery'>
                 Город доставки
-                <select name='city' id='delivery'>
+                <select name='city' id='delivery' defaultValue='Алматы'>
                   {cities.map((city, index) => (
-                    <option key={index} value={city} selected={city === "Алматы"}>
+                    <option key={index} value={city}>
                       {city}
                     </option>
                   ))}

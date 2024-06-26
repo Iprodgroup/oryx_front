@@ -6,16 +6,19 @@ import Image from 'next/image';
 import { responsiveImg } from '@/utils/image';
 
 const Calculator = () => {
-  const [result, setResult] = useState<number>();
+  const [result, setResult] = useState<number>(0);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    if (parseInt(value) <= 0.100) {
-      setResult(1.3)
-    }else {
-      setResult(+value * 13);
+    const value = parseFloat(event.target.value);
+    calculateResult(value);
+  };
+
+  const calculateResult = (value: number) => {
+    if (value <= 0.1) {
+      setResult(1.3);
+    } else {
+      setResult(value * 13);
     }
-    
   };
 
   return (
@@ -28,11 +31,15 @@ const Calculator = () => {
               <option value='' disabled>
                 Выбрать страну
               </option>
-              <option value='usa'>США</option>
-              <option value='eu'>Европа</option>
+              <option value='13'>США</option>
+              <option value='13'>Европа</option>
             </select>
-            <input type='number' placeholder='Вес' onChange={handleChange} />
-            <strong>Итог: {result} $</strong>
+            <input
+              type='number'
+              placeholder='Вес (кг)'
+              onChange={handleChange}
+            />
+            <strong>Итог: {result.toFixed(2)} $</strong>
           </div>
           <b>Срок доставки От 7 до 14 дней</b>
           <hr />
@@ -44,7 +51,7 @@ const Calculator = () => {
           </p>
         </div>
         <div className={styles.right}>
-          <Image src='/calculator.png' alt='' {...responsiveImg} />
+          <Image src='/calculator.png' alt='calculator' {...responsiveImg} />
         </div>
       </div>
     </section>

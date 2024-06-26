@@ -3,6 +3,14 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import instance from '@/utils/axios';
 import passToken from '@/utils/passToken';
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '100mb',
+    },
+  },
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
