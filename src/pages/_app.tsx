@@ -12,6 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import NextTopLoader from 'nextjs-toploader';
 
 import Layout from '@/components/layout';
+import FixedBox from '@/components/Fixedbox/Fixedbox';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Layout>
         <NextTopLoader color='#E84438' height={2} showSpinner={false} />
         <Toaster />
+        <FixedBox />
         <Component {...pageProps} />
       </Layout>
     </SWRConfig>
