@@ -92,12 +92,21 @@
 
 @media (max-width: 768px)
     .footer .wrapper
-        .top .right
-            flex-direction: column
+        .top
+            .left
+                display: grid
+                grid-template-columns: repeat(2, 1fr)
 
-            a
-                width: fit-content
-                margin: 0 auto
+                a:last-child
+                    grid-column: 1 / 3
+                    justify-content: center
+
+            .right
+                flex-direction: column
+
+                a
+                    width: fit-content
+                    margin: 0 auto
 
         .bottom
             flex-direction: column

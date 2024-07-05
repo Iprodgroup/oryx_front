@@ -134,7 +134,7 @@ const BuyItForMe = () => {
             </div>
             <div className={styles.bottom}>
               <input
-                type='tel'
+                type='number'
                 name='phone'
                 placeholder='Номер телефона'
                 required

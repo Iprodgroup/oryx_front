@@ -14,10 +14,14 @@ const Calculator = () => {
   };
 
   const calculateResult = (value: number) => {
-    if (value <= 0.1) {
+    // Округление веса до ближайших 0.1 кг
+    const roundedValue = Math.ceil(value * 10) / 10;
+
+    // Рассчет стоимости доставки
+    if (roundedValue <= 0.1) {
       setResult(1.3);
     } else {
-      setResult(value * 13);
+      setResult(roundedValue * 13);
     }
   };
 
@@ -39,7 +43,7 @@ const Calculator = () => {
               placeholder='Вес (кг)'
               onChange={handleChange}
             />
-            <strong>Итог: {result.toFixed(2)} $</strong>
+            <strong>Итог: {result.toFixed(1)} $</strong>
           </div>
           <b>Срок доставки От 7 до 14 дней</b>
           <hr />

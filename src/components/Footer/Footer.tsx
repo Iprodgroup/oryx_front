@@ -71,6 +71,13 @@ const Footer = () => {
                   <Image src='/whatsapp.svg' alt='' width={20} height={20} />
                   +7 747 515 56 13
                 </a>
+                <a
+                  href='https://www.instagram.com/oryx.usa.kz/'
+                  target='_blank'
+                >
+                  <Image src='/instagram.svg' alt='' width={24} height={24} />
+                  @oryx.usa.kz
+                </a>
               </div>
             )}
             <div className={styles.right}>
@@ -89,9 +96,9 @@ const Footer = () => {
               <input type='text' name='name' placeholder='Имя' required />
               <div className={styles.pn}>
                 <input
-                  type='text'
+                  type='number'
                   name='phem'
-                  placeholder='Введите почту или номер'
+                  placeholder='Введите номер телефона'
                   required
                 />
                 <button type='submit'>Отправить</button>

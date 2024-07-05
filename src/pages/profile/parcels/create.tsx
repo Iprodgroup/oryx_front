@@ -9,7 +9,6 @@ import axios from 'axios';
 
 import { Recipient } from '@/types/recipient.interface';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
-import AddParcel from '@/components/AddParcel/AddParcel';
 import instance from '@/utils/axios';
 import passToken from '@/utils/passToken';
 import cities from '@/utils/cities';
@@ -219,7 +218,6 @@ const CreateParcel = ({
           </form>
         </div>
         <div className={styles.right}>
-          <AddParcel />
           <p>
             ВНИМАНИЕ! *Во избежание проблем при таможенной очистке, просим
             вводить детальное описание наименования товара на русском
