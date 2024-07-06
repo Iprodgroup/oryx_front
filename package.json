@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-input/mask": "^1.2.5",
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "cookies-next": "^4.2.1",

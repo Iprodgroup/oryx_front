@@ -2,6 +2,7 @@ import { FormEvent } from 'react';
 import styles from './styles.module.sass';
 
 import { useIsClient, useMediaQuery } from 'usehooks-ts';
+import { InputMask } from '@react-input/mask';
 import Image from 'next/image';
 import Link from 'next/link';
 import axios from 'axios';
@@ -26,14 +27,16 @@ const Footer = () => {
       const formData = new FormData(event.currentTarget);
       const { name, phem } = Object.fromEntries(formData);
 
-      let text = `Name: ${name}\n\nPhone or Email: ${phem}`;
+      let text = `Name: ${name}\n\nPhone: ${phem}`;
 
-      await axios.post('/api/send', {
-        subject: 'Заявка с сайта',
-        text,
-      });
+      console.log(text);
 
-      toast.success('Заявка отправлена');
+      // await axios.post('/api/send', {
+      //   subject: 'Заявка с сайта',
+      //   text,
+      // });
+
+      // toast.success('Заявка отправлена');
     } catch (error) {
       toast.error('Ошибка при отправлении заявки');
     } finally {
@@ -95,8 +98,9 @@ const Footer = () => {
             <form onSubmit={handleSubmit}>
               <input type='text' name='name' placeholder='Имя' required />
               <div className={styles.pn}>
-                <input
-                  type='number'
+                <InputMask
+                  mask='+7 (___) ___-__-__'
+                  replacement={{ _: /\d/ }}
                   name='phem'
                   placeholder='Введите номер телефона'
                   required

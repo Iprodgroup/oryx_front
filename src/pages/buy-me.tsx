@@ -1,10 +1,12 @@
 import { FormEvent, useState } from 'react';
 import styles from '@/styles/BuyItForMe.module.sass';
 
+import { InputMask } from '@react-input/mask';
 import Head from 'next/head';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+import { unformatPhoneNumber } from '@/utils/phoneNumber';
 import Steps from '@/blocks/buy-it-for-me/Steps/Steps';
 import Info from '@/blocks/buy-it-for-me/Info/Info';
 import Advantages from '@/blocks/buy-it-for-me/Advantages/Advantages';
@@ -52,7 +54,9 @@ const BuyItForMe = () => {
     try {
       const formData = new FormData(event.currentTarget);
 
-      let text = `PHONE: ${formData.get('phone')}`;
+      let text = `PHONE: ${unformatPhoneNumber(
+        formData.get('phone')?.toString()!
+      )}`;
 
       purchases.forEach((purchase) => {
         text += `\n\nLINK: ${purchase.url}\nINFO: ${purchase.characteristics}\nNAME: ${purchase.name}`;
@@ -133,10 +137,11 @@ const BuyItForMe = () => {
               </button>
             </div>
             <div className={styles.bottom}>
-              <input
-                type='number'
+              <InputMask
+                mask='+7 (___) ___-__-__'
+                replacement={{ _: /\d/ }}
                 name='phone'
-                placeholder='Номер телефона'
+                placeholder='+7 (___) ___-__-__'
                 required
               />
               <button type='submit'>Отправить</button>

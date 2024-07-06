@@ -2,11 +2,13 @@ import { FormEvent } from 'react';
 import styles from '@/styles/profile/ProfileSettings.module.sass';
 
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
+import { InputMask } from '@react-input/mask';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import { User } from '@/types/user.interface';
 import { Recipient } from '@/types/recipient.interface';
+import { formatPhoneNumber, unformatPhoneNumber } from '@/utils/phoneNumber';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import CheckIcon from '@/components/icons/Check';
 import AddRecipientModal from '@/components/modal/AddRecipientModal/AddRecipientModal';
@@ -35,21 +37,15 @@ const ProfileSettings = ({
 
     try {
       const formData = new FormData(event.currentTarget);
-      const [surname, name, fname, email, phone, password] = [
-        'surname',
-        'name',
-        'fname',
-        'email',
-        'phone',
-        'password',
-      ].map((name) => formData.get(name));
+      const { surname, name, fname, email, phone, password } =
+        Object.fromEntries(formData);
 
       await axios.post('/api/profile/settings', {
         surname,
         name,
         fname,
         email,
-        phone,
+        phone: unformatPhoneNumber(phone.toString()),
         password,
       });
 
@@ -100,11 +96,12 @@ const ProfileSettings = ({
               placeholder='Почта'
               defaultValue={user.email}
             />
-            <input
-              type='tel'
+            <InputMask
+              mask='+7 (___) ___-__-__'
+              replacement={{ _: /\d/ }}
               name='phone'
               placeholder='Номер телефона'
-              defaultValue={user.phone}
+              defaultValue={formatPhoneNumber(user.phone)}
             />
             <input type='password' name='password' placeholder='Пароль' />
             <div className={styles.btns}>

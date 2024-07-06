@@ -2,6 +2,7 @@ import { FormEvent, useEffect } from 'react';
 import styles from '@/styles/Login.module.sass';
 
 import { useRouter } from 'next/router';
+import { InputMask } from '@react-input/mask';
 import Link from 'next/link';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -89,8 +90,9 @@ const Register = () => {
               placeholder='Подтвердите пароль'
               required
             />
-            <input
-              type='tel'
+            <InputMask
+              mask='+7 (___) ___-__-__'
+              replacement={{ _: /\d/ }}
               name='phone'
               placeholder='+7 (___) ___-__-__'
               required
@@ -99,7 +101,9 @@ const Register = () => {
               <input type='checkbox' id='pp' required />
               <label htmlFor='pp'>
                 Я принимаю условия{' '}
-                <Link href='/politika-konfidentsialnosti'>пользовательского соглашения</Link>
+                <Link href='/politika-konfidentsialnosti'>
+                  пользовательского соглашения
+                </Link>
               </label>
             </div>
             <button type='submit'>Зарегистрироваться</button>

@@ -9,6 +9,7 @@ import styles from './styles.module.sass';
 
 import { Modal } from 'react-responsive-modal';
 import { useRouter } from 'next/router';
+import { InputMask } from '@react-input/mask';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
@@ -124,7 +125,13 @@ const AddRecipientModal = () => {
               onChange={(event) => handleChange(event, setFile2)}
             />
           </label>
-          <input type='number' name='phone' placeholder='+7 (...)*' required />
+          <InputMask
+            mask='+7 (___) ___-__-__'
+            replacement={{ _: /\d/ }}
+            name='phone'
+            placeholder='+7 (___) ___-__-__'
+            required
+          />
           <input type='text' name='city' placeholder='Город*' required />
           <input
             type='text'
