@@ -237,7 +237,9 @@ const ProfileParcels = ({
                     {isDisplay.data.goods?.map((item) => (
                       <li key={item.id}>
                         {item.name} {item.price}
-                        {item.currency === '$' ? '$' : '€'}
+                        {item.currency === 'USD' || item.currency === '$'
+                          ? '$'
+                          : '€'}
                       </li>
                     ))}
                   </ul>

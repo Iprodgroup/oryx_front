@@ -1,7 +1,14 @@
 @import '@/styles/mixins'
 
+.header
+    position: sticky
+    top: 0
+    z-index: 1000
+    background-color: white
+    padding: 20px 0
+
 .wrapper
-    @include container(30px)
+    @include container(0)
 
     display: flex
     justify-content: space-between
@@ -30,20 +37,23 @@
             text-decoration: underline
 
 @media (max-width: 576px)
-    .wrapper
-        .left img
-            width: 100px
-            height: 50px
+    .header
+        padding: 10px 0
 
-        .right
-            .login__btn
-                width: 90px
-                height: 40px
-                gap: 5px
+        .wrapper
+            .left img
+                width: 100px
+                height: 50px
 
-                img
-                    width: 12px
-                    height: 12px
+            .right
+                .login__btn
+                    width: 90px
+                    height: 40px
+                    gap: 5px
 
-            .register__btn
-                display: none
+                    img
+                        width: 12px
+                        height: 12px
+
+                .register__btn
+                    display: none

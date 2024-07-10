@@ -1,41 +1,57 @@
 @import '@/styles/mixins'
 
-.wrapper
-    @include container(30px)
+.header
+    position: sticky
+    top: 0
+    z-index: 1000
+    background-color: white
+    padding: 20px 0
 
-    display: flex
-    justify-content: space-between
+    .wrapper
+        @include container(0)
 
-    .left
         display: flex
-        align-items: center
-        gap: 40px
+        justify-content: space-between
 
-        ul
+        .left
             display: flex
+            align-items: center
+            gap: 40px
+
+            ul
+                display: flex
+                gap: 20px
+
+                a
+                    transition: color 0.1s
+
+                    &:hover
+                        color: #EB3738
+
+        .right
+            display: flex
+            align-items: center
             gap: 20px
 
-    .right
-        display: flex
-        align-items: center
-        gap: 20px
+            .profile__btn
+                display: flex
+                gap: 10px
 
-        .profile__btn
-            display: flex
-            gap: 10px
+            .login__btn
+                @include red-btn(50px)
 
-        .login__btn
-            @include red-btn(50px)
-
-            width: 111px
-            height: 33px
-            gap: 5px
+                width: 111px
+                height: 33px
+                gap: 5px
 
 @media (max-width: 576px)
-    .wrapper
-        .left img
-            width: 100px
-            height: 50px
+    .header
+        padding: 10px 0
 
-        .right .register__btn
-            display: none
+        .wrapper
+            .left img
+                width: 100px
+                height: 50px
+
+            .right .register__btn
+                display: none

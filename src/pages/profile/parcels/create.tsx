@@ -106,6 +106,7 @@ const CreateParcel = ({
         goods,
       });
 
+      toast.success('Посылка добавлена');
       router.push('/profile/parcels');
     } catch (error) {
       toast.error('Ошибка при добавлении посылки');

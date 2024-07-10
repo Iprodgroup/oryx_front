@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { FormEvent, useRef } from 'react';
 import styles from './styles.module.sass';
 
 import { useIsClient, useMediaQuery } from 'usehooks-ts';
@@ -13,6 +13,7 @@ import useAuth from '@/hooks/useAuth';
 const Footer = () => {
   const isClient = useIsClient();
   const isAuthenticated = useAuth();
+  const formRef = useRef<HTMLFormElement>(null);
 
   const matches = {
     768: useMediaQuery('(min-width: 768px)'),
@@ -29,14 +30,13 @@ const Footer = () => {
 
       let text = `Name: ${name}\n\nPhone: ${phem}`;
 
-      console.log(text);
+      await axios.post('/api/send', {
+        subject: 'Заявка с сайта',
+        text,
+      });
 
-      // await axios.post('/api/send', {
-      //   subject: 'Заявка с сайта',
-      //   text,
-      // });
-
-      // toast.success('Заявка отправлена');
+      toast.success('Заявка отправлена');
+      formRef.current?.reset();
     } catch (error) {
       toast.error('Ошибка при отправлении заявки');
     } finally {
@@ -95,7 +95,7 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.middle}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={formRef}>
               <input type='text' name='name' placeholder='Имя' required />
               <div className={styles.pn}>
                 <InputMask

@@ -14,7 +14,7 @@ const DefaultHeader = () => {
 
   return (
     isClient && (
-      <header>
+      <header className={styles.header}>
         <div className={styles.wrapper}>
           <div className={styles.left}>
             <Link href='/'>
