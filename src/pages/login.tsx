@@ -10,6 +10,7 @@ import Link from 'next/link';
 
 import withAuthServerSide from '@/utils/withAuthServerSide';
 import LockIcon from '@/components/icons/Lock';
+import handleGoogle from '@/utils/handleGoogle';
 
 export const getServerSideProps = withAuthServerSide('/profile')(async () => {
   return {
@@ -94,7 +95,9 @@ const Login = () => {
             createPortal(<div className='login'></div>, document.body)}
           <h2>ВОЙТИ ЧЕРЕЗ СОЦСЕТИ</h2>
           <p>Войдите с помощью вашего аккаунта социальной сети</p>
-          <button>Регистрация через Google</button>
+          <button onClick={() => handleGoogle(router)}>
+            Войти через Google
+          </button>
         </div>
       </div>
     </section>

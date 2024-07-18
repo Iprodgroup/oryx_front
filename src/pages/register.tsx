@@ -8,6 +8,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import withAuthServerSide from '@/utils/withAuthServerSide';
+import handleGoogle from '@/utils/handleGoogle';
 
 export const getServerSideProps = withAuthServerSide('/profile')(async () => {
   return {
@@ -112,7 +113,9 @@ const Register = () => {
         <div className={styles.right}>
           <h2>ВОЙТИ ЧЕРЕЗ СОЦСЕТИ</h2>
           <p>Войдите с помощью вашего аккаунта социальной сети</p>
-          <button>Регистрация через Google</button>
+          <button onClick={() => handleGoogle(router)}>
+            Регистрация через Google
+          </button>
         </div>
       </div>
     </section>
