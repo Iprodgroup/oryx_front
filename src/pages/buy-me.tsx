@@ -121,13 +121,15 @@ const BuyItForMe = () => {
                       }
                       required
                     />
-                    {purchase.id !== 1 && (
+                    {purchase.id !== 1 ? (
                       <button
                         type='button'
                         onClick={() => removePurchase(purchase.id)}
                       >
                         ✕
                       </button>
+                    ) : (
+                      <div style={{ minWidth: 33, minHeight: 33 }}></div>
                     )}
                   </li>
                 ))}

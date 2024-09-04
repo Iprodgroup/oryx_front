@@ -11,22 +11,18 @@
         @include container(0)
 
         display: flex
+        align-items: center
         justify-content: space-between
 
-        .left
+        .center ul
             display: flex
-            align-items: center
-            gap: 40px
+            gap: 20px
 
-            ul
-                display: flex
-                gap: 20px
+            a
+                transition: color 0.1s
 
-                a
-                    transition: color 0.1s
-
-                    &:hover
-                        color: #EB3738
+                &:hover
+                    color: #EB3738
 
         .right
             display: flex

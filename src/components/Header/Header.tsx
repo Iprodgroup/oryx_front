@@ -35,7 +35,9 @@ const Header = () => {
                 <LogoIcon />
               )}
             </Link>
-            {matches[1200] && (
+          </div>
+          {matches[1200] && (
+            <div className={styles.center}>
               <nav>
                 <ul>
                   <li>
@@ -57,8 +59,8 @@ const Header = () => {
                   </li>
                 </ul>
               </nav>
-            )}
-          </div>
+            </div>
+          )}
           <div className={styles.right}>
             {isAuthenticated ? (
               <>
