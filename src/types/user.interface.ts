@@ -29,4 +29,6 @@ export interface User {
   ref_id: string;
   id_orx: string;
   parcelActiveCount: number;
+  delivery_method: 'pickup' | 'address' | 'pvz';
+  delivery_address?: string;
 }

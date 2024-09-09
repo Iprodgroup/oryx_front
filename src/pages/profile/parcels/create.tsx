@@ -8,10 +8,12 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 
 import { Recipient } from '@/types/recipient.interface';
+import { User } from '@/types/user.interface';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import instance from '@/utils/axios';
 import passToken from '@/utils/passToken';
 import cities from '@/utils/cities';
+import DeliveryMethod from '@/components/DeliveryMethod';
 
 type Parcel = {
   id: number;
@@ -27,13 +29,16 @@ export const getServerSideProps = (async (context) => {
       ...passToken(context),
     }
   );
+  const res2 = await instance.get('/user', { ...passToken(context) });
   const recipients = res.data.recipients;
+  const user: User = res2.data;
 
-  return { props: { recipients } };
-}) satisfies GetServerSideProps<{ recipients: Recipient[] }>;
+  return { props: { recipients, user } };
+}) satisfies GetServerSideProps<{ recipients: Recipient[]; user: User }>;
 
 const CreateParcel = ({
   recipients,
+  user,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [parcels, setParcels] = useState<Parcel[]>([
     { id: 1, name: '', currency: 'USD', price: 0 },
@@ -212,6 +217,7 @@ const CreateParcel = ({
                 ))}
               </select>
             </div>
+            <DeliveryMethod user={user} isParcels />
             <div className={styles.btns}>
               <button type='submit'>Сохранить</button>
               <button type='reset'>Отменить</button>

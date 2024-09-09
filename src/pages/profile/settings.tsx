@@ -12,6 +12,7 @@ import { formatPhoneNumber, unformatPhoneNumber } from '@/utils/phoneNumber';
 import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
 import CheckIcon from '@/components/icons/Check';
 import AddRecipientModal from '@/components/modal/AddRecipientModal/AddRecipientModal';
+import DeliveryMethod from '@/components/DeliveryMethod';
 import instance from '@/utils/axios';
 import passToken from '@/utils/passToken';
 
@@ -37,8 +38,16 @@ const ProfileSettings = ({
 
     try {
       const formData = new FormData(event.currentTarget);
-      const { surname, name, fname, email, phone, password } =
-        Object.fromEntries(formData);
+      const {
+        surname,
+        name,
+        fname,
+        email,
+        phone,
+        password,
+        delivery_method,
+        delivery_address,
+      } = Object.fromEntries(formData);
 
       await axios.post('/api/profile/settings', {
         surname,
@@ -47,6 +56,9 @@ const ProfileSettings = ({
         email,
         phone: unformatPhoneNumber(phone.toString()),
         password,
+        delivery_method,
+        delivery_address:
+          delivery_method === 'pickup' ? null : delivery_address,
       });
 
       toast.success('Данные обновлены');
@@ -104,6 +116,7 @@ const ProfileSettings = ({
               defaultValue={formatPhoneNumber(user.phone)}
             />
             <input type='password' name='password' placeholder='Пароль' />
+            <DeliveryMethod user={user} />
             <div className={styles.btns}>
               <button type='submit'>Сохранить изменения</button>
               <button type='reset'>Отменить изменения</button>
