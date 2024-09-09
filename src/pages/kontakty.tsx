@@ -27,8 +27,8 @@ const Contacts = () => {
                 <li>
                   <b>Адрес:</b>
                   <p>
-                    Республика Казахстан, г.Алматы, ул.Макатаева, д.125, офис 5,
-                    вход в здание с торца
+                    Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын
+                    Гасыр, кабинет 133
                   </p>
                 </li>
                 <li>
@@ -90,7 +90,7 @@ const Contacts = () => {
                   Улица Мукагали Макатаева, 125 — Яндекс&nbsp;Карты
                 </a>
                 <iframe
-                  src='https://yandex.uz/map-widget/v1/?indoorLevel=1&ll=76.925649%2C43.262917&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg2NzMwMDE5NhJV0prQsNC30LDSm9GB0YLQsNC9LCDQkNC70LzQsNGC0YssINCc0rHSm9Cw0pPQsNC70Lgg0JzQsNKb0LDRgtCw0LXQsiDQutOp0YjQtdGB0ZYsIDEyNSIKDe7ZmUIVOg0tQg%2C%2C&z=16.68'
+                  src='https://yandex.uz/map-widget/v1/?ll=76.918402%2C43.253252&mode=search&oid=169157235939&ol=biz&sctx=ZAAAAAgBEAAaKAoSCcueBDbnUVFAERGPxMvTp0RAEhIJ7gc8MIDw1j8RmdTQBmADxD8iBgABAgMEBSgKOABA31BIAWI9cmVsZXZfcmFua2luZ19oZWF2eV9yZWxldl90dXJrX2Zvcm11bGE9MS4wOmwzX3RyX2RjNTY5MjM3X2V4cGoCdXqdAc3MTD2gAQCoAQC9AaQmDTfCAQbjqbqU9gSCAk%2FRg9C70LjRhtCwINCo0LXQstGH0LXQvdC60L4gMTE4LCDQkdCmINCQ0LvRgtGL0L0g0JPQsNGB0YvRgCwg0LrQsNCx0LjQvdC10YIgMTMzigIAkgIFMTAzMzWaAgxkZXNrdG9wLW1hcHM%3D&sll=76.918402%2C43.253252&sspn=0.089607%2C0.037893&text=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A8%D0%B5%D0%B2%D1%87%D0%B5%D0%BD%D0%BA%D0%BE%20118%2C%20%D0%91%D0%A6%20%D0%90%D0%BB%D1%82%D1%8B%D0%BD%20%D0%93%D0%B0%D1%81%D1%8B%D1%80%2C%20%D0%BA%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%20133&z=14'
                   allowFullScreen
                   style={{ position: 'relative' }}
                 />
