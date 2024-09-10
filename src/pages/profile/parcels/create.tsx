@@ -144,6 +144,7 @@ const CreateParcel = ({
                   ))}
                 </select>
               </label>
+              <DeliveryMethod user={user} isParcels />
               <div className={styles.flex}>
                 <label htmlFor='track'>
                   Номер трекинга
@@ -205,7 +206,7 @@ const CreateParcel = ({
               onClick={addParcel}
               className={styles.product__btn}
             >
-              Добавить еще один товар
+              + Добавить еще один товар
             </button>
             <div className={styles.recipient}>
               Получатель{' '}
@@ -217,7 +218,6 @@ const CreateParcel = ({
                 ))}
               </select>
             </div>
-            <DeliveryMethod user={user} isParcels />
             <div className={styles.btns}>
               <button type='submit'>Сохранить</button>
               <button type='reset'>Отменить</button>
