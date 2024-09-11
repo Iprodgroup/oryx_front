@@ -35,7 +35,8 @@ export const getServerSideProps = (async (context) => {
     params: {
       status: context.query.status,
     },
-  });
+  })
+  console.log(res.data);
   const res2 = await instance.get<{ recipients: Recipient[] }>(
     '/profile/settings',
     {
@@ -252,8 +253,6 @@ const ProfileParcels = ({
                     <tr>
                       <th>Трек-код</th>
                       <th>Статус</th>
-                      {matches && (
-                        <>
                           <th>Дата добавления</th>
                           <th>Направление</th>
                           <th>Стоимость доставки</th>
@@ -261,9 +260,6 @@ const ProfileParcels = ({
                           <th>Доп. услуга</th>
                           <th>Итого</th>
                           <th></th>
-                          
-                        </>
-                      )}
                     </tr>
                     {/* Трек-код */}
                     {parcels
@@ -273,9 +269,6 @@ const ProfileParcels = ({
                           {/* Статус */}
                           <tr>
                             <td>{parcel.track}</td>
-                            {matches ? (
-                              <td>{statuses[+parcel.status].value}</td>
-                            ) : (
                               <td>
                                 <b>{statuses[+parcel.status].value}</b>
                                 <button onClick={() => onDisplay(parcel)}>
@@ -287,9 +280,6 @@ const ProfileParcels = ({
                                   )}
                                 </button>
                               </td>
-                            )}
-                            {matches && (
-                              <>
                               {/* Дата добавления */}
                                 <td>{formatDate(parcel.created_at)}</td>
                                 {/* Направление */}
@@ -307,15 +297,15 @@ const ProfileParcels = ({
                                 )}
                                  {/* Цена посылки */}
                                  <td>
-                                  -
+                                 Цена посылки
                                 </td>
                                 {/* Доп. услуга */}
                                 <td>
-                                  -
+                                Доп. услуга
                                 </td>
                                 {/* Итоговая */}
                                 <td>
-                                  -
+                                Итоговая
                                 </td>
                                 <td>
                                   <button
@@ -335,9 +325,6 @@ const ProfileParcels = ({
                                     )}
                                   </button>
                                 </td>
-                               
-                              </>
-                            )}
                           </tr>
                           {matches &&
                             isDisplay.state &&
