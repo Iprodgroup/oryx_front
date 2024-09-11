@@ -7,6 +7,7 @@ import { responsiveImg } from '@/utils/image';
 const Hero = () => {
   return (
     <section>
+      <link rel="canonical" href="https://oryx.kz/o-kompanii" />
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <Image src='/hero-about.svg' alt='' {...responsiveImg} />

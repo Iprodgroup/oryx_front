@@ -1,8 +1,9 @@
-import styles from '@/styles/Prohibited.module.sass';
+import styles from "@/styles/Prohibited.module.sass";
 
 const Prohibited = () => {
   return (
     <section>
+      <link rel="canonical" href="https://oryx.kz/prohibited" />
       <div className={styles.wrapper}>
         <h1>Перечень запрещенных к авиаперевозке грузов</h1>
         <div className={styles.body}>

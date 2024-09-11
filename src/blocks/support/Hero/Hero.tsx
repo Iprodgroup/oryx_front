@@ -1,15 +1,16 @@
-import styles from './styles.module.sass';
+import styles from "./styles.module.sass";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { responsiveImg } from '@/utils/image';
+import { responsiveImg } from "@/utils/image";
 
 const Hero = () => {
   return (
     <section>
+      <link rel="canonical" href="https://oryx.kz/usloviya-servisa" />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <Image src='/hero-support.svg' alt='' {...responsiveImg} />
+          <Image src="/hero-support.svg" alt="" {...responsiveImg} />
         </div>
         <div className={styles.right}>
           <h2>Условия сервиса и стоимость</h2>

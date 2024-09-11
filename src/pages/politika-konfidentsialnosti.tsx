@@ -1,6 +1,6 @@
-import styles from '@/styles/PrivacyPolicy.module.sass';
+import styles from "@/styles/PrivacyPolicy.module.sass";
 
-import Head from 'next/head';
+import Head from "next/head";
 
 const PrivacyPolicy = () => {
   return (
@@ -10,6 +10,10 @@ const PrivacyPolicy = () => {
       </Head>
 
       <section>
+        <link
+          rel="canonical"
+          href="https://oryx.kz/politika-konfidentsialnosti"
+        />
         <div className={styles.wrapper}>
           <h1>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ ПЕРСОНАЛЬНЫХ ДАННЫХ</h1>
           <p className={styles.description}>

@@ -12,6 +12,7 @@ const Terms = () => {
       </Head>
 
       <section>
+      <link rel="canonical" href="https://oryx.kz/obshchie-usloviya" />
         <div className={styles.wrapper}>
           <strong>Глава 1. ОБЩИЕ УСЛОВИЯ</strong>
           <ul>
