@@ -254,17 +254,23 @@ const ProfileParcels = ({
                       <th>Статус</th>
                       {matches && (
                         <>
-                          <th>Стоимость доставки</th>
                           <th>Дата добавления</th>
                           <th>Направление</th>
+                          <th>Стоимость доставки</th>
+                          <th>Цена посылки</th>
+                          <th>Доп. услуга</th>
+                          <th>Итого</th>
                           <th></th>
+                          
                         </>
                       )}
                     </tr>
+                    {/* Трек-код */}
                     {parcels
                       .filter((parcel) => parcel.track.includes(search))
                       .map((parcel) => (
                         <Fragment key={parcel.id}>
+                          {/* Статус */}
                           <tr>
                             <td>{parcel.track}</td>
                             {matches ? (
@@ -284,17 +290,32 @@ const ProfileParcels = ({
                             )}
                             {matches && (
                               <>
+                              {/* Дата добавления */}
+                                <td>{formatDate(parcel.created_at)}</td>
+                                {/* Направление */}
+                                <td>
+                                  {+parcel.city_out === 1
+                                    ? 'Нью-Йорк'
+                                    : 'Делавэр'}
+                                  - {parcel.city}
+                                </td>
+                                {/* стоимость доставки */}
                                 {+parcel.prod_price > 0 ? (
                                   <td>{parcel.prod_price}$</td>
                                 ) : (
                                   <td>Не указано</td>
                                 )}
-                                <td>{formatDate(parcel.created_at)}</td>
+                                 {/* Цена посылки */}
+                                 <td>
+                                  -
+                                </td>
+                                {/* Доп. услуга */}
                                 <td>
-                                  {+parcel.city_out === 1
-                                    ? 'Нью-Йорк'
-                                    : 'Делавэр'}{' '}
-                                  - {parcel.city}
+                                  -
+                                </td>
+                                {/* Итоговая */}
+                                <td>
+                                  -
                                 </td>
                                 <td>
                                   <button
@@ -314,6 +335,7 @@ const ProfileParcels = ({
                                     )}
                                   </button>
                                 </td>
+                               
                               </>
                             )}
                           </tr>
@@ -336,26 +358,6 @@ const ProfileParcels = ({
                                           <td>{isDisplay.data.city}</td>
                                         </tr>
                                       ))}
-                                      {/* <tr>
-                                        <th>Наименование товара</th>
-                                        {isDisplay.data.goods?.map((item) => (
-                                          <td key={item.id}>{item.name}</td>
-                                        ))}
-                                      </tr>
-                                      <tr>
-                                        <th>Стоимость</th>
-                                        {isDisplay.data.goods?.map((item) => (
-                                          <td key={item.id}>{item.price}$</td>
-                                        ))}
-                                      </tr>
-                                      <tr>
-                                        <th>Город</th>
-                                        {isDisplay.data.goods?.map((item) => (
-                                          <td key={item.id}>
-                                            {isDisplay.data.city}
-                                          </td>
-                                        ))}
-                                      </tr> */}
                                     </tbody>
                                   </table>
                                 </td>

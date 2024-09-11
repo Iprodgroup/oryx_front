@@ -1,20 +1,48 @@
-import styles from './styles.module.sass';
+import styles from "./styles.module.sass";
 
-import { useIsClient, useMediaQuery } from 'usehooks-ts';
-import Link from 'next/link';
-import Image from 'next/image';
+import { useIsClient, useMediaQuery } from "usehooks-ts";
+import Link from "next/link";
+import Image from "next/image";
 
-import useAuth from '@/hooks/useAuth';
-import Drawer from '../drawer/Drawer/Drawer';
-import LogoIcon from '../icons/Logo';
+import useAuth from "@/hooks/useAuth";
+import Drawer from "../drawer/Drawer/Drawer";
+import LogoIcon from "../icons/Logo";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const isClient = useIsClient();
   const isAuthenticated = useAuth();
+  const url = usePathname();
 
   const matches = {
-    576: useMediaQuery('(min-width: 576px)'),
-    1200: useMediaQuery('(min-width: 1200px)'),
+    576: useMediaQuery("(min-width: 576px)"),
+    1200: useMediaQuery("(min-width: 1200px)"),
+  };
+
+  const whatUrl = () => {
+    if (url == "/profile") {
+      return (
+        <div className={styles.balance}>
+          <div className={styles.balance__value}>
+            <b
+              style={{
+                color: "black",
+              }}
+            >
+              0
+            </b>
+            <b style={{ fontSize: "10px", marginLeft: "3px" }}>₸</b>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <Link href="/profile" className={styles.profile__btn}>
+          <Image src="/lock-red.svg" alt="" width={16} height={16} /> Личный
+          кабинет
+        </Link>
+      );
+    }
   };
 
   return (
@@ -22,11 +50,11 @@ const Header = () => {
       <header className={styles.header}>
         <div className={styles.wrapper}>
           <div className={styles.left}>
-            <Link href='/'>
+            <Link href="/">
               {matches[576] ? (
                 <Image
-                  src='/logo.svg'
-                  alt=''
+                  src="/logo.svg"
+                  alt=""
                   width={170}
                   height={70}
                   priority
@@ -41,21 +69,21 @@ const Header = () => {
               <nav>
                 <ul>
                   <li>
-                    <Link href='/o-kompanii'>О нас</Link>
+                    <Link href="/o-kompanii">О нас</Link>
                   </li>
                   <li>
-                    <Link href='/populyarnye-magaziny'>
+                    <Link href="/populyarnye-magaziny">
                       Популярные магазины
                     </Link>
                   </li>
                   <li>
-                    <Link href='/buy-me'>Купи вместо меня</Link>
+                    <Link href="/buy-me">Купи вместо меня</Link>
                   </li>
                   <li>
-                    <Link href='/kontakty'>Контакты</Link>
+                    <Link href="/kontakty">Контакты</Link>
                   </li>
                   <li>
-                    <Link href='/#calculator'>Калькулятор</Link>
+                    <Link href="/#calculator">Калькулятор</Link>
                   </li>
                 </ul>
               </nav>
@@ -64,20 +92,17 @@ const Header = () => {
           <div className={styles.right}>
             {isAuthenticated ? (
               <>
-                <Link href='/profile' className={styles.profile__btn}>
-                  <Image src='/lock-red.svg' alt='' width={16} height={16} />{' '}
-                  Личный кабинет
-                </Link>
-                <Link href='/logout' className={styles.register__btn}>
+                {whatUrl()}
+                <Link href="/logout" className={styles.register__btn}>
                   Выход
                 </Link>
               </>
             ) : (
               <>
-                <Link href='/login' className={styles.login__btn}>
-                  <Image src='/login.svg' alt='' width={16} height={20} /> Вход
+                <Link href="/login" className={styles.login__btn}>
+                  <Image src="/login.svg" alt="" width={16} height={20} /> Вход
                 </Link>
-                <Link href='/register' className={styles.register__btn}>
+                <Link href="/register" className={styles.register__btn}>
                   Регистрация
                 </Link>
               </>
