@@ -25,7 +25,7 @@ const Store = ({
           <div dangerouslySetInnerHTML={{__html: store.short_desc}}></div>
         </div>
 
-        <a href={store.link} target="_blank" className={styles.btn}>
+        <a href={store.link} target="_blank" rel="nofollow" className={styles.btn} >
           Перейти на сайт
         </a>
       </div>

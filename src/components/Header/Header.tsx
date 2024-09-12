@@ -26,10 +26,10 @@ const Header = () => {
           <div className={styles.balance__value}>
             <b
               style={{
-                color: "black",
+                color: "green",
               }}
             >
-              0
+              100000
             </b>
             <b style={{ fontSize: "10px", marginLeft: "3px" }}>₸</b>
           </div>

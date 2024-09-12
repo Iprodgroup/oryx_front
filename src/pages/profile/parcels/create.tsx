@@ -130,8 +130,8 @@ const CreateParcel = ({
               <label htmlFor='departure'>
                 Город отправки
                 <select name='city_out' id='departure' defaultValue='2'>
-                  <option value='1'>Адрес в Нью-Йорке</option>
-                  <option value='2'>Адрес в Делавэр</option>
+                  <option value='1'>Нью-Йорк (США)</option>
+                  <option value='2'>Делавэр (США)</option>
                 </select>
               </label>
               <label htmlFor='delivery'>

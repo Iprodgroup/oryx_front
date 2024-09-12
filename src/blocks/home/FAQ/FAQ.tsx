@@ -6,7 +6,7 @@ const FAQ = () => {
   return (
     <section>
       <div className={styles.wrapper}>
-        <h1>Частые вопросы</h1>
+        <h2>Частые вопросы</h2>
         <FAQComponent />
       </div>
     </section>
