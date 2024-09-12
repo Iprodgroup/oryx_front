@@ -79,6 +79,7 @@ const BuyItForMe = () => {
     <>
       <Head>
         <title>Сервис &quot;купите вместо меня&quot; ORYX</title>
+        {/* <div dangerouslySetInnerHTML={{ __html: meta }} /> */}
       </Head>
 
       <section>

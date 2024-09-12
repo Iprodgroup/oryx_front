@@ -2,6 +2,20 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
+  const jsonLd = {
+    "@context": "http://schema.org/",
+    "@type": "Organization",
+    "name": "ORYX",
+    "logo": "https://oryx.kz/logo.svg",
+    "url": "https://oryx.kz/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+      "addressLocality": "Алматы",
+      "addressCountry": "Kazakhstan"
+    },
+    "sameAs": []
+  };
   return (
     <Html lang="en">
       <Head>
@@ -29,7 +43,10 @@ export default function Document() {
             `,
           }}
         />
-
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {/* Yandex Metrica */}
         <script
           dangerouslySetInnerHTML={{
@@ -63,7 +80,6 @@ export default function Document() {
             `,
           }}
         />
-
         {/* Yandex Metrica noscript */}
         <noscript>
           <div>
