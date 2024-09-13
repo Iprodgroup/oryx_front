@@ -26,7 +26,7 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
-        const response = await fetch('https://v6.exchangerate-api.com/v6/d2658bf5487b0fd2173f4a12/latest/USD');
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
         const data = await response.json();
         setExchangeRate(data.rates.KZT);
       } catch (error) {
