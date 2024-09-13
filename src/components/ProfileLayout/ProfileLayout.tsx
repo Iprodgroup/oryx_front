@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect } from 'react';
+import { FC, PropsWithChildren, useEffect, useState } from 'react';
 import styles from './styles.module.sass';
 
 import { useRouter } from 'next/router';
@@ -9,6 +9,9 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
   const isClient = useIsClient();
   const router = useRouter();
   const matches = useMediaQuery('(min-width: 576px)');
+  
+  // State for storing exchange rate
+  const [exchangeRate, setExchangeRate] = useState<number | null>(null);
 
   useEffect(() => {
     const body = document.body;
@@ -18,6 +21,20 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
     return () => {
       body.removeAttribute('style');
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchExchangeRate = async () => {
+      try {
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const data = await response.json();
+        setExchangeRate(data.rates.KZT);
+      } catch (error) {
+        console.error('Error fetching exchange rate:', error);
+      }
+    };
+
+    fetchExchangeRate();
   }, []);
 
   return (
@@ -39,6 +56,9 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
               </li>
               <li>
                 <Link href='/profile/nsettings'>Настройка уведомлений</Link>
+              </li>
+              <li style={{backgroundColor: 'white', color: "#000", padding: "3px 8px", borderRadius: "5px"}}>
+               1 USD = {exchangeRate ? `${exchangeRate} KZT` : 'Загрузка...'}
               </li>
             </ul>
           </nav>
