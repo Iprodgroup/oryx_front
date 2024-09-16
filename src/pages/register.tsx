@@ -71,7 +71,7 @@ const Register = () => {
       <link rel="canonical" href="https://oryx.kz/register" />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <h2>РЕГИСТРАЦИЯ НА САЙТЕ</h2>
+          <h1>РЕГИСТРАЦИЯ НА САЙТЕ</h1>
           <p>Пожалуйста, заполните все поля заявки</p>
           <form onSubmit={handleSubmit}>
             <input
