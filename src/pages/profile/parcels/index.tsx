@@ -36,13 +36,14 @@ export const getServerSideProps = (async (context) => {
       status: context.query.status,
     },
   });
-  console.log(res.data);
+  // console.log(res.data);
   const res2 = await instance.get<{ recipients: Recipient[] }>(
     "/profile/settings",
     {
       ...passToken(context),
     }
   );
+
   const parcels = res.data.items;
   const recipients = res2.data.recipients;
 
@@ -125,6 +126,7 @@ const ProfileParcels = ({
   useEffect(() => {
     offDisplay();
   }, [router]);
+
 
   return (
     isClient && (
@@ -350,7 +352,7 @@ const ProfileParcels = ({
                                           </td>
                                           <td style={{ textAlign: "left" }}>
                                             <strong>Получатель:</strong>
-                                            &nbsp;&nbsp;Шакуров Олег Альхатович
+                                            &nbsp;&nbsp;{parcel.in_fio}
                                           </td>
                                         </div>
                                       ))}
