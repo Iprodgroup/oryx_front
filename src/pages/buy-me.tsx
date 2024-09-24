@@ -78,10 +78,13 @@ const BuyItForMe = () => {
   return (
     <>
       <Head>
-        <title>Сервис &quot;купите вместо меня&quot; ORYX</title>
+        <title>Сервис &quot;Купи вместо меня&quot; от Oryx. Доставка товаров из США в Казахстан</title>
+        <meta
+          name="description"
+          content="Oryx покупает товары вместо Вас. Доставка до 10 рабочих дней. Минимальная комиссия за заказ. Экономия времени."
+        />
         {/* <div dangerouslySetInnerHTML={{ __html: meta }} /> */}
       </Head>
-
       <section>
         <link rel="canonical" href="https://oryx.kz/buy-me" />
         <div className={styles.wrapper}>

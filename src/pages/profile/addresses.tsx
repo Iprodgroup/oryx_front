@@ -54,7 +54,7 @@ const ProfileAddresses = ({
           <div className={styles.left}>
             {matches ? (
               <div className={styles.head}>
-                <Image src='/plane.svg' alt='' width={50} height={50} />
+                <Image src='/plane.svg' alt='plane' width={50} height={50} />
                 <h1>Ваши персональные адреса</h1>
               </div>
             ) : (
@@ -86,7 +86,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.address1)}
                 >
-                  <Image src='/copy.svg' alt='' width={35} height={35} />
+                  <Image src='/copy.svg' alt='copy' width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -101,7 +101,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.address2)}
                 >
-                  <Image src='/copy.svg' alt='' width={35} height={35} />
+                  <Image src='/copy.svg' alt='copy' width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -111,7 +111,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.city)}
                 >
-                  <Image src='/copy.svg' alt='' width={35} height={35} />
+                  <Image src='/copy.svg' alt='copy' width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -121,7 +121,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.state)}
                 >
-                  <Image src='/copy.svg' alt='' width={35} height={35} />
+                  <Image src='/copy.svg' alt='copy' width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -131,7 +131,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.zip.toString())}
                 >
-                  <Image src='/copy.svg' alt='' width={35} height={35} />
+                  <Image src='/copy.svg' alt='copy' width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -141,7 +141,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.country)}
                 >
-                  <Image src='/copy.svg' alt='' width={35} height={35} />
+                  <Image src='/copy.svg' alt='copy' width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -151,7 +151,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.phone.toString())}
                 >
-                  <Image src='/copy.svg' alt='' width={35} height={35} />
+                  <Image src='/copy.svg' alt='copy' width={35} height={35} />
                 </button>
               </label>
             </div>
@@ -172,12 +172,12 @@ const ProfileAddresses = ({
                 <Link href='/prohibited'>
                   Смотреть список запрещенных товаров
                 </Link>
-                <Image src='/man.svg' alt='' {...responsiveImg} />
+                <Image src='/man.svg' alt='man' {...responsiveImg} />
               </>
             ) : (
               <Image
                 src='/man.svg'
-                alt=''
+                alt='man'
                 {...responsiveImg}
                 style={{
                   width: '100%',

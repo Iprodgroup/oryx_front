@@ -52,7 +52,7 @@ const Footer = () => {
             {matches[768] ? (
               <div className={styles.left}>
                 <a href='tel:+77003232222'>
-                  <Image src='/call.svg' alt='' width={30} height={30} />
+                  <Image src='/call.svg' alt='call' width={30} height={30} />
                   +7 700 323 22 22
                 </a>
                 <a href='tel:+77475155613'>+7 747 515 56 13</a>
@@ -60,25 +60,25 @@ const Footer = () => {
                   href='https://www.instagram.com/oryx.usa.kz/'
                   target='_blank'
                 >
-                  <Image src='/instagram.svg' alt='' width={24} height={24} />
+                  <Image src='/instagram.svg' alt='instagram' width={24} height={24} />
                   @oryx.usa.kz
                 </a>
               </div>
             ) : (
               <div className={styles.left}>
                 <a href='tel:+77003232222'>
-                  <Image src='/call.svg' alt='' width={20} height={20} />
+                  <Image src='/call.svg' alt='call' width={20} height={20} />
                   +7 700 323 22 22
                 </a>
                 <a href='tel:+77475155613'>
-                  <Image src='/whatsapp.svg' alt='' width={20} height={20} />
+                  <Image src='/whatsapp.svg' alt='whatsapp' width={20} height={20} />
                   +7 747 515 56 13
                 </a>
                 <a
                   href='https://www.instagram.com/oryx.usa.kz/'
                   target='_blank'
                 >
-                  <Image src='/instagram.svg' alt='' width={24} height={24} />
+                  <Image src='/instagram.svg' alt='instagram' width={24} height={24} />
                   @oryx.usa.kz
                 </a>
               </div>
@@ -112,7 +112,7 @@ const Footer = () => {
           <div className={styles.bottom}>
             <Image
               src='/logo-footer.svg'
-              alt=''
+              alt='logo-footer'
               width={140}
               height={60}
               priority

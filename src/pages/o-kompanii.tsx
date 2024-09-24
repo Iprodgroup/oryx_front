@@ -15,8 +15,12 @@ const About = () => {
     <>
       <Head>
         <title>
-          О компании Oryx осуществляющий доставку товаров из США в Казахстан
+          О компании Oryx - Быстрая доставка товаров из США в Казахстан
         </title>
+        <meta
+          name="description"
+          content="Информация о компании Oryx. Оперативная доставка товаров из США в Казахстан до 10 дней!"
+        />
       </Head>
       <link rel="canonical" href="https://oryx.kz/o-kompanii" />
 

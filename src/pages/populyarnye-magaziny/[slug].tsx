@@ -7,9 +7,10 @@ import instance from "@/utils/axios";
 import Head from "next/head";
 
 export const getServerSideProps = (async ({ query }) => {
-  const res = await instance.get<{ store: IStore; meta: string }>(`/store/${query.slug}`);
+  const res = await instance.get<{ store: IStore; meta: string; }>(`/store/${query.slug}`);
   const store = res.data.store;
   const meta = res.data.meta;
+  console.log(meta)
 
   return { props: { store, meta } };
 }) satisfies GetServerSideProps<{ store: IStore, meta: string }>;
@@ -23,7 +24,6 @@ const Store = ({
     <section>
       <Head>
         <title>Информация о {store.name}</title>
-        {/* Inject the meta tags using dangerouslySetInnerHTML */}
         <div dangerouslySetInnerHTML={{ __html: meta }} />
         <link rel="canonical" href={`https://oryx.kz/populyarnye-magaziny/${store.slug}`} />
       </Head>

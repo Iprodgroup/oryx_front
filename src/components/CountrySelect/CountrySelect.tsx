@@ -14,7 +14,7 @@ const CountrySelect = () => {
       options={options}
       formatOptionLabel={(country) => (
         <div className={styles.select__option}>
-          <Image src={country.image} alt='' width={28} height={28} />
+          <Image src={country.image} alt={'country-' + country.value} width={28} height={28} />
           <span>{country.label}</span>
         </div>
       )}

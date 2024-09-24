@@ -24,13 +24,13 @@ const DefaultHeader = () => {
           <div className={styles.right}>
             {isAuthenticated ? (
               <Link href='/profile' className={styles.profile__btn}>
-                <Image src='/lock-red.svg' alt='' width={16} height={16} />{' '}
+                <Image src='/lock-red.svg' alt='lock-red' width={16} height={16} />{' '}
                 Личный кабинет
               </Link>
             ) : (
               <>
                 <Link href='/login' className={styles.login__btn}>
-                  <Image src='/lock.svg' alt='' width={16} height={16} /> Вход
+                  <Image src='/lock.svg' alt='lock' width={16} height={16} /> Вход
                 </Link>
                 <Link href='/register' className={styles.register__btn}>
                   Регистрация
