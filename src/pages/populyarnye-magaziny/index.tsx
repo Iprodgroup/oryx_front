@@ -48,6 +48,7 @@ const PopularStores = ({
           name="description"
           content="Доставка товаров из магазинов Nike, Puma, Apple и других брендов в Казахстан до 10 дней."
         />
+          <link rel="canonical" href="https://oryx.kz/populyarnye-magaziny" />
       </Head>
 
       <section>
