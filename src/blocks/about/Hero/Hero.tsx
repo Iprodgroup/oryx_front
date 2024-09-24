@@ -10,10 +10,10 @@ const Hero = () => {
       <link rel="canonical" href="https://oryx.kz/o-kompanii" />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <Image src='/hero-about.svg' alt='' {...responsiveImg} />
+          <Image src='/hero-about.svg' alt='about' {...responsiveImg} />
         </div>
         <div className={styles.right}>
-          <h2>О компании Oryx</h2>
+          <h1>О компании Oryx</h1>
           <p>
             ORYX – это надежный мейлфорвардер, имеющий собственный
             автоматизированный склад в безналоговом штате Америки. Покупка и

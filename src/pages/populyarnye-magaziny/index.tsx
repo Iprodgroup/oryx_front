@@ -44,12 +44,16 @@ const PopularStores = ({
     <>
       <Head>
         <title>Список популярных магазинов в США - ORYX</title>
+        <meta
+          name="description"
+          content="Доставка товаров из магазинов Nike, Puma, Apple и других брендов в Казахстан до 10 дней."
+        />
       </Head>
 
       <section>
         <div className={styles.wrapper}>
           <div className={styles.top}>
-            <h2>Популярные магазины в США</h2>
+            <h1>Популярные магазины в США</h1>
             <p>
               Мы подготовили для вас список самых популярных магазинов одежды,
               которые диктуют тренды каждого сезона
@@ -68,7 +72,7 @@ const PopularStores = ({
             <div className={styles.stores}>
               {stores.map((store) => (
                 <Link key={store.id} href={`/populyarnye-magaziny/${store.slug}`}>
-                  <Image src={store.img} alt='' {...responsiveImg} />
+                  <Image src={store.img} alt={store.name} {...responsiveImg} />
                 </Link>
               ))}
             </div>

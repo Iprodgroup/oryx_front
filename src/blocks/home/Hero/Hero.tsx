@@ -31,7 +31,7 @@ const Hero = () => {
                 <Link href='/register'>Зарегистрируйтесь!</Link>
               </div>
               <div className={styles.right}>
-                <Image src='/plane.png' alt='' {...responsiveImg} priority />
+                <Image src='/plane.png' alt='plane' {...responsiveImg} priority />
               </div>
             </>
           ) : (
@@ -40,7 +40,7 @@ const Hero = () => {
                 <h1>
                   Доставка <span>посылок</span> из США в <span>Казахстан</span>
                 </h1>
-                <Image src='/plane.png' alt='' {...responsiveImg} priority />
+                <Image src='/plane.png' alt='plane' {...responsiveImg} priority />
               </div>
               <div className={styles.right}>
                 <Link href='/register'>Зарегистрируйтесь!</Link>

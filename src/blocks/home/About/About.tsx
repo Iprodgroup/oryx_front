@@ -30,7 +30,7 @@ const About = () => {
           <div className={styles.right}>
             <Image
               src={matches[768] ? '/car.svg' : '/car-mobile.svg'}
-              alt=''
+              alt='car-mobile'
               {...responsiveImg}
             />
           </div>

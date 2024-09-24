@@ -29,7 +29,7 @@ const Drawer = () => {
       >
         <div className={styles.top}>
           <button onClick={toggleDrawer}>
-            <Image src='/close.svg' alt='' width={30} height={30} />
+            <Image src='/close.svg' alt='close' width={30} height={30} />
           </button>
         </div>
         <div className={styles.bottom}>
@@ -60,7 +60,7 @@ const Drawer = () => {
         </div>
       </DrawerComponent>
       <button onClick={toggleDrawer}>
-        <Image src='/menu.svg' alt='' width={30} height={30} />
+        <Image src='/menu.svg' alt='menu' width={30} height={30} />
       </button>
     </>
   );

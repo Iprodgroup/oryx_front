@@ -8,28 +8,28 @@ const Advantages = () => {
       <div className={styles.wrapper}>
         <ul>
           <li>
-            <Image src='/document.svg' alt='' width={55} height={63} />
+            <Image src='/document.svg' alt='document' width={55} height={63} />
             <div>
               <b>Экономно</b>
               <p>Наши клиенты не платят налог с продаж</p>
             </div>
           </li>
           <li>
-            <Image src='/box.svg' alt='' width={55} height={63} />
+            <Image src='/box.svg' alt='box' width={55} height={63} />
             <div>
               <b>Надежно</b>
               <p>Гарантируем сохранность товаров</p>
             </div>
           </li>
           <li>
-            <Image src='/time.svg' alt='' width={55} height={63} />
+            <Image src='/time.svg' alt='time' width={55} height={63} />
             <div>
               <b>Быстро</b>
               <p>Из США в Казахстан от 7 дней</p>
             </div>
           </li>
           <li>
-            <Image src='/cart2.svg' alt='' width={55} height={63} />
+            <Image src='/cart2.svg' alt='cart2' width={55} height={63} />
             <div>
               <b>Просто</b>
               <p>Покупка в США в 3 простых шага</p>

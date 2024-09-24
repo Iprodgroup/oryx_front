@@ -12,8 +12,8 @@ const Warehouse = () => {
         <div className={styles.items}>
           <div className={styles.item}>
             <div className={styles.top}>
-              <Image src='/wh1.png' alt='' {...responsiveImg} />
-              <Image src='/wh2.png' alt='' {...responsiveImg} />
+              <Image src='/wh1.png' alt='wh1' {...responsiveImg} />
+              <Image src='/wh2.png' alt='wh2' {...responsiveImg} />
             </div>
             <div className={styles.bottom}>
               <b>Получение заказов на склад и консолидация</b>
@@ -29,8 +29,8 @@ const Warehouse = () => {
           </div>
           <div className={styles.item}>
             <div className={styles.top}>
-              <Image src='/wh3.png' alt='' {...responsiveImg} />
-              <Image src='/wh4.png' alt='' {...responsiveImg} />
+              <Image src='/wh3.png' alt='wh3' {...responsiveImg} />
+              <Image src='/wh4.png' alt='wh4' {...responsiveImg} />
             </div>
             <div className={styles.bottom}>
               <b>Упаковка и хранение посылок</b>

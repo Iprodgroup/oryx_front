@@ -39,7 +39,7 @@ const FixedBox = () => {
         <Image src='/whatsapp2.svg' alt='whatsApp' width={50} height={50} />
       </a>
       <div className={styles.scroll}>
-        <Image src='/scroll.svg' alt='' width={30} height={30} />
+        <Image src='/scroll.svg' alt='scroll' width={30} height={30} />
       </div>
     </div>
   );
