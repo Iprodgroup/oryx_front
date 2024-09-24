@@ -71,6 +71,7 @@ const ProfileParcels = ({
   const onDisplay = (data: Parcel) => {
     if (isDisplay.state && isDisplay.data.id === data.id) {
       setIsDisplay({ state: false, data: {} });
+
     } else {
       setIsDisplay({ state: true, data: data });
     }
@@ -106,6 +107,8 @@ const ProfileParcels = ({
     // @ts-ignore
     setSearch(event.target[0].value);
   };
+
+  console.log(isDisplay.data)
 
   const deleteParcel = async (id: number) => {
     const loadingToastId = toast.loading("Загрузка...");
@@ -352,7 +355,7 @@ const ProfileParcels = ({
                                           </td>
                                           <td style={{ textAlign: "left" }}>
                                             <strong>Получатель:</strong>
-                                            &nbsp;&nbsp;{parcel.in_fio}
+                                            &nbsp;&nbsp;{isDisplay.data.user_fio}
                                           </td>
                                         </div>
                                       ))}
