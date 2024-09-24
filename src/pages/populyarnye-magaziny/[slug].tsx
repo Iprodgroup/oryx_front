@@ -40,6 +40,10 @@ const Store = ({
         <Link href="/" style={{ textDecoration: "underline" }}>
           Главная
         </Link>
+        /
+        <Link href="/populyarnye-magaziny" style={{ textDecoration: "underline" }}>
+          Популярные магазины
+        </Link>
         / Информация о {store.name}
       </div>
         <h1>Информация о {store.name}</h1>
