@@ -56,7 +56,6 @@ const PopularStores = ({
             style={{
               display: "flex",
               alignItems: "center",
-              right: "7",
               gap: "10px",
               marginBottom: "20px",
               color: "#706e6e",
