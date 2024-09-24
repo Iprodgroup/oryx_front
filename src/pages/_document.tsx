@@ -113,13 +113,13 @@ export default function Document() {
                 },
                 {
                   "@type": "ListItem",
-                  position: 3,
+                  position: 4,
                   name: "Купи вместо меня",
                   item: "https://oryx.kz/buy-me",
                 },
                 {
                   "@type": "ListItem",
-                  position: 3,
+                  position: 5,
                   name: "Контакты",
                   item: "https://oryx.kz/kontakty",
                 },

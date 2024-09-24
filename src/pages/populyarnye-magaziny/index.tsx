@@ -73,7 +73,7 @@ const PopularStores = ({
               Мы подготовили для вас список самых популярных магазинов одежды,
               которые диктуют тренды каждого сезона
             </p>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+            <div className={styles.filtrations} style={{ display: "flex", flexDirection: "row" }}>
               <div className={styles.categories}>
                 <p style={{ color: "#000" }}>Категории</p>
                 {categories.map((category) => (
