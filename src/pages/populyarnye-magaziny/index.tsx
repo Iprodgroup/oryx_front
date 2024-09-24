@@ -48,7 +48,7 @@ const PopularStores = ({
           name="description"
           content="Доставка товаров из магазинов Nike, Puma, Apple и других брендов в Казахстан до 10 дней."
         />
-          <link rel="canonical" href="https://oryx.kz/populyarnye-magaziny" />
+        <link rel="canonical" href="https://oryx.kz/populyarnye-magaziny" />
       </Head>
 
       <section>
@@ -73,7 +73,10 @@ const PopularStores = ({
               Мы подготовили для вас список самых популярных магазинов одежды,
               которые диктуют тренды каждого сезона
             </p>
-            <div className={styles.filtrations} style={{ display: "flex", flexDirection: "row" }}>
+            <div
+              className={styles.filtrations}
+              style={{ display: "flex", flexDirection: "row" }}
+            >
               <div className={styles.categories}>
                 <p style={{ color: "#000" }}>Категории</p>
                 {categories.map((category) => (
@@ -88,26 +91,46 @@ const PopularStores = ({
               </div>
               <div className={styles.stores}>
                 {stores.map((store) => (
-                  <div key={store.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                  <Link
-                    href={`/populyarnye-magaziny/${store.slug}`}
-                    style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', textAlign: 'center' }}
+                  <div
+                    key={store.id}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "100%",
+                    }}
                   >
-                    <Image
-                      src={store.img}
-                      alt={store.name}
-                      {...responsiveImg}
-                    />
-                    <b style={{ marginTop: 'auto' }}>{store.name}</b>
-                  </Link>
-                </div>
-                
+                    <Link
+                      href={`/populyarnye-magaziny/${store.slug}`}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        textAlign: "center",
+                      }}
+                    >
+                      <Image
+                        src={store.img}
+                        alt={store.name}
+                        {...responsiveImg}
+                      />
+                    </Link>
+                    <Link
+                      href={`/populyarnye-magaziny/${store.slug}`}
+                      style={{ marginTop: "auto", fontWeight: "700" }}
+                    >
+                      {store.name}
+                    </Link>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
           <div className={styles.bottom}>
-            <h1>Что чаще всего покупают в США?</h1>
+            <h2>Что чаще всего покупают в США?</h2>
             <p>
               Сейчас огромной популярностью пользуются интернет-магазины в США.
               В Америке можно купить все, что угодно от одежды, бытовой техники
