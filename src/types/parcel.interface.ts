@@ -28,7 +28,6 @@ export interface Parcel {
   integration_id: string | null;
   user_fio: string;
   goods: Good[];
-  user_fio: string | null;
 }
 
 interface Good {
