@@ -1,6 +1,5 @@
 import { FormEvent, useState } from "react";
 import styles from "@/styles/BuyItForMe.module.sass";
-
 import { InputMask } from "@react-input/mask";
 import Head from "next/head";
 import axios from "axios";
@@ -10,6 +9,7 @@ import { unformatPhoneNumber } from "@/utils/phoneNumber";
 import Steps from "@/blocks/buy-it-for-me/Steps/Steps";
 import Info from "@/blocks/buy-it-for-me/Info/Info";
 import Advantages from "@/blocks/buy-it-for-me/Advantages/Advantages";
+import Link from "next/link";
 
 type Purchase = {
   id: number;
@@ -88,6 +88,21 @@ const BuyItForMe = () => {
       <section>
         <link rel="canonical" href="https://oryx.kz/buy-me" />
         <div className={styles.wrapper}>
+        <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          right: "7",
+          gap: "10px",
+          marginBottom: "20px",
+          color: "#706e6e",
+        }}
+      >
+        <Link href="/" style={{ textDecoration: "underline" }}>
+          Главная
+        </Link>
+        / Купи вместо меня
+      </div>
           <h1>ORYX осуществит покупку вместо Вас</h1>
           <Steps />
           <form className={styles.formik} onSubmit={handleSubmit}>

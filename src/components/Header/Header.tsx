@@ -38,7 +38,7 @@ const Header = () => {
     } else {
       return (
         <Link href="/profile" className={styles.profile__btn}>
-          <Image src="/lock-red.svg" alt="" width={16} height={16} /> Личный
+          <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} /> Личный
           кабинет
         </Link>
       );
@@ -54,7 +54,7 @@ const Header = () => {
               {matches[576] ? (
                 <Image
                   src="/logo.svg"
-                  alt=""
+                  alt="logo"
                   width={170}
                   height={70}
                   priority
@@ -100,7 +100,7 @@ const Header = () => {
             ) : (
               <>
                 <Link href="/login" className={styles.login__btn}>
-                  <Image src="/login.svg" alt="" width={16} height={20} /> Вход
+                  <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
                 </Link>
                 <Link href="/register" className={styles.register__btn}>
                   Регистрация

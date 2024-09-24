@@ -4,7 +4,7 @@ import Head from "next/head";
 import Hero from "@/blocks/about/Hero/Hero";
 import Warehouse from "@/blocks/about/Warehouse/Warehouse";
 import Advantages from "@/blocks/about/Advantages/Advantages";
-
+import Link from "next/link";
 const About = () => {
   const isClient = useIsClient();
   const matches = {
@@ -23,7 +23,7 @@ const About = () => {
         />
       </Head>
       <link rel="canonical" href="https://oryx.kz/o-kompanii" />
-
+        
       <Hero />
       <Warehouse />
       {isClient && !matches[576] && <Advantages />}

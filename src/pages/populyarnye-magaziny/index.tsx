@@ -1,19 +1,19 @@
-import styles from '@/styles/PopularStores.module.sass';
+import styles from "@/styles/PopularStores.module.sass";
 
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 
-import { Category } from '@/types/category.interface';
-import { Store } from '@/types/store.interface';
-import { responsiveImg } from '@/utils/image';
-import instance from '@/utils/axios';
+import { Category } from "@/types/category.interface";
+import { Store } from "@/types/store.interface";
+import { responsiveImg } from "@/utils/image";
+import instance from "@/utils/axios";
 
 export const getServerSideProps = (async ({ query }) => {
   const res = await instance.get<{ categories: Category[]; stores: Store[] }>(
-    '/popular-stores',
+    "/popular-stores",
     {
       params: {
         category_id: query.categoryId,
@@ -52,29 +52,58 @@ const PopularStores = ({
 
       <section>
         <div className={styles.wrapper}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              right: "7",
+              gap: "10px",
+              marginBottom: "20px",
+              color: "#706e6e",
+            }}
+          >
+            <Link href="/" style={{ textDecoration: "underline" }}>
+              Главная
+            </Link>
+            / Популярные магазины
+          </div>
           <div className={styles.top}>
             <h1>Популярные магазины в США</h1>
             <p>
               Мы подготовили для вас список самых популярных магазинов одежды,
               которые диктуют тренды каждого сезона
             </p>
-            <div className={styles.categories}>
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  className={categoryId === category.id ? styles.active : ''}
-                  onClick={() => changeCategory(category.id)}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
-            <div className={styles.stores}>
-              {stores.map((store) => (
-                <Link key={store.id} href={`/populyarnye-magaziny/${store.slug}`}>
-                  <Image src={store.img} alt={store.name} {...responsiveImg} />
-                </Link>
-              ))}
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div className={styles.categories}>
+                <p style={{ color: "#000" }}>Категории</p>
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    className={categoryId === category.id ? styles.active : ""}
+                    onClick={() => changeCategory(category.id)}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
+              <div className={styles.stores}>
+                {stores.map((store) => (
+                  <div key={store.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  <Link
+                    href={`/populyarnye-magaziny/${store.slug}`}
+                    style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', textAlign: 'center' }}
+                  >
+                    <Image
+                      src={store.img}
+                      alt={store.name}
+                      {...responsiveImg}
+                    />
+                    <b style={{ marginTop: 'auto' }}>{store.name}</b>
+                  </Link>
+                </div>
+                
+                ))}
+              </div>
             </div>
           </div>
           <div className={styles.bottom}>

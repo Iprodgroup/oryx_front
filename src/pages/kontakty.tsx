@@ -1,7 +1,7 @@
 import styles from "@/styles/Contacts.module.sass";
-
 import { useIsClient, useMediaQuery } from "usehooks-ts";
 import Head from "next/head";
+import Link from "next/link";
 
 const Contacts = () => {
   const isClient = useIsClient();
@@ -29,6 +29,20 @@ const Contacts = () => {
           <link rel="canonical" href="https://oryx.kz/kontakty" />
           <div className={styles.wrapper}>
             <div className={styles.left}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  marginBottom: "20px",
+                  color: "#706e6e",
+                }}
+              >
+                <Link href="/" style={{ textDecoration: "underline" }}>
+                  Главная
+                </Link>
+                / Контакты
+              </div>
               <h1>Контакты</h1>
               {!matches[768] && <span>Мы всегда рады вас видеть!</span>}
               <ul>
