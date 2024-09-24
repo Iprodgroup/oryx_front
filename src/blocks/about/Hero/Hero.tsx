@@ -1,8 +1,8 @@
-import styles from './styles.module.sass';
+import styles from "./styles.module.sass";
 
-import Image from 'next/image';
-
-import { responsiveImg } from '@/utils/image';
+import Image from "next/image";
+import { responsiveImg } from "@/utils/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -10,7 +10,26 @@ const Hero = () => {
       <link rel="canonical" href="https://oryx.kz/o-kompanii" />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <Image src='/hero-about.svg' alt='about' {...responsiveImg} />
+          <div>
+          <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          right: "7",
+          gap: "10px",
+          marginBottom: "20px",
+          color: "#706e6e",
+        }}
+      >
+        <Link href="/" style={{ textDecoration: "underline" }}>
+          Главная
+        </Link>
+        / О нас
+      </div>
+          <Image src="/hero-about.svg" alt="about" {...responsiveImg} />
+          </div>
+          
         </div>
         <div className={styles.right}>
           <h1>О компании Oryx</h1>

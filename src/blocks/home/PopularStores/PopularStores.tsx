@@ -29,7 +29,7 @@ const PopularStores = () => {
             <Link key={store.id} href={`/populyarnye-magaziny/${store.slug}`}>
               <Image
                 src={store.img}
-                alt=""
+                alt={store.name}
                 width={170}
                 height={170}
                 className={styles.slider__img}

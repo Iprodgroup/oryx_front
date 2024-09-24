@@ -152,7 +152,7 @@ const ProfileParcels = ({
                   Поиск по трек-номеру
                   <input type="text" id="track" placeholder="Трек-номер" />
                   <button type="submit" className={styles.search__btn}>
-                    <Image src="/search.svg" alt="" width={24} height={24} />
+                    <Image src="/search.svg" alt="search" width={24} height={24} />
                   </button>
                 </label>
               )}
@@ -182,13 +182,13 @@ const ProfileParcels = ({
                   >
                     <Image
                       src="/arrow-left.svg"
-                      alt=""
+                      alt="arrow-left"
                       width={16}
                       height={16}
                     />
                   </button>
                   <span>{isDisplay.data.track}</span>
-                  <Image src="/warn.svg" alt="" width={24} height={24} />
+                  <Image src="/warn.svg" alt="warn" width={24} height={24} />
                 </div>
                 <div className={styles.card__fields}>
                   <label htmlFor="status">
@@ -377,7 +377,7 @@ const ProfileParcels = ({
             ) : (
               <Image
                 src="/man.svg"
-                alt=""
+                alt="man"
                 {...responsiveImg}
                 style={{
                   width: "100%",
