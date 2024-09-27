@@ -23,6 +23,23 @@ const Contacts = () => {
 📧 Email: ofis@orix.kz
 📧 Whatsapp +7 747 515 5613"
           />
+          <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 5,
+                  name: "Контакты",
+                  item: "https://oryx.kz/kontakty",
+                },
+              ],
+            }),
+          }}
+        />
         </Head>
 
         <section>

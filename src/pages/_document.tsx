@@ -86,7 +86,7 @@ export default function Document() {
             }),
           }}
         />
-        <script
+        {/* <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -126,7 +126,7 @@ export default function Document() {
               ],
             }),
           }}
-        />
+        /> */}
         {/* Yandex Metrica */}
         <script
           dangerouslySetInnerHTML={{

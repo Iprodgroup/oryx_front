@@ -17,6 +17,23 @@ export default function Home() {
           name="description"
           content="Надежная доставка посылок и товаров из США в Казахстан от компании ORYX. ✈ Услуги мейлфорвардера: удобный заказ, отслеживание и быстрая доставка посылок из США. 🚚"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Главная",
+                  item: "https://oryx.kz",
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
       <link rel="canonical" href="https://oryx.kz/" />
       <Hero />

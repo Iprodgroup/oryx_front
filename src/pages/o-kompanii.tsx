@@ -21,6 +21,23 @@ const About = () => {
           name="description"
           content="Информация о компании Oryx. Оперативная доставка товаров из США в Казахстан до 10 дней!"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "О нас",
+                  item: "https://oryx.kz/o-kompanii",
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
       <link rel="canonical" href="https://oryx.kz/o-kompanii" />
         

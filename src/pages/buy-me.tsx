@@ -84,6 +84,23 @@ const BuyItForMe = () => {
           content="Oryx покупает товары вместо Вас. Доставка до 10 рабочих дней. Минимальная комиссия за заказ. Экономия времени."
         />
         {/* <div dangerouslySetInnerHTML={{ __html: meta }} /> */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 4,
+                  name: "Купи вместо меня",
+                  item: "https://oryx.kz/buy-me",
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
       <section>
         <link rel="canonical" href="https://oryx.kz/buy-me" />
