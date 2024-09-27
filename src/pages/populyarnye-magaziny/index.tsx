@@ -65,12 +65,6 @@ const PopularStores = ({
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "О нас",
-                  item: "https://oryx.kz/o-kompanii",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
                   name: "Популярные магазины",
                   item: "https://oryx.kz/populyarnye-magaziny",
                 },

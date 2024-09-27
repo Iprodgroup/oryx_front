@@ -100,18 +100,6 @@ const BuyItForMe = () => {
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "О нас",
-                  item: "https://oryx.kz/o-kompanii",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: "Популярные магазины",
-                  item: "https://oryx.kz/populyarnye-magaziny",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 4,
                   name: "Купи вместо меня",
                   item: "https://oryx.kz/buy-me",
                 },
