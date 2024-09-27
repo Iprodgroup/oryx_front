@@ -30,6 +30,12 @@ const About = () => {
               itemListElement: [
                 {
                   "@type": "ListItem",
+                  position: 1,
+                  name: "Главная",
+                  item: "https://oryx.kz/",
+                },
+                {
+                  "@type": "ListItem",
                   position: 2,
                   name: "О нас",
                   item: "https://oryx.kz/o-kompanii",
