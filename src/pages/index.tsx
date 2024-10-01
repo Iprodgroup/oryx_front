@@ -15,8 +15,11 @@ export default function Home() {
         <title>Доставка товаров из США в Казахстан - ORYX</title>
         <meta
           name="description"
-          content="Доставка одежды и товаров из США в Казахстан  от компании ORYX. ✈ Доставим товары из интернет-магазинов Америки недорого. Гарантия сохранности товаров. ✔"
+          content="Доставка одежды и товаров из США в Казахстан от компании ORYX. ✈ Доставим товары из интернет-магазинов Америки недорого. Гарантия сохранности товаров. ✔"
         />
+        <link rel="canonical" href="https://oryx.kz/" />
+
+        {/* Breadcrumb structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -34,8 +37,39 @@ export default function Home() {
             }),
           }}
         />
+
+        {/* LocalBusiness structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "http://schema.org/",
+              "@type": "LocalBusiness",
+              name: "Oryx",
+              image: "https://oryx.kz/logo.svg",
+              telephone: "+7 700 323 22 22",
+              url: "https://oryx.kz",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress:
+                  "Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+                addressLocality: "Алматы",
+                addressRegion: "Алматинская область",
+                addressCountry: "Kazakhstan",
+              },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: [],
+                  opens: "",
+                  closes: "",
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
-      <link rel="canonical" href="https://oryx.kz/" />
+
       <Hero />
       <HowTo />
       <PopularStores />

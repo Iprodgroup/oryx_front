@@ -48,6 +48,35 @@ const Store = ({
           content={`Заказывайте товары из ${store?.name || 'магазина'} выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат.`}
         />
         <link rel="canonical" href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ''}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Главная",
+                  item: "https://oryx.kz/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Популярные магазины",
+                  item: "https://oryx.kz/populyarnye-magaziny",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: `${store.name || 'неизвестный магазин'}`,
+                  item: "https://oryx.kz/populyarnye-magaziny/" + store?.slug,
+                },
+              ],
+            }),
+          }}
+        />
       </Head>
       <div className={styles.wrapper}>
         <div
