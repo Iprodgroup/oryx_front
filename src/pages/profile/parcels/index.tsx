@@ -71,7 +71,6 @@ const ProfileParcels = ({
   const onDisplay = (data: Parcel) => {
     if (isDisplay.state && isDisplay.data.id === data.id) {
       setIsDisplay({ state: false, data: {} });
-
     } else {
       setIsDisplay({ state: true, data: data });
     }
@@ -108,7 +107,7 @@ const ProfileParcels = ({
     setSearch(event.target[0].value);
   };
 
-  console.log(isDisplay.data)
+  console.log(isDisplay.data);
 
   const deleteParcel = async (id: number) => {
     const loadingToastId = toast.loading("Загрузка...");
@@ -129,7 +128,6 @@ const ProfileParcels = ({
   useEffect(() => {
     offDisplay();
   }, [router]);
-
 
   return (
     isClient && (
@@ -152,7 +150,12 @@ const ProfileParcels = ({
                   Поиск по трек-номеру
                   <input type="text" id="track" placeholder="Трек-номер" />
                   <button type="submit" className={styles.search__btn}>
-                    <Image src="/search.svg" alt="search" width={24} height={24} />
+                    <Image
+                      src="/search.svg"
+                      alt="search"
+                      width={24}
+                      height={24}
+                    />
                   </button>
                 </label>
               )}
@@ -278,7 +281,13 @@ const ProfileParcels = ({
                           <tr>
                             <td>{parcel.track}</td>
                             <td>
-                              <b>{statuses[+parcel.status].value}</b>
+                              <b>
+                                {statuses[+parcel.status] ? (
+                                  <b>{statuses[+parcel.status].value}</b>
+                                ) : (
+                                  <b>Unknown Status</b>
+                                )}
+                              </b>
                               <button onClick={() => onDisplay(parcel)}>
                                 {isDisplay.state &&
                                 isDisplay.data.id === parcel.id ? (
@@ -355,7 +364,8 @@ const ProfileParcels = ({
                                           </td>
                                           <td style={{ textAlign: "left" }}>
                                             <strong>Получатель:</strong>
-                                            &nbsp;&nbsp;{isDisplay.data.user_fio}
+                                            &nbsp;&nbsp;
+                                            {isDisplay.data.user_fio}
                                           </td>
                                         </div>
                                       ))}
