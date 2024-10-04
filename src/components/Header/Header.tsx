@@ -19,31 +19,31 @@ const Header = () => {
     1200: useMediaQuery("(min-width: 1200px)"),
   };
 
-  const whatUrl = () => {
-    if (url == "/profile") {
-      return (
-        <div className={styles.balance}>
-          <div className={styles.balance__value}>
-            <b
-              style={{
-                color: "green",
-              }}
-            >
-              100000
-            </b>
-            <b style={{ fontSize: "10px", marginLeft: "3px" }}>₸</b>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <Link href="/profile" className={styles.profile__btn}>
-          <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} /> Личный
-          кабинет
-        </Link>
-      );
-    }
-  };
+  // const whatUrl = () => {
+  //   if (url == "/profile") {
+  //     return (
+  //       <div className={styles.balance}>
+  //         <div className={styles.balance__value}>
+  //           <b
+  //             style={{
+  //               color: "green",
+  //             }}
+  //           >
+  //             100000
+  //           </b>
+  //           <b style={{ fontSize: "10px", marginLeft: "3px" }}>₸</b>
+  //         </div>
+  //       </div>
+  //     );
+  //   } else {
+  //     return (
+  //       <Link href="/profile" className={styles.profile__btn}>
+  //         <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} /> Личный
+  //         кабинет
+  //       </Link>
+  //     );
+  //   }
+  // };
 
   return (
     isClient && (
@@ -92,7 +92,7 @@ const Header = () => {
           <div className={styles.right}>
             {isAuthenticated ? (
               <>
-                {whatUrl()}
+                {/* {whatUrl()} */}
                 <Link href="/logout" className={styles.register__btn}>
                   Выход
                 </Link>
