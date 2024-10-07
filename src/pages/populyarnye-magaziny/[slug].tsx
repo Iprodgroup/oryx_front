@@ -42,12 +42,7 @@ const Store = ({
   return (
     <section>
       <Head>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: meta?.trim() !== "" ? meta : "Описания нет",
-          }}
-        ></div>
-
+          <div dangerouslySetInnerHTML={{ __html: meta || "Пусто" }} />
         <link
           rel="canonical"
           href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ""}`}
