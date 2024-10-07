@@ -43,10 +43,6 @@ const Store = ({
   return (
     <section>
       <Head>
-        <title>
-          Доставка товаров из {store?.name || "неизвестного магазина"} в
-          Казахстан - ORYX
-        </title>
         <div
           dangerouslySetInnerHTML={{
             __html:
@@ -59,6 +55,10 @@ const Store = ({
       />`,
           }}
         ></div>
+        <title>
+          Доставка {store?.title || "неизвестного магазина"} в Казахстан | Купить
+          онлайн |
+        </title>
 
         <link
           rel="canonical"
