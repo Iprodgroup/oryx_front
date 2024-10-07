@@ -1,12 +1,10 @@
 import styles from "@/styles/Store.module.sass";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Image from "next/image";
-import { Store as IStore } from "@/types/store.interface";
 import instance from "@/utils/axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
-import { title } from "process";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
