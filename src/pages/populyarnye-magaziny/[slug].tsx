@@ -6,6 +6,7 @@ import instance from "@/utils/axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
+import { title } from "process";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
@@ -42,7 +43,23 @@ const Store = ({
   return (
     <section>
       <Head>
-          <div dangerouslySetInnerHTML={{ __html: meta || "Пусто" }} />
+        <title>
+          Доставка товаров из {store?.name || "неизвестного магазина"} в
+          Казахстан - ORYX
+        </title>
+        <div
+          dangerouslySetInnerHTML={{
+            __html:
+              meta ||
+              `<meta
+        name="description"
+        content="Заказывайте товары из ${
+          store?.name || "магазина"
+        } выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат."
+      />`,
+          }}
+        ></div>
+
         <link
           rel="canonical"
           href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ""}`}
