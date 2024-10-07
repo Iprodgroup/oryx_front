@@ -9,6 +9,8 @@ import { useEffect } from "react";
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
     const res = await instance.get(`/store/${query.slug}`);
+    const code = await instance.get(`/meta-tegs/populyarnye-magaziny/${query.slug}`);
+    console.log(code.data); 
     const store = res.data?.store || null;
     const meta = res.data?.meta || "";
     console.log(meta);
@@ -41,22 +43,11 @@ const Store = ({
   return (
     <section>
       <Head>
-        <div
-          dangerouslySetInnerHTML={{
-            __html:
-              meta ||
-              `<meta
-        name="description"
-        content="Заказывайте товары из ${
-          store?.name || "магазина"
-        } выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат."
-      />`,
-          }}
-        ></div>
-        <title>
-          Доставка {store?.title || "неизвестного магазина"} в Казахстан | Купить
-          онлайн |
-        </title>
+      <title>Доставка товаров из {store?.name || 'неизвестного магазина'} в Казахстан - ORYX</title>
+        <meta
+          name="description"
+          content={`Заказывайте товары из ${store?.name || 'магазина'} выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат.`}
+        />
 
         <link
           rel="canonical"
