@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     const res = await instance.get(`/store/${query.slug}`);
     const store = res.data?.store || null;
     const meta = res.data?.meta || "";
-    console.log(meta)
+    console.log(meta);
 
     if (!store) {
       return { notFound: true };
@@ -42,7 +42,12 @@ const Store = ({
   return (
     <section>
       <Head>
-          <div dangerouslySetInnerHTML={{ __html: meta }} />
+        <div
+          dangerouslySetInnerHTML={{
+            __html: meta?.trim() !== "" ? meta : "Описания нет",
+          }}
+        ></div>
+
         <link
           rel="canonical"
           href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ""}`}
