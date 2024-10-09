@@ -36,7 +36,7 @@ export default function Document() {
         <link
           rel="alternate"
           href="https://oryx.kz"
-          hrefLang="ru"
+          hrefLang="en-ru"
         />
 
         {/* Twitter Meta Tags */}

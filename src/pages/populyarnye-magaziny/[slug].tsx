@@ -60,7 +60,7 @@ const Store = ({
         <link
           rel="alternate"
           href={`https://oryx.kz/populyarnye-magaziny/${store.name}`}
-          hrefLang="ru"
+          hrefLang="en-ru"
         />
         <link
           rel="alternate"
