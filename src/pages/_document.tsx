@@ -28,6 +28,17 @@ export default function Document() {
         />
         <meta property="og:image" content="https://oryx.kz/logo.svg" />
 
+        <link
+          rel="alternate"
+          href="https://oryx.kz"
+          hrefLang="x-default"
+        />
+        <link
+          rel="alternate"
+          href="https://oryx.kz"
+          hrefLang="ru"
+        />
+
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta

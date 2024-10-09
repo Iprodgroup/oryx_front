@@ -47,6 +47,9 @@ const Store = ({
           name="description"
           content={`Заказывайте товары из ${store?.name || 'магазина'} выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат.`}
         />
+        <link rel="alternate" href={`https://oryx.kz/populyarnye-magaziny/${store.name}`} hrefLang="ru" />
+        <link rel="alternate" href={`https://oryx.kz/populyarnye-magaziny/${store.name}`} hrefLang="x-default" />
+
         <link rel="canonical" href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ''}`} />
         <script
           type="application/ld+json"
