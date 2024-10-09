@@ -10,6 +10,8 @@ import { Category } from "@/types/category.interface";
 import { Store } from "@/types/store.interface";
 import { responsiveImg } from "@/utils/image";
 import instance from "@/utils/axios";
+import { useAmp } from "next/amp";
+export const config = { amp: "hybrid" };
 
 export const getServerSideProps = (async ({ query }) => {
   const res = await instance.get<{ categories: Category[]; stores: Store[] }>(
@@ -32,7 +34,7 @@ const PopularStores = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
   const categoryId = +router.query.categoryId!;
-
+  const isAmp = useAmp();
   const changeCategory = (categoryId: number) => {
     router.replace({
       pathname: router.pathname,
@@ -135,11 +137,20 @@ const PopularStores = ({
                         textAlign: "center",
                       }}
                     >
-                      <Image
+                      {isAmp ? (
+                        <amp-img
                         src={store.img}
                         alt={store.name}
                         {...responsiveImg}
                       />
+                      ):(
+                        <Image
+                        src={store.img}
+                        alt={store.name}
+                        {...responsiveImg}
+                      />
+                      )}
+                      
                     </Link>
                     <Link
                       href={`/populyarnye-magaziny/${store.slug}`}

@@ -3,10 +3,14 @@ import styles from './styles.module.sass';
 import { useIsClient, useMediaQuery } from 'usehooks-ts';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAmp } from "next/amp";
 
 import { responsiveImg } from '@/utils/image';
+export const config = { amp: "hybrid" };
 
 const About = () => {
+  const isAmp = useAmp();
+
   const isClient = useIsClient();
   const matches = {
     768: useMediaQuery('(min-width: 768px)'),
@@ -28,11 +32,17 @@ const About = () => {
             <Link href='/o-kompanii'>Узнать больше</Link>
           </div>
           <div className={styles.right}>
-            <Image
+            {isAmp ? (
+              <amp-img
               src={matches[768] ? '/car.svg' : '/car-mobile.svg'}
               alt='car-mobile'
               {...responsiveImg}
             />
+            ): (<Image
+              src={matches[768] ? '/car.svg' : '/car-mobile.svg'}
+              alt='car-mobile'
+              {...responsiveImg}
+            />)}
           </div>
         </div>
       </section>

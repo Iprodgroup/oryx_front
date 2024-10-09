@@ -1,10 +1,14 @@
-import styles from './styles.module.sass';
+import styles from "./styles.module.sass";
 
-import Image from 'next/image';
+import Image from "next/image";
+import { useAmp } from "next/amp";
 
-import { responsiveImg } from '@/utils/image';
+import { responsiveImg } from "@/utils/image";
+
+export const config = { amp: "hybrid" };
 
 const Warehouse = () => {
+  const isAmp = useAmp();
   return (
     <section>
       <div className={styles.wrapper}>
@@ -12,8 +16,16 @@ const Warehouse = () => {
         <div className={styles.items}>
           <div className={styles.item}>
             <div className={styles.top}>
-              <Image src='/wh1.png' alt='wh1' {...responsiveImg} />
-              <Image src='/wh2.png' alt='wh2' {...responsiveImg} />
+              {isAmp ? (
+              <amp-img src="/wh2.png" alt="wh2" {...responsiveImg} />
+            ) : (
+                <Image src="/wh1.png" alt="wh1" {...responsiveImg} />
+              )}
+              {isAmp ? (
+                <amp-img src="/wh1.png" alt="wh1" {...responsiveImg} />
+              ) : (
+                <Image src="/wh2.png" alt="wh2" {...responsiveImg} />
+              )}
             </div>
             <div className={styles.bottom}>
               <b>Получение заказов на склад и консолидация</b>
@@ -29,8 +41,16 @@ const Warehouse = () => {
           </div>
           <div className={styles.item}>
             <div className={styles.top}>
-              <Image src='/wh3.png' alt='wh3' {...responsiveImg} />
-              <Image src='/wh4.png' alt='wh4' {...responsiveImg} />
+            {isAmp ? (
+                <amp-img src="/wh3.png" alt="wh3" {...responsiveImg} />
+              ) : (
+                <Image src="/wh3.png" alt="wh3" {...responsiveImg} />
+              )}
+              {isAmp ? (
+                <amp-img src="/wh4.png" alt="wh4" {...responsiveImg} />
+              ) : (
+                <Image src="/wh4.png" alt="wh4" {...responsiveImg} />
+              )}
             </div>
             <div className={styles.bottom}>
               <b>Упаковка и хранение посылок</b>

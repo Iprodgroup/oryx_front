@@ -7,11 +7,15 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
 
+import { useAmp } from "next/amp";
+
+export const config = { amp: "hybrid" };
+
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
     const res = await instance.get(`/store/${query.slug}`);
     const store = res.data?.store || null;
-    const meta = res.data?.meta || '';
+    const meta = res.data?.meta || "";
 
     if (!store) {
       return { notFound: true };
@@ -26,12 +30,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 const Store = ({
   store,
-  meta
+  meta,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const isAmp = useAmp();
 
   useEffect(() => {
     if (!store) {
-      console.error('Store data is missing');
+      console.error("Store data is missing");
     }
   }, [store]);
 
@@ -42,15 +47,31 @@ const Store = ({
   return (
     <section>
       <Head>
-        <title>Доставка товаров из {store?.name || 'неизвестного магазина'} в Казахстан - ORYX</title>
+        <title>
+          Доставка товаров из {store?.name || "неизвестного магазина"} в
+          Казахстан - ORYX
+        </title>
         <meta
           name="description"
-          content={`Заказывайте товары из ${store?.name || 'магазина'} выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат.`}
+          content={`Заказывайте товары из ${
+            store?.name || "магазина"
+          } выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат.`}
         />
-        <link rel="alternate" href={`https://oryx.kz/populyarnye-magaziny/${store.name}`} hrefLang="ru" />
-        <link rel="alternate" href={`https://oryx.kz/populyarnye-magaziny/${store.name}`} hrefLang="x-default" />
+        <link
+          rel="alternate"
+          href={`https://oryx.kz/populyarnye-magaziny/${store.name}`}
+          hrefLang="ru"
+        />
+        <link
+          rel="alternate"
+          href={`https://oryx.kz/populyarnye-magaziny/${store.name}`}
+          hrefLang="x-default"
+        />
 
-        <link rel="canonical" href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ''}`} />
+        <link
+          rel="canonical"
+          href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ""}`}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -73,7 +94,7 @@ const Store = ({
                 {
                   "@type": "ListItem",
                   position: 3,
-                  name: `${store.name || 'неизвестный магазин'}`,
+                  name: `${store.name || "неизвестный магазин"}`,
                   item: "https://oryx.kz/populyarnye-magaziny/" + store?.slug,
                 },
               ],
@@ -95,24 +116,48 @@ const Store = ({
             Главная
           </Link>
           /
-          <Link href="/populyarnye-magaziny" style={{ textDecoration: "underline" }}>
+          <Link
+            href="/populyarnye-magaziny"
+            style={{ textDecoration: "underline" }}
+          >
             Популярные магазины
           </Link>
           / Информация о {store?.name || "неизвестном магазине"}
         </div>
         <h1>Информация о {store?.name || "неизвестном магазине"}</h1>
         <div className={styles.content}>
-          <Image
-            src={store?.img || '/default-image.png'}
-            alt={store?.name || "неизвестный магазин"}
-            width={350}
-            height={350}
-            onError={(e) => (e.currentTarget.src = '/default-image.png')}
-          />
-          <div dangerouslySetInnerHTML={{__html: store?.short_desc || store?.description || "Описание недоступно"}}></div>
+          {isAmp ? (
+            <amp-img
+              width="300"
+              height="300"
+              src={store?.img || "/default-image.png"}
+              alt={store?.name || "неизвестный магазин"}
+            />
+          ) : (
+            <Image
+              src={store?.img || "/default-image.png"}
+              alt={store?.name || "неизвестный магазин"}
+              width={350}
+              height={350}
+            />
+          )}
+
+          <div
+            dangerouslySetInnerHTML={{
+              __html:
+                store?.short_desc ||
+                store?.description ||
+                "Описание недоступно",
+            }}
+          ></div>
         </div>
 
-        <a href={store?.link || "#"} target="_blank" rel="nofollow" className={styles.btn}>
+        <a
+          href={store?.link || "#"}
+          target="_blank"
+          rel="nofollow"
+          className={styles.btn}
+        >
           {store?.link ? "Перейти на сайт" : "Ссылка недоступна"}
         </a>
       </div>

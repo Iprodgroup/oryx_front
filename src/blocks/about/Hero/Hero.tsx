@@ -3,31 +3,37 @@ import styles from "./styles.module.sass";
 import Image from "next/image";
 import { responsiveImg } from "@/utils/image";
 import Link from "next/link";
+import { useAmp } from "next/amp";
+export const config = { amp: "hybrid" };
 
 const Hero = () => {
+  const isAmp = useAmp();
   return (
     <section>
       <link rel="canonical" href="https://oryx.kz/o-kompanii" />
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <div>
-          <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          marginBottom: "20px",
-          color: "#706e6e",
-        }}
-      >
-        <Link href="/" style={{ textDecoration: "underline" }}>
-          Главная
-        </Link>
-        / О нас
-      </div>
-          <Image src="/hero-about.svg" alt="about" {...responsiveImg} />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                marginBottom: "20px",
+                color: "#706e6e",
+              }}
+            >
+              <Link href="/" style={{ textDecoration: "underline" }}>
+                Главная
+              </Link>
+              / О нас
+            </div>
+            {isAmp ? (
+              <amp-img src="/hero-about.svg" alt="about" {...responsiveImg} />
+            ) : (
+              <Image src="/hero-about.svg" alt="about" {...responsiveImg} />
+            )}
           </div>
-          
         </div>
         <div className={styles.right}>
           <h1>О Нас</h1>
