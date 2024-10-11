@@ -20,7 +20,7 @@ const Contacts = () => {
             name="description"
             content="Адрес: 📍 Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133📍
 📱 Телефон: +7 700 323 22 22 📱
-📧 Email: ofis@orix.kz
+📧 Email: info@oryx.kz
 📧 Whatsapp +7 747 515 5613"
           />
           <script
@@ -82,7 +82,7 @@ const Contacts = () => {
                 </li>
                 <li>
                   <b>Email:</b>
-                  <a href="mailto:ofis@orix.kz">ofis@orix.kz</a>
+                  <a href="mailto:info@oryx.kz">info@oryx.kz</a>
                 </li>
                 <li>
                   <b>Whatsapp</b>
