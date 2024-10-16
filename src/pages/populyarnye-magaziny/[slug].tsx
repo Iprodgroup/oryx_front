@@ -124,7 +124,6 @@ const Store = ({
           </Link>
           / Информация о {store?.name || "неизвестном магазине"}
         </div>
-        <h1>Информация о {store?.name || "неизвестном магазине"}</h1>
         <div className={styles.content}>
           {isAmp ? (
             <amp-img
@@ -141,15 +140,20 @@ const Store = ({
               height={350}
             />
           )}
-
-          <div
-            dangerouslySetInnerHTML={{
-              __html:
-                store?.short_desc ||
-                store?.description ||
-                "Описание недоступно",
-            }}
-          ></div>
+          <div className={styles.titleanddescr}>
+            <h1 style={{ marginBottom: "20px" }}>
+              Доставка товаров {store?.name || "неизвестном магазине"} из США в
+              Казахстан: быстро и выгодно
+            </h1>
+            <div
+              dangerouslySetInnerHTML={{
+                __html:
+                  store?.short_desc ||
+                  store?.description ||
+                  "Описание недоступно",
+              }}
+            ></div>
+          </div>
         </div>
 
         <a
