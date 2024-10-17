@@ -24,28 +24,66 @@ const Contacts = () => {
 📧 Whatsapp +7 747 515 5613"
           />
           <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Главная",
-                  item: "https://oryx.kz/",
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Главная",
+                    item: "https://oryx.kz/",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Контакты",
+                    item: "https://oryx.kz/kontakty",
+                  },
+                ],
+              }),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ContactPage",
+                name: "Контакты компании Oryx",
+                description:
+                  "Контактная информация для связи с компанией Oryx.",
+                url: "https://oryx.kz/kontakty",
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 700 323 22 22",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: "Russian",
+                    email: "info@oryx.kz",
+                  },
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 747 515 56 13",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: "Russian",
+                    email: "info@oryx.kz",
+                  },
+                ],
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "KZ",
+                  addressLocality: "Алматы",
+                  streetAddress:
+                    "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
                 },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Контакты",
-                  item: "https://oryx.kz/kontakty",
-                },
-              ],
-            }),
-          }}
-        />
+              }),
+            }}
+          />
         </Head>
 
         <section>

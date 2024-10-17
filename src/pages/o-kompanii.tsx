@@ -44,9 +44,56 @@ const About = () => {
             }),
           }}
         />
+        {/* Добавляем новую разметку для AboutPage */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              name: "О компании Oryx",
+              description:
+                "Компания Oryx занимается доставкой товаров из США в Казахстан. Мы обеспечиваем оперативную доставку за 10 дней.",
+              url: "https://oryx.kz/o-kompanii",
+              mainEntityOfPage: {
+                "@type": "Organization",
+                name: "Oryx",
+                url: "https://oryx.kz",
+                logo: "https://oryx.kz/logo.svg",
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 747 515 56 13",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: "Russian",
+                  },
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 700 323 22 22",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: "Russian",
+                  },
+                ],
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "KZ",
+                  addressLocality: "Алматы",
+                  streetAddress:
+                    "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+                },
+                sameAs: [
+                  "https://www.instagram.com/oryx.usa.kz/",
+                ],
+              },
+            }),
+          }}
+        />
       </Head>
+
       <link rel="canonical" href="https://oryx.kz/o-kompanii" />
-        
+
       <Hero />
       <Warehouse />
       {isClient && !matches[576] && <Advantages />}
