@@ -34,7 +34,7 @@ const Drawer = () => {
         </div>
         <div className={styles.bottom}>
           <nav>
-            <ul>
+            <ul onClick={toggleDrawer}>
               <li>
                 <Link href='/o-kompanii'>О нас</Link>
               </li>

@@ -24,7 +24,7 @@ const settings = {
     {
       breakpoint: 768,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
       },
     },
     {
@@ -34,7 +34,7 @@ const settings = {
         centerMode: true,
         infinite: true,
         centerPadding: '60px',
-        slidesToShow: 2,
+        slidesToShow: 1.3,
         speed: 500,
         arrows: false,
       },

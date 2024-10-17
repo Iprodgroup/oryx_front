@@ -98,10 +98,7 @@ const PopularStores = ({
               Мы подготовили для вас список самых популярных магазинов одежды,
               которые диктуют тренды каждого сезона
             </p>
-            <div
-              className={styles.filtrations}
-              style={{ display: "flex", flexDirection: "row" }}
-            >
+            <div className={styles.filtrations} style={{ display: "flex" }}>
               <div className={styles.categories}>
                 <p style={{ color: "#000" }}>Категории</p>
                 {categories.map((category) => (
@@ -139,18 +136,14 @@ const PopularStores = ({
                     >
                       {isAmp ? (
                         <amp-img
-                        src={store.img}
-                        alt={store.name}
-                        {...responsiveImg}
-                      />
-                      ):(
-                        <Image
-                        src={store.img}
-                        alt={store.name}
-                        {...responsiveImg}
-                      />
+                          src={store.img}
+                          alt={store.name}
+                          width={100}
+                          height={100}
+                        />
+                      ) : (
+                        <Image src={store.img} alt={store.name} {...responsiveImg}/>
                       )}
-                      
                     </Link>
                     <Link
                       href={`/populyarnye-magaziny/${store.slug}`}

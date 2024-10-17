@@ -159,7 +159,7 @@ const Store = ({
             />
           )}
           <div className={styles.titleanddescr}>
-            <h1 style={{ marginBottom: "20px" }}>
+            <h1 style={{ marginBottom: "50px", fontSize: "30px" }}>
               Доставка товаров {store?.name || "неизвестном магазине"} из США в
               Казахстан: быстро и выгодно
             </h1>
