@@ -26,7 +26,7 @@ const PopularStores = () => {
           className={classNames("stores-slider", styles.slider)}
         >
           {data?.stores.map((store) => (
-            <Link key={store.id} href={`/populyarnye-magaziny/${store.slug}`}>
+            <Link key={store.id} href={`/populyarnye-magaziny/${store.slug}`} className={styles.slider__link}>
               <Image
                 src={store.img}
                 alt={store.name}
