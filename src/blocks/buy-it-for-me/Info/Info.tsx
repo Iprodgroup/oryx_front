@@ -1,20 +1,12 @@
 import styles from "./styles.module.sass";
 
 import Image from "next/image";
-import { useAmp } from "next/amp";
-export const config = { amp: "hybrid" };
 
 const Info = () => {
-  const isAmp = useAmp();
-
   return (
     <ul className={styles.info}>
       <li>
-        {isAmp ? (
-          <amp-img src="/note.svg" alt="note" width={45} height={45} />
-        ) : (
-          <Image src="/note.svg" alt="note" width={45} height={45} />
-        )}
+        <Image src="/note.svg" alt="note" width={45} height={45} />
         <b>Условия сервиса</b>
       </li>
       <li>
@@ -29,11 +21,7 @@ const Info = () => {
         </p>
       </li>
       <li>
-        {isAmp ? (
-          <amp-img src="/bag.svg" alt="bag" width={45} height={45} />
-        ) : (
-          <Image src="/bag.svg" alt="bag" width={45} height={45} />
-        )}
+        <Image src="/bag.svg" alt="bag" width={45} height={45} />
         <b>Стоимость услуги</b>
       </li>
       <li>
@@ -44,11 +32,7 @@ const Info = () => {
         </p>
       </li>
       <li>
-        {isAmp ? (
-          <amp-img src="/starcart.svg" alt="starcart" width={45} height={45} />
-        ) : (
-          <Image src="/starcart.svg" alt="starcart" width={45} height={45} />
-        )}
+        <Image src="/starcart.svg" alt="starcart" width={45} height={45} />
         <b>Специальные магазины</b>
       </li>
       <li>

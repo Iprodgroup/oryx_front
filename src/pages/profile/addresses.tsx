@@ -15,8 +15,7 @@ import instance from "@/utils/axios";
 import passToken from "@/utils/passToken";
 import Switch from "@/components/Switch/Switch";
 import CountrySelect from "@/components/CountrySelect/CountrySelect";
-import { useAmp } from "next/amp";
-export const config = { amp: "hybrid" };
+
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get("/user", { ...passToken(context) });
@@ -31,7 +30,6 @@ const ProfileAddresses = ({
   const [state, setState] = useState("delaware");
   const isClient = useIsClient();
   const matches = useMediaQuery("(min-width: 576px)");
-  const isAmp = useAmp();
 
   const fields = {
     address1:
@@ -57,17 +55,7 @@ const ProfileAddresses = ({
           <div className={styles.left}>
             {matches ? (
               <div className={styles.head}>
-                {isAmp ? (
-                  <amp-img
-                    src="/plane.svg"
-                    alt="plane"
-                    width={50}
-                    height={50}
-                  />
-                ) : (
                   <Image src="/plane.svg" alt="plane" width={50} height={50} />
-                )}
-
                 <h1>Ваши персональные адреса</h1>
               </div>
             ) : (
@@ -99,16 +87,8 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.address1)}
                 >
-                  {isAmp ? (
-                    <amp-img
-                      src="/copy.svg"
-                      alt="copy"
-                      width={35}
-                      height={35}
-                    />
-                  ) : (
+                  
                     <Image src="/copy.svg" alt="copy" width={35} height={35} />
-                  )}
                 </button>
               </label>
               <label>
@@ -123,16 +103,8 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.address2)}
                 >
-                  {isAmp ? (
-                    <amp-img
-                      src="/copy.svg"
-                      alt="copy"
-                      width={35}
-                      height={35}
-                    />
-                  ) : (
+                 
                     <Image src="/copy.svg" alt="copy" width={35} height={35} />
-                  )}
                 </button>
               </label>
               <label>
@@ -142,16 +114,8 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.city)}
                 >
-                  {isAmp ? (
-                    <amp-img
-                      src="/copy.svg"
-                      alt="copy"
-                      width={35}
-                      height={35}
-                    />
-                  ) : (
+                 
                     <Image src="/copy.svg" alt="copy" width={35} height={35} />
-                  )}
                 </button>
               </label>
               <label>
@@ -161,16 +125,8 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.state)}
                 >
-                  {isAmp ? (
-                    <amp-img
-                      src="/copy.svg"
-                      alt="copy"
-                      width={35}
-                      height={35}
-                    />
-                  ) : (
+                 
                     <Image src="/copy.svg" alt="copy" width={35} height={35} />
-                  )}
                 </button>
               </label>
               <label>
@@ -180,16 +136,8 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.zip.toString())}
                 >
-                  {isAmp ? (
-                    <amp-img
-                      src="/copy.svg"
-                      alt="copy"
-                      width={35}
-                      height={35}
-                    />
-                  ) : (
+                
                     <Image src="/copy.svg" alt="copy" width={35} height={35} />
-                  )}
                 </button>
               </label>
               <label>
@@ -199,16 +147,8 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.country)}
                 >
-                  {isAmp ? (
-                    <amp-img
-                      src="/copy.svg"
-                      alt="copy"
-                      width={35}
-                      height={35}
-                    />
-                  ) : (
+                
                     <Image src="/copy.svg" alt="copy" width={35} height={35} />
-                  )}
                 </button>
               </label>
               <label>
@@ -218,16 +158,8 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.phone.toString())}
                 >
-                  {isAmp ? (
-                    <amp-img
-                      src="/copy.svg"
-                      alt="copy"
-                      width={35}
-                      height={35}
-                    />
-                  ) : (
+                 
                     <Image src="/copy.svg" alt="copy" width={35} height={35} />
-                  )}
                 </button>
               </label>
             </div>
@@ -248,11 +180,8 @@ const ProfileAddresses = ({
                 <Link href="/prohibited">
                   Смотреть список запрещенных товаров
                 </Link>
-                {isAmp ? (
-                  <amp-img src="/man.svg" alt="man" {...responsiveImg} />
-                ) : (
+              
                   <Image src="/man.svg" alt="man" {...responsiveImg} />
-                )}
               </>
             ) : (
                 <Image

@@ -7,9 +7,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
 
-import { useAmp } from "next/amp";
 
-export const config = { amp: "hybrid" };
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
@@ -32,7 +30,6 @@ const Store = ({
   store,
   meta,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const isAmp = useAmp();
 
   useEffect(() => {
     if (!store) {
@@ -143,21 +140,13 @@ const Store = ({
           / Информация о {store?.name || "неизвестном магазине"}
         </div>
         <div className={styles.content}>
-          {isAmp ? (
-            <amp-img
-              width="300"
-              height="300"
-              src={store?.img || "/default-image.png"}
-              alt={store?.name || "неизвестный магазин"}
-            />
-          ) : (
+          
             <Image
               src={store?.img || "/default-image.png"}
               alt={store?.name || "неизвестный магазин"}
               width={350}
               height={350}
             />
-          )}
           <div className={styles.titleanddescr}>
             <h1 style={{ marginBottom: "50px", fontSize: "30px" }}>
               Доставка товаров {store?.name || "неизвестном магазине"} из США в

@@ -28,8 +28,6 @@ import passToken from "@/utils/passToken";
 import statuses from "@/utils/statuses";
 import formatDate from "@/utils/formatDate";
 import Switch from "@/components/Switch/Switch";
-import { useAmp } from "next/amp";
-export const config = { amp: "hybrid" };
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get<{ items: Parcel[] }>("/profile/parcels", {
@@ -56,7 +54,6 @@ const ProfileParcels = ({
   parcels,
   recipients,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const isAmp = useAmp();
 
   const [isDisplay, setIsDisplay] = useState<{
     state: boolean;
@@ -154,21 +151,13 @@ const ProfileParcels = ({
                   Поиск по трек-номеру
                   <input type="text" id="track" placeholder="Трек-номер" />
                   <button type="submit" className={styles.search__btn}>
-                    {isAmp ? (
-                      <amp-img
-                        src="/search.svg"
-                        alt="search"
-                        width={24}
-                        height={24}
-                      />
-                    ) : (
+                    
                       <Image
                         src="/search.svg"
                         alt="search"
                         width={24}
                         height={24}
                       />
-                    )}
                   </button>
                 </label>
               )}
@@ -196,33 +185,17 @@ const ProfileParcels = ({
                   <button
                     onClick={() => setIsDisplay({ state: false, data: {} })}
                   >
-                    {isAmp ? (
-                      <amp-img
-                        src="/arrow-left.svg"
-                        alt="arrow-left"
-                        width={16}
-                        height={16}
-                      />
-                    ) : (
+                   
                       <Image
                         src="/arrow-left.svg"
                         alt="arrow-left"
                         width={16}
                         height={16}
                       />
-                    )}
                   </button>
                   <span>{isDisplay.data.track}</span>
-                  {isAmp ? (
-                    <amp-img
-                      src="/warn.svg"
-                      alt="warn"
-                      width={24}
-                      height={24}
-                    />
-                  ) : (
+                  
                     <Image src="/warn.svg" alt="warn" width={24} height={24} />
-                  )}
                 </div>
                 <div className={styles.card__fields}>
                   <label htmlFor="status">
