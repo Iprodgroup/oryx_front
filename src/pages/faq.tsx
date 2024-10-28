@@ -92,6 +92,21 @@ const FAQ = () => {
           name="description"
           content="Как заказать и получить товары из США в Казахстан? Ответы на вопросы о стоимости доставки, сроках, таможенном оформлении."
         />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Ответы на вопросы о доставке товаров из США в Казахстан | Oryx"
+        />
+        <meta
+          property="og:description"
+          content="Как заказать и получить товары из США в Казахстан? Ответы на вопросы о стоимости доставки, сроках, таможенном оформлении."
+        />
+        <meta property="og:url" content="https://oryx.kz/faq" />
+        <meta
+          property="og:site_name"
+          content="Ответы на вопросы о доставке товаров из США в Казахстан | Oryx"
+        />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

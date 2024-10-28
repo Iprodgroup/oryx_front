@@ -21,6 +21,21 @@ const About = () => {
     name="description"
     content="Информация о компании Oryx. Оперативная доставка товаров из США в Казахстан до 10 дней!"
   />
+  <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="О компании Oryx - Быстрая доставка товаров из США в Казахстан"
+        />
+        <meta
+          property="og:description"
+          content="Информация о компании Oryx. Оперативная доставка товаров из США в Казахстан до 10 дней!"
+        />
+        <meta property="og:url" content="https://oryx.kz/0-kompanii" />
+        <meta
+          property="og:site_name"
+          content="О компании Oryx - Быстрая доставка товаров из США в Казахстан"
+        />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
   <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{

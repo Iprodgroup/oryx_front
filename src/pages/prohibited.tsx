@@ -1,8 +1,13 @@
 import styles from "@/styles/Prohibited.module.sass";
+import Head from "next/head";
 
 const Prohibited = () => {
   return (
-    <section>
+    <>
+    {/* <Head>
+      <title></title>
+    </Head> */}
+      <section>
       <link rel="canonical" href="https://oryx.kz/prohibited" />
       <div className={styles.wrapper}>
         <h1>Перечень запрещенных к авиаперевозке грузов</h1>
@@ -61,6 +66,8 @@ const Prohibited = () => {
         </div>
       </div>
     </section>
+    </>
+    
   );
 };
 

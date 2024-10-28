@@ -84,6 +84,21 @@ const BuyItForMe = () => {
           content="Oryx покупает товары вместо Вас. Доставка до 10 рабочих дней. Минимальная комиссия за заказ. Экономия времени."
         />
         {/* <div dangerouslySetInnerHTML={{ __html: meta }} /> */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Сервис &quot;Купи вместо меня&quot; от Oryx. Доставка товаров из США в Казахстан"
+        />
+        <meta
+          property="og:description"
+          content="Oryx покупает товары вместо Вас. Доставка до 10 рабочих дней. Минимальная комиссия за заказ. Экономия времени."
+        />
+        <meta property="og:url" content="https://oryx.kz/buy-me" />
+        <meta
+          property="og:site_name"
+          content="Сервис &quot;Купи вместо меня&quot; от Oryx. Доставка товаров из США в Казахстан"
+        />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

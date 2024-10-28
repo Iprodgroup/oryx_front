@@ -7,8 +7,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
 
-
-
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
     const res = await instance.get(`/store/${query.slug}`);
@@ -30,7 +28,6 @@ const Store = ({
   store,
   meta,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
   useEffect(() => {
     if (!store) {
       console.error("Store data is missing");
@@ -41,32 +38,34 @@ const Store = ({
     return <div>Error loading store data</div>;
   }
   const seoFunc = () => {
-    if (store?.name === 'apple') {
-      return <>
-      <title>
-      Доставка Apple из США в Казахстан | Купить Айфон, MacBook
-    </title>
-    <meta
-          name="description"
-          content={`Заказать iPhone, MacBook и другую технику Apple из Америки с доставкой в Казахстан. Выгодные цены 💲 быстрая доставка ✈️ гарантия подлинности. Экономия до 30%!`}
-        />
-      </>
-    
+    if (store?.name === "apple") {
+      return (
+        <>
+          <title>
+            Доставка Apple из США в Казахстан | Купить Айфон, MacBook
+          </title>
+          <meta
+            name="description"
+            content={`Заказать iPhone, MacBook и другую технику Apple из Америки с доставкой в Казахстан. Выгодные цены 💲 быстрая доставка ✈️ гарантия подлинности. Экономия до 30%!`}
+          />
+        </>
+      );
     } else {
-      return <>
-      <title>
-      Доставка {store?.name || "неизвестного магазина"} в Казахстан - ORYX
-    </title>
-    <meta
-          name="description"
-          content={`Заказывайте товары из ${
-            store?.name || "магазина"
-          } выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат.`}
-        />
-      </>
+      return (
+        <>
+          <title>
+            Доставка {store?.name || "неизвестного магазина"} в Казахстан - ORYX
+          </title>
+          <meta
+            name="description"
+            content={`Заказывайте товары из ${
+              store?.name || "магазина"
+            } выгодно. Доставим товары за 10 дней 🚚. Без налогов и переплат.`}
+          />
+        </>
+      );
     }
-  }
-  
+  };
 
   return (
     <section>
@@ -140,13 +139,12 @@ const Store = ({
           / Информация о {store?.name || "неизвестном магазине"}
         </div>
         <div className={styles.content}>
-          
-            <Image
-              src={store?.img || "/default-image.png"}
-              alt={store?.name || "неизвестный магазин"}
-              width={350}
-              height={350}
-            />
+          <Image
+            src={store?.img || "/default-image.png"}
+            alt={store?.name || "неизвестный магазин"}
+            width={350}
+            height={350}
+          />
           <div className={styles.titleanddescr}>
             <h1 style={{ marginBottom: "50px", fontSize: "30px" }}>
               Доставка товаров {store?.name || "неизвестном магазине"} из США в

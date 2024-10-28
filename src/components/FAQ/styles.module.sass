@@ -1,6 +1,10 @@
 .accordions
     user-select: none
     margin-top: 20px
+    user-select: text !important
+
+    a 
+        text-decoration: underline
 
     .accordion__button
         background-color: white
@@ -17,6 +21,8 @@
             font-size: 40px
 
     .accordion__panel
+        user-select: text !important
+
         text-align: start
         font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem)
         padding: 0 0 20px 0

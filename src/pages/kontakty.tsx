@@ -23,6 +23,71 @@ const Contacts = () => {
 📧 Email: info@oryx.kz
 📧 Whatsapp +7 747 515 5613"
           />
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:title"
+            content="Контакты компании Oryx. Доставка товаров из США в Казахстан"
+          />
+          <meta
+            property="og:description"
+            content="Адрес: 📍 Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133📍
+📱 Телефон: +7 700 323 22 22 📱
+📧 Email: info@oryx.kz
+📧 Whatsapp +7 747 515 5613"
+          />
+          <meta property="og:url" content="https://oryx.kz/kontakty" />
+          <meta
+            property="og:site_name"
+            content="Контакты компании Oryx. Доставка товаров из США в Казахстан"
+          />
+          <meta property="og:image" content="https://oryx.kz/logo.svg" />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                name: "Контакты компании Oryx. Доставка товаров из США в Казахстан",
+                description:
+                  "Адрес: 📍 Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133📍 📱 Телефон: +7 700 323 22 22 📱 📧 Email: info@oryx.kz 📧 Whatsapp +7 747 515 5613",
+                url: "https://oryx.kz/kontakty",
+                mainEntityOfPage: {
+                  "@type": "WebPage",
+                  "@id": "https://oryx.kz/kontakty",
+                },
+                author: {
+                  "@type": "Organization",
+                  name: "Oryx",
+                  url: "https://oryx.kz",
+                  logo: "https://oryx.kz/logo.svg",
+                  contactPoint: [
+                    {
+                      "@type": "ContactPoint",
+                      telephone: "+7 747 515 56 13",
+                      contactType: "customer service",
+                      areaServed: "KZ",
+                      availableLanguage: "Russian",
+                    },
+                    {
+                      "@type": "ContactPoint",
+                      telephone: "+7 700 323 22 22",
+                      contactType: "customer service",
+                      areaServed: "KZ",
+                      availableLanguage: "Russian",
+                    },
+                  ],
+                  address: {
+                    "@type": "PostalAddress",
+                    addressCountry: "KZ",
+                    addressLocality: "Алматы",
+                    streetAddress:
+                      "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+                  },
+                  sameAs: ["https://www.instagram.com/oryx.usa.kz/"],
+                },
+              }),
+            }}
+          />
 
           <script
             type="application/ld+json"
@@ -67,6 +132,29 @@ const Contacts = () => {
               }),
             }}
           />
+          <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Главная",
+                  item: "https://oryx.kz/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Контакты",
+                  item: "https://oryx.kz/kontakty",
+                },
+              ],
+            }),
+          }}
+        />
         </Head>
 
         <section>

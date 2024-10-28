@@ -12,21 +12,7 @@ export default function Document() {
           content="vp6g7rjn5equhL-Lf8Drs_xJAPsSb3ddlCuWnTSnLTg"
         />
         <meta name="yandex-verification" content="cf6f970418b0ab07" />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:title"
-          content="Доставка товаров из США в Казахстан - ORYX"
-        />
-        <meta
-          property="og:description"
-          content="Надежная доставка посылок и товаров из США в Казахстан от компании ORYX. ✈ Услуги мейлфорвардера: удобный заказ, отслеживание и быстрая доставка посылок из США. 🚚"
-        />
-        <meta property="og:url" content="https://oryx.kz/" />
-        <meta
-          property="og:site_name"
-          content="Доставка товаров из США в Казахстан - ORYX"
-        />
-        <meta property="og:image" content="https://oryx.kz/logo.svg" />
+        
 
         <link rel="alternate" href="https://oryx.kz" hrefLang="x-default" />
         <link rel="alternate" href="https://oryx.kz" hrefLang="en-ru" />

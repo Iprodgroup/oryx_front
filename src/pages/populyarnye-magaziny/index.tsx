@@ -47,7 +47,53 @@ const PopularStores = ({
           name="description"
           content="Доставка товаров из магазинов Nike, Puma, Apple и других брендов в Казахстан до 10 дней."
         />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Список популярных магазинов в США - ORYX"
+        />
+        <meta
+          property="og:description"
+          content="Доставка товаров из магазинов Nike, Puma, Apple и других брендов в Казахстан до 10 дней."
+        />
+        <meta property="og:url" content="https://oryx.kz/" />
+        <meta
+          property="og:site_name"
+          content="Список популярных магазинов в США - ORYX"
+        />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
         <link rel="canonical" href="https://oryx.kz/populyarnye-magaziny" />
+        
+        {/* JSON-LD разметка CollectionPage */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              "name": "Список популярных магазинов в США - ORYX",
+              "description": "Доставка товаров из магазинов Nike, Puma, Apple и других брендов в Казахстан до 10 дней.",
+              "url": "https://oryx.kz/populyarnye-magaziny",
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": stores.map((store, index) => ({
+                  "@type": "ListItem",
+                  "position": index + 1,
+                  "url": `https://oryx.kz/populyarnye-magaziny/${store.slug}`,
+                  "name": store.name,
+                  "image": store.img
+                })),
+              },
+              "about": stores.map((store) => ({
+                "@type": "Thing",
+                "name": store.name,
+                "identifier": store.id
+              }))
+            })
+          }}
+        />
+        
+        {/* JSON-LD разметка BreadcrumbList */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -71,6 +117,7 @@ const PopularStores = ({
             }),
           }}
         />
+        
       </Head>
 
       <section>

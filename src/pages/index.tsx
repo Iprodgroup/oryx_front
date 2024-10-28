@@ -17,6 +17,21 @@ export default function Home() {
           name="description"
           content="Доставка одежды и товаров из США в Казахстан от компании ORYX. ✈ Доставим товары из интернет-магазинов Америки недорого. Гарантия сохранности товаров. ✔"
         />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Доставка товаров из США в Казахстан - ORYX"
+        />
+        <meta
+          property="og:description"
+          content="Доставка одежды и товаров из США в Казахстан от компании ORYX. ✈ Доставим товары из интернет-магазинов Америки недорого. Гарантия сохранности товаров. ✔"
+        />
+        <meta property="og:url" content="https://oryx.kz/" />
+        <meta
+          property="og:site_name"
+          content="Доставка товаров из США в Казахстан - ORYX"
+        />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
         <link rel="canonical" href="https://oryx.kz/" />
 
         {/* Breadcrumb structured data */}
