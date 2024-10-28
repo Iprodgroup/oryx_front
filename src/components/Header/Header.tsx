@@ -85,6 +85,9 @@ const Header = () => {
                   <li>
                     <Link href="/#calculator">Калькулятор</Link>
                   </li>
+                  <li>
+                    <Link href="/faq">ЧАВО</Link>
+                  </li>
                 </ul>
               </nav>
             </div>
