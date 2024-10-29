@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="ru">
       <Head>
         <meta name="description" content="oryx" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +15,7 @@ export default function Document() {
         
 
         <link rel="alternate" href="https://oryx.kz" hrefLang="x-default" />
-        <link rel="alternate" href="https://oryx.kz" hrefLang="en-ru" />
+        <link rel="alternate" href="https://oryx.kz" hrefLang="ru-RU" />
 
         {/* Google Analytics */}
         <script
