@@ -136,6 +136,7 @@ const FAQ = () => {
         />
       </Head>
       <section>
+      <link rel="canonical" href="https://oryx.kz/faq" />
         <div className={styles.wrapper}>
           <h1>Частые вопросы</h1>
           <FAQComponent />

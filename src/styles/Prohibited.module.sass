@@ -13,6 +13,19 @@
             display: block
             font-family: 'Gilroy-Bold ☞', sans-serif
             margin-bottom: 20px
+            font-size: 26px
 
-        p
-            margin-bottom: 15px
+        .list
+            display: grid
+            grid-template-columns: repeat(2, auto)
+            gap: 20px
+            padding-left: 20px
+
+            p
+                display: list-item
+                list-style-type: disc
+
+        @media (max-width: 768px)
+            .list
+                grid-template-columns: 1fr
+
