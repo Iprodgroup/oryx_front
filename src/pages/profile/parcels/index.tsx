@@ -28,6 +28,7 @@ import passToken from "@/utils/passToken";
 import statuses from "@/utils/statuses";
 import formatDate from "@/utils/formatDate";
 import Switch from "@/components/Switch/Switch";
+import Cookies from "js-cookie";
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get<{ items: Parcel[] }>("/profile/parcels", {
@@ -54,7 +55,6 @@ const ProfileParcels = ({
   parcels,
   recipients,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
   const [isDisplay, setIsDisplay] = useState<{
     state: boolean;
     data: Partial<Parcel>;
@@ -68,6 +68,7 @@ const ProfileParcels = ({
   const ref = useRef(null);
 
   const router = useRouter();
+  console.log(parcels);
 
   const onDisplay = (data: Parcel) => {
     if (isDisplay.state && isDisplay.data.id === data.id) {
@@ -130,6 +131,25 @@ const ProfileParcels = ({
     offDisplay();
   }, [router]);
 
+  const payParcel = async (id: number) => {
+    try {
+      const accessToken = Cookies.get("access_token");
+      const res = await instance.post(
+        `/parcels/${id}/pay`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      toast.success("Посылка успешно оплачена!");
+
+    } catch (error) {
+      toast.error("Ошибка при оплате посылки");
+    }
+  };
+
   return (
     isClient && (
       <ProfileLayout>
@@ -151,13 +171,12 @@ const ProfileParcels = ({
                   Поиск по трек-номеру
                   <input type="text" id="track" placeholder="Трек-номер" />
                   <button type="submit" className={styles.search__btn}>
-                    
-                      <Image
-                        src="/search.svg"
-                        alt="search"
-                        width={24}
-                        height={24}
-                      />
+                    <Image
+                      src="/search.svg"
+                      alt="search"
+                      width={24}
+                      height={24}
+                    />
                   </button>
                 </label>
               )}
@@ -185,17 +204,16 @@ const ProfileParcels = ({
                   <button
                     onClick={() => setIsDisplay({ state: false, data: {} })}
                   >
-                   
-                      <Image
-                        src="/arrow-left.svg"
-                        alt="arrow-left"
-                        width={16}
-                        height={16}
-                      />
+                    <Image
+                      src="/arrow-left.svg"
+                      alt="arrow-left"
+                      width={16}
+                      height={16}
+                    />
                   </button>
                   <span>{isDisplay.data.track}</span>
-                  
-                    <Image src="/warn.svg" alt="warn" width={24} height={24} />
+
+                  <Image src="/warn.svg" alt="warn" width={24} height={24} />
                 </div>
                 <div className={styles.card__fields}>
                   <label htmlFor="status">
@@ -275,6 +293,7 @@ const ProfileParcels = ({
                       <th>Цена посылки</th>
 
                       <th></th>
+                      <th>Оплатить</th>
                     </tr>
                     {/* Трек-код */}
                     {parcels
@@ -330,6 +349,20 @@ const ProfileParcels = ({
                                 ) : (
                                   <ArrowRightIcon />
                                 )}
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                disabled={+parcel.payed === 1}
+                                onClick={() => payParcel(parcel.id)}
+                                style={{
+                                  color: "white",
+                                  padding: "3px 5px",
+                                  backgroundColor: "#EB3738",
+                                  borderRadius: "5px",
+                                }}
+                              >
+                                {+parcel.payed === 1 ? "Оплачен" : "Оплатить"}
                               </button>
                             </td>
                           </tr>
