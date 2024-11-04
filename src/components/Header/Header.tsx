@@ -52,7 +52,7 @@ const Header = () => {
   const colorBalance = () => {
     if (balance === null) return "gray";
     if (balance < 0) return "red";
-    if (balance === 0) return "gray";
+    if (balance === 0.00) return "gray";
     return "green";
   };
 
