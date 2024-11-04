@@ -53,7 +53,7 @@ const Header = () => {
     if (balance === null) return "gray";
     if (balance < 0) return "red";
     if (balance === 0.00) return "gray";
-    return "green";
+    if(balance > 0) return "green";
   };
 
   const whatUrl = () => {
