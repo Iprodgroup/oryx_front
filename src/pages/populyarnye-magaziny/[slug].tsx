@@ -72,17 +72,6 @@ const Store = ({
       <Head>
         {seoFunc()}
         <link
-          rel="alternate"
-          href={`https://oryx.kz/populyarnye-magaziny/${store.name}`}
-          hrefLang="ru-RU"
-        />
-        <link
-          rel="alternate"
-          href={`https://oryx.kz/populyarnye-magaziny/${store.name}`}
-          hrefLang="x-default"
-        />
-
-        <link
           rel="canonical"
           href={`https://oryx.kz/populyarnye-magaziny/${store?.slug || ""}`}
         />

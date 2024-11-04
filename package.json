@@ -13,6 +13,7 @@
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "cookies-next": "^4.2.1",
+    "js-cookie": "^3.0.5",
     "next": "^14.2.7",
     "nextjs-toploader": "^1.6.12",
     "nodemailer": "^6.9.14",
@@ -29,6 +30,7 @@
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",

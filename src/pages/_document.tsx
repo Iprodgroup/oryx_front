@@ -12,11 +12,6 @@ export default function Document() {
           content="vp6g7rjn5equhL-Lf8Drs_xJAPsSb3ddlCuWnTSnLTg"
         />
         <meta name="yandex-verification" content="cf6f970418b0ab07" />
-        
-
-        <link rel="alternate" href="https://oryx.kz" hrefLang="x-default" />
-        <link rel="alternate" href="https://oryx.kz" hrefLang="ru-RU" />
-
         {/* Google Analytics */}
         <script
           async
