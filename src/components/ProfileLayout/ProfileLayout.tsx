@@ -11,7 +11,7 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
   const matches = useMediaQuery('(min-width: 576px)');
   
   // State for storing exchange rate
-  const [exchangeRate, setExchangeRate] = useState<number | null>(null);
+  // const [exchangeRate, setExchangeRate] = useState<number | null>(null);
 
   useEffect(() => {
     const body = document.body;
@@ -23,19 +23,19 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchExchangeRate = async () => {
-      try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-        const data = await response.json();
-        setExchangeRate(data.rates.KZT);
-      } catch (error) {
-        console.error('Error fetching exchange rate:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchExchangeRate = async () => {
+  //     try {
+  //       const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+  //       const data = await response.json();
+  //       setExchangeRate(data.rates.KZT);
+  //     } catch (error) {
+  //       console.error('Error fetching exchange rate:', error);
+  //     }
+  //   };
 
-    fetchExchangeRate();
-  }, []);
+  //   fetchExchangeRate();
+  // }, []);
 
   return (
     isClient && (
@@ -57,9 +57,9 @@ const ProfileLayout: FC<PropsWithChildren> = ({ children }) => {
               <li>
                 <Link href='/profile/nsettings'>Настройка уведомлений</Link>
               </li>
-              <li style={{backgroundColor: 'white', color: "#000", padding: "3px 8px", borderRadius: "5px"}}>
+              {/* <li style={{backgroundColor: 'white', color: "#000", padding: "3px 8px", borderRadius: "5px"}}>
                1 USD = {exchangeRate ? `${exchangeRate} KZT` : 'Загрузка...'}
-              </li>
+              </li> */}
             </ul>
           </nav>
         )}

@@ -28,6 +28,7 @@ import passToken from "@/utils/passToken";
 import statuses from "@/utils/statuses";
 import formatDate from "@/utils/formatDate";
 import Switch from "@/components/Switch/Switch";
+import Cookies from "js-cookie";
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get<{ items: Parcel[] }>("/profile/parcels", {
@@ -36,7 +37,6 @@ export const getServerSideProps = (async (context) => {
       status: context.query.status,
     },
   });
-  // console.log(res.data);
   const res2 = await instance.get<{ recipients: Recipient[] }>(
     "/profile/settings",
     {
@@ -54,7 +54,6 @@ const ProfileParcels = ({
   parcels,
   recipients,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-
   const [isDisplay, setIsDisplay] = useState<{
     state: boolean;
     data: Partial<Parcel>;
@@ -108,8 +107,6 @@ const ProfileParcels = ({
     setSearch(event.target[0].value);
   };
 
-  console.log(isDisplay.data);
-
   const deleteParcel = async (id: number) => {
     const loadingToastId = toast.loading("Загрузка...");
 
@@ -129,6 +126,30 @@ const ProfileParcels = ({
   useEffect(() => {
     offDisplay();
   }, [router]);
+
+  const payParcel = async (id: number) => {
+    try {
+      const accessToken = Cookies.get("access_token");
+      const res = await instance.post(
+        `/parcels/${id}/pay`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      toast.success("Посылка успешно оплачена!");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+
+    } catch (error) {
+      toast.error("Ошибка при оплате посылки");
+    }
+  };
 
   return (
     isClient && (
@@ -151,13 +172,12 @@ const ProfileParcels = ({
                   Поиск по трек-номеру
                   <input type="text" id="track" placeholder="Трек-номер" />
                   <button type="submit" className={styles.search__btn}>
-                    
-                      <Image
-                        src="/search.svg"
-                        alt="search"
-                        width={24}
-                        height={24}
-                      />
+                    <Image
+                      src="/search.svg"
+                      alt="search"
+                      width={24}
+                      height={24}
+                    />
                   </button>
                 </label>
               )}
@@ -185,17 +205,16 @@ const ProfileParcels = ({
                   <button
                     onClick={() => setIsDisplay({ state: false, data: {} })}
                   >
-                   
-                      <Image
-                        src="/arrow-left.svg"
-                        alt="arrow-left"
-                        width={16}
-                        height={16}
-                      />
+                    <Image
+                      src="/arrow-left.svg"
+                      alt="arrow-left"
+                      width={16}
+                      height={16}
+                    />
                   </button>
                   <span>{isDisplay.data.track}</span>
-                  
-                    <Image src="/warn.svg" alt="warn" width={24} height={24} />
+
+                  <Image src="/warn.svg" alt="warn" width={24} height={24} />
                 </div>
                 <div className={styles.card__fields}>
                   <label htmlFor="status">
@@ -246,7 +265,7 @@ const ProfileParcels = ({
                 </div>
                 <div className={styles.card__info}>
                   <strong>
-                    Оплачен:{" "}
+                    Оплачен:
                     <span>{isDisplay.data.payed === "1" ? "Да" : "Нет"}</span>
                   </strong>
                   <strong>Товары:</strong>
@@ -272,9 +291,10 @@ const ProfileParcels = ({
                       <th>Дата добавления</th>
                       <th>Направление</th>
                       <th>Стоимость доставки</th>
-                      <th>Цена посылки</th>
+                      {/* <th>Цена посылки</th> */}
 
                       <th></th>
+                      <th>Оплатить</th>
                     </tr>
                     {/* Трек-код */}
                     {parcels
@@ -315,7 +335,7 @@ const ProfileParcels = ({
                               <td>Не указано</td>
                             )}
                             {/* Цена посылки */}
-                            <td>Цена посылки</td>
+                            {/* <td>Цена посылки</td> */}
                             <td>
                               <button onClick={() => deleteParcel(parcel.id)}>
                                 <TrashIcon />
@@ -330,6 +350,20 @@ const ProfileParcels = ({
                                 ) : (
                                   <ArrowRightIcon />
                                 )}
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                disabled={+parcel.payed === 1}
+                                onClick={() => payParcel(parcel.id)}
+                                style={{
+                                  color: "white",
+                                  padding: "3px 5px",
+                                  backgroundColor: "#EB3738",
+                                  borderRadius: "5px",
+                                }}
+                              >
+                                {+parcel.payed === 1 ? "Оплачен" : "Оплатить"}
                               </button>
                             </td>
                           </tr>
@@ -355,7 +389,7 @@ const ProfileParcels = ({
                                             &nbsp;&nbsp;{item.name}
                                           </td>
                                           <td style={{ textAlign: "left" }}>
-                                            <strong>Стоимость:</strong>
+                                            <strong>Цена посылки:</strong>
                                             &nbsp;&nbsp;{item.price}$
                                           </td>
                                           <td style={{ textAlign: "left" }}>

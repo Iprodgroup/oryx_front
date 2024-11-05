@@ -51,7 +51,7 @@ const Drawer = () => {
                 <Link href='/#calculator'>Калькулятор</Link>
               </li>
               <li>
-                <Link href='/faq'>ЧАВО</Link>
+                <Link href='/faq'>Q&A</Link>
                 </li>
               {isAuthenticated && (
                 <li>

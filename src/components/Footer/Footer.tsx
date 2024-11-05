@@ -150,6 +150,11 @@ const Footer = () => {
                   <Link href="/kontakty">Контакты</Link>
                 </li>
                 <li>
+                  <Link href="/sitemap">
+                    Карта сайта
+                  </Link>
+                </li>
+                <li>
                   <Link href="/usloviya-servisa">
                     Помощь в работе с сервисом
                   </Link>

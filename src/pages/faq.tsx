@@ -123,7 +123,7 @@ const FAQ = () => {
                 {
                   "@type": "ListItem",
                   position: 2,
-                  name: "ЧАВО",
+                  name: "Q&A",
                   item: "https://oryx.kz/faq",
                 },
               ],
