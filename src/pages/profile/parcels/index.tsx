@@ -291,9 +291,8 @@ const ProfileParcels = ({
                       <th>Направление</th>
                       <th>Стоимость доставки</th>
                       {/* <th>Цена посылки</th> */}
-
                       <th></th>
-                      <th>Оплатить</th>
+                      <th>Статус оплаты</th>
                     </tr>
                     {/* Трек-код */}
                     {parcels
@@ -308,7 +307,7 @@ const ProfileParcels = ({
                                 {statuses[+parcel.status] ? (
                                   <b>{statuses[+parcel.status].value}</b>
                                 ) : (
-                                  <b>Unknown Status</b>
+                                  <b>Статус неизвестен</b>
                                 )}
                               </b>
                               <button onClick={() => onDisplay(parcel)}>

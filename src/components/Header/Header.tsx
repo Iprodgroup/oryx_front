@@ -34,7 +34,6 @@ const Header = () => {
               Authorization: `Bearer ${token}`
             }
           });
-          console.log(response.data.balance)
             setBalance(response.data.balance);
           
         } else {
@@ -56,8 +55,6 @@ const Header = () => {
     if (balance === 0.00) return "gray";
     if(balance > 0) return "green";
   };
-
-  console.log(balance);
 
   const whatUrl = () => {
     if (url === "/profile") {

@@ -125,7 +125,7 @@ const Sitemap = ({
               <ul>
                 {stores.map((store) => (
                   <li key={store.id}>
-                    <Link href={`/store/${store.slug}`}>{store.name}</Link>
+                    <Link href={`/populyarnye-magaziny/${store.slug}`}>{store.name}</Link>
                   </li>
                 ))}
               </ul>
