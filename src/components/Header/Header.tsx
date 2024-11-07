@@ -34,7 +34,8 @@ const Header = () => {
               Authorization: `Bearer ${token}`
             }
           });
-            setBalance(response.data.balance.balance);
+          console.log(response.data.balance)
+            setBalance(response.data.balance);
           
         } else {
           console.error("Токен не найден");
@@ -55,6 +56,8 @@ const Header = () => {
     if (balance === 0.00) return "gray";
     if(balance > 0) return "green";
   };
+
+  console.log(balance);
 
   const whatUrl = () => {
     if (url === "/profile") {

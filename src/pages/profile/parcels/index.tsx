@@ -145,7 +145,6 @@ const ProfileParcels = ({
       setTimeout(() => {
         window.location.reload();
       }, 1000);
-
     } catch (error) {
       toast.error("Ошибка при оплате посылки");
     }
@@ -359,7 +358,8 @@ const ProfileParcels = ({
                                 style={{
                                   color: "white",
                                   padding: "3px 5px",
-                                  backgroundColor: "#EB3738",
+                                  backgroundColor:
+                                    +parcel.payed === 1 ? "green" : "#EB3738",
                                   borderRadius: "5px",
                                 }}
                               >
