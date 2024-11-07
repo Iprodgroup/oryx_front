@@ -7,13 +7,14 @@ import {
   useState,
 } from "react";
 import styles from "@/styles/profile/ProfileParcels.module.sass";
-
+import { confirmAlert } from 'react-confirm-alert';
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useIsClient, useMediaQuery, useOnClickOutside } from "usehooks-ts";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import axios from "axios";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { ArrowDownIcon, ArrowRightIcon } from "@/components/icons/arrows";
 import { Parcel } from "@/types/parcel.interface";
@@ -139,15 +140,32 @@ const ProfileParcels = ({
           },
         }
       );
-
+  console.log(res)
       toast.success("Посылка успешно оплачена!");
-
       setTimeout(() => {
         window.location.reload();
       }, 1000);
     } catch (error) {
       toast.error("Ошибка при оплате посылки");
     }
+  };
+  
+  const confirmPayParcel = (id: number) => {
+    console.log(id)
+    confirmAlert({
+      title: 'Подтверждение оплаты',
+      message: 'Вы уверены, что хотите оплатить эту посылку?',
+      buttons: [
+        {
+          label: 'Да',
+          onClick: () => payParcel(id),
+        },
+        {
+          label: 'Нет',
+          onClick: () => toast("Оплата отменена"),
+        }
+      ]
+    });
   };
 
   return (
@@ -352,8 +370,8 @@ const ProfileParcels = ({
                             </td>
                             <td>
                               <button
-                                disabled={+parcel.payed === 1}
-                                onClick={() => payParcel(parcel.id)}
+                                // disabled={+parcel.payed === 1}
+                                onClick={() => confirmPayParcel(parcel.id)}
                                 style={{
                                   color: "white",
                                   padding: "3px 5px",
