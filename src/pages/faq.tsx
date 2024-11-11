@@ -1,28 +1,8 @@
 import Head from "next/head";
-import styles from "@/components/FAQ/styles.module.sass";
-
+import styles from "@/blocks/home/FAQ/styles.module.sass";
 import FAQComponent from "@/components/FAQ/FAQ";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from "react-accessible-accordion";
-import { ID } from "react-accessible-accordion/dist/types/components/ItemContext";
-import { useState } from "react";
-import useSWR from "swr";
-import { Question } from "@/types/question.interface";
-import instance from "@/utils/axios";
-import classNames from "classnames";
-
-const fetcher = (arg: string): Promise<{ questions: Question[] }> =>
-  instance(arg).then((res) => res.data);
 
 const FAQ = () => {
-  const [isExpanded, setIsExpanded] = useState<ID[]>([]);
-  const { data } = useSWR("/help", fetcher);
-
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -105,7 +85,9 @@ const FAQ = () => {
   return (
     <>
       <Head>
-        <title>Ответы на вопросы о доставке товаров из США в Казахстан | Oryx</title>
+        <title>
+          Ответы на вопросы о доставке товаров из США в Казахстан | Oryx
+        </title>
         <meta
           name="description"
           content="Как заказать и получить товары из США в Казахстан? Ответы на вопросы о стоимости доставки, сроках, таможенном оформлении."
@@ -128,62 +110,40 @@ const FAQ = () => {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema),
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Главная",
+                  item: "https://oryx.kz/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Q&A",
+                  item: "https://oryx.kz/faq",
+                },
+              ],
+            }),
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </Head>
       <section>
-        <link rel="canonical" href="https://oryx.kz/faq" />
-        <div className={styles.wrapper} style={{ marginTop: "50px" }}>
-          <h1 style={{ textAlign: "center" }}>Частые вопросы</h1>
-          <div style={{ width: "80%", margin: "0 auto" }}>
-            <Accordion
-              allowZeroExpanded
-              className={styles.accordions}
-              onChange={(args) => setIsExpanded(args)}
-            >
-              {data?.questions.map((question) => (
-                <AccordionItem key={question.id} uuid={question.id}>
-                  <AccordionItemHeading>
-                    <AccordionItemButton
-                      className={classNames(
-                        "accordion__button",
-                        styles.accordion__button
-                      )}
-                    >
-                      <span>{question.question}</span>
-                      <span className={styles.icon}>
-                        {isExpanded[0] === question.id ? "-" : "+"}
-                      </span>
-                    </AccordionItemButton>
-                  </AccordionItemHeading>
-                  <AccordionItemPanel
-                    dangerouslySetInnerHTML={{ __html: question.response }}
-                    className={classNames(
-                      "accordion__panel",
-                      styles.accordion__panel
-                    )}
-                  ></AccordionItemPanel>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+      <link rel="canonical" href="https://oryx.kz/faq" />
+        <div className={styles.wrapper}>
+          <h1>Частые вопросы</h1>
+          <FAQComponent />
         </div>
       </section>
     </>
   );
 };
-
-// Получение данных на сервере во время генерации страницы
-export async function getStaticProps() {
-  const data = await fetcher("/help");
-
-  return {
-    props: {
-      initialData: data,
-    },
-    revalidate: 60, // Период обновления данных через 60 секунд (для ISR)
-  };
-}
 
 export default FAQ;
