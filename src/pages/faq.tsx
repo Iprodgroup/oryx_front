@@ -105,9 +105,7 @@ const FAQ = () => {
   return (
     <>
       <Head>
-        <title>
-          Ответы на вопросы о доставке товаров из США в Казахстан | Oryx
-        </title>
+        <title>Ответы на вопросы о доставке товаров из США в Казахстан | Oryx</title>
         <meta
           name="description"
           content="Как заказать и получить товары из США в Казахстан? Ответы на вопросы о стоимости доставки, сроках, таможенном оформлении."
@@ -130,29 +128,8 @@ const FAQ = () => {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Главная",
-                  item: "https://oryx.kz/",
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Q&A",
-                  item: "https://oryx.kz/faq",
-                },
-              ],
-            }),
+            __html: JSON.stringify(faqSchema),
           }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </Head>
       <section>
@@ -196,5 +173,17 @@ const FAQ = () => {
     </>
   );
 };
+
+// Получение данных на сервере во время генерации страницы
+export async function getStaticProps() {
+  const data = await fetcher("/help");
+
+  return {
+    props: {
+      initialData: data,
+    },
+    revalidate: 60, // Период обновления данных через 60 секунд (для ISR)
+  };
+}
 
 export default FAQ;
