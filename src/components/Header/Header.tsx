@@ -11,7 +11,7 @@ import instance from "@/utils/axios";
 import Cookies from "js-cookie";
 
 const Header = () => {
-  const isClient = useIsClient();
+  const isClient = useIsClient(); // проверяем, был ли загружен клиент
   const isAuthenticated = useAuth();
   const url = usePathname();
 
@@ -22,6 +22,7 @@ const Header = () => {
 
   const [balance, setBalance] = useState<number | null>(null);
 
+  // Данный код выполняется только на клиенте, его нет в статичной верстке
   useEffect(() => {
     const fetchBalance = async () => {
       try {
@@ -76,69 +77,48 @@ const Header = () => {
     }
   };
 
-  // Статичный контент, который рендерится без JavaScript
+  // Статичный контент (всегда рендерится)
   const staticContent = (
     <>
       <div className={styles.left}>
         <Link href="/">
-          {matches[576] ? (
-            <Image
-              src="/logo.svg"
-              alt="logo"
-              width={170}
-              height={70}
-              priority
-            />
-          ) : (
-            <LogoIcon />
-          )}
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width={170}
+            height={70}
+            priority
+          />
         </Link>
       </div>
-      {matches[1200] && (
-        <div className={styles.center}>
-          <nav>
-            <ul>
-              <li>
-                <Link href="/o-kompanii">О нас</Link>
-              </li>
-              <li>
-                <Link href="/populyarnye-magaziny">Популярные магазины</Link>
-              </li>
-              <li>
-                <Link href="/buy-me">Купи вместо меня</Link>
-              </li>
-              <li>
-                <Link href="/kontakty">Контакты</Link>
-              </li>
-              <li>
-                <Link href="/#calculator">Калькулятор</Link>
-              </li>
-              <li>
-                <Link href="/faq">Q&A</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      )}
+
+      <div className={styles.center}>
+        <nav>
+          <ul>
+            <li><Link href="/o-kompanii">О нас</Link></li>
+            <li><Link href="/populyarnye-magaziny">Популярные магазины</Link></li>
+            <li><Link href="/buy-me">Купи вместо меня</Link></li>
+            <li><Link href="/kontakty">Контакты</Link></li>
+            <li><Link href="/#calculator">Калькулятор</Link></li>
+            <li><Link href="/faq">Q&A</Link></li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 
-  // Мобильный статичный контент
+  // Статичный контент для мобильных
   const mobileStaticContent = (
     <>
       <div className={styles.left}>
         <Link href="/">
-          {matches[576] ? (
-            <Image
-              src="/logo.svg"
-              alt="logo"
-              width={170}
-              height={70}
-              priority
-            />
-          ) : (
-            <LogoIcon />
-          )}
+          <Image
+            src="/logo.svg"
+            alt="logo"
+            width={170}
+            height={70}
+            priority
+          />
         </Link>
       </div>
     </>
@@ -147,11 +127,11 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
-        {/* Статичный контент */}
+        {/* Статичный контент (будет доступен при отключенном JS) */}
         {matches[1200] ? staticContent : mobileStaticContent}
 
         <div className={styles.right}>
-          {/* Статичный блок с аутентификацией */}
+          {/* Динамическая логика для аутентификации */}
           {isAuthenticated ? (
             <>
               {whatUrl()}
@@ -169,6 +149,8 @@ const Header = () => {
               </Link>
             </>
           )}
+
+          {/* Для мобильных устройств, когда экран меньше 1200px */}
           {!matches[1200] && <Drawer />}
         </div>
       </div>
