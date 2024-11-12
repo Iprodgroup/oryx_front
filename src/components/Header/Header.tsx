@@ -102,9 +102,7 @@ const Header = () => {
                 <Link href="/o-kompanii">О нас</Link>
               </li>
               <li>
-                <Link href="/populyarnye-magaziny">
-                  Популярные магазины
-                </Link>
+                <Link href="/populyarnye-magaziny">Популярные магазины</Link>
               </li>
               <li>
                 <Link href="/buy-me">Купи вместо меня</Link>
@@ -125,38 +123,56 @@ const Header = () => {
     </>
   );
 
-  return (
+  // Мобильный статичный контент
+  const mobileStaticContent = (
     <>
-      {isClient && (
-        <header className={styles.header}>
-          <div className={styles.wrapper}>
-            {/* Статичный контент */}
-            {staticContent}
-
-            <div className={styles.right}>
-              {isAuthenticated ? (
-                <>
-                  {whatUrl()}
-                  <Link href="/logout" className={styles.register__btn}>
-                    Выход
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link href="/login" className={styles.login__btn}>
-                    <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
-                  </Link>
-                  <Link href="/register" className={styles.register__btn}>
-                    Регистрация
-                  </Link>
-                </>
-              )}
-              {!matches[1200] && <Drawer />}
-            </div>
-          </div>
-        </header>
-      )}
+      <div className={styles.left}>
+        <Link href="/">
+          {matches[576] ? (
+            <Image
+              src="/logo.svg"
+              alt="logo"
+              width={170}
+              height={70}
+              priority
+            />
+          ) : (
+            <LogoIcon />
+          )}
+        </Link>
+      </div>
     </>
+  );
+
+  return (
+    <header className={styles.header}>
+      <div className={styles.wrapper}>
+        {/* Статичный контент */}
+        {matches[1200] ? staticContent : mobileStaticContent}
+
+        <div className={styles.right}>
+          {/* Статичный блок с аутентификацией */}
+          {isAuthenticated ? (
+            <>
+              {whatUrl()}
+              <Link href="/logout" className={styles.register__btn}>
+                Выход
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className={styles.login__btn}>
+                <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
+              </Link>
+              <Link href="/register" className={styles.register__btn}>
+                Регистрация
+              </Link>
+            </>
+          )}
+          {!matches[1200] && <Drawer />}
+        </div>
+      </div>
+    </header>
   );
 };
 

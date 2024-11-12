@@ -71,6 +71,7 @@ const Footer = () => {
     </div>
   );
 
+  // Динамичный контент (который рендерится только на клиенте)
   const dynamicContent = isClient && (
     <div className={styles.middle}>
       <form onSubmit={handleSubmit} ref={formRef}>
