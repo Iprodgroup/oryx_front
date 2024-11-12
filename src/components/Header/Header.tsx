@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.sass";
-import { useMediaQuery } from "usehooks-ts";
+import { useIsClient, useMediaQuery } from "usehooks-ts";
+import Link from "next/link";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
 import Drawer from "../drawer/Drawer/Drawer";
@@ -11,20 +11,16 @@ import instance from "@/utils/axios";
 import Cookies from "js-cookie";
 
 const Header = () => {
+  const isClient = useIsClient();
   const isAuthenticated = useAuth();
   const url = usePathname();
 
-  // Состояния для баланса
-  const [balance, setBalance] = useState<number | null>(null);
-  const [isClient, setIsClient] = useState(false); // флаг для client-side рендеринга
-  const [matches, setMatches] = useState({
-    576: false,
-    1200: false,
-  });
+  const matches = {
+    576: useMediaQuery("(min-width: 576px)"),
+    1200: useMediaQuery("(min-width: 1200px)"),
+  };
 
-  useEffect(() => {
-    setIsClient(true); // Устанавливаем флаг для client-side рендеринга
-  }, []);
+  const [balance, setBalance] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -72,35 +68,19 @@ const Header = () => {
       );
     } else {
       return (
-        <a href="/profile" className={styles.profile__btn}>
+        <Link href="/profile" className={styles.profile__btn}>
           <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} /> Личный
           кабинет
-        </a>
+        </Link>
       );
     }
   };
-
-  // Проверка медиазапросов только на клиенте
-  useEffect(() => {
-    const handleResize = () => {
-      setMatches({
-        576: window.innerWidth >= 576,
-        1200: window.innerWidth >= 1200,
-      });
-    };
-
-    if (isClient) {
-      handleResize();
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, [isClient]);
 
   // Статичный контент, который рендерится без JavaScript
   const staticContent = (
     <>
       <div className={styles.left}>
-        <a href="/">
+        <Link href="/">
           {matches[576] ? (
             <Image
               src="/logo.svg"
@@ -112,66 +92,71 @@ const Header = () => {
           ) : (
             <LogoIcon />
           )}
-        </a>
+        </Link>
       </div>
-      <div className={styles.center}>
-        <nav>
-          <ul>
-            <li>
-              <a href="/o-kompanii">О нас</a>
-            </li>
-            <li>
-              <a href="/populyarnye-magaziny">Популярные магазины</a>
-            </li>
-            <li>
-              <a href="/buy-me">Купи вместо меня</a>
-            </li>
-            <li>
-              <a href="/kontakty">Контакты</a>
-            </li>
-            <li>
-              <a href="/#calculator">Калькулятор</a>
-            </li>
-            <li>
-              <a href="/faq">Q&A</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      {matches[1200] && (
+        <div className={styles.center}>
+          <nav>
+            <ul>
+              <li>
+                <Link href="/o-kompanii">О нас</Link>
+              </li>
+              <li>
+                <Link href="/populyarnye-magaziny">
+                  Популярные магазины
+                </Link>
+              </li>
+              <li>
+                <Link href="/buy-me">Купи вместо меня</Link>
+              </li>
+              <li>
+                <Link href="/kontakty">Контакты</Link>
+              </li>
+              <li>
+                <Link href="/#calculator">Калькулятор</Link>
+              </li>
+              <li>
+                <Link href="/faq">Q&A</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
     </>
   );
 
   return (
-    <header className={styles.header}>
-      <div className={styles.wrapper}>
-        {/* Статичный контент */}
-        {staticContent}
+    <>
+      {isClient && (
+        <header className={styles.header}>
+          <div className={styles.wrapper}>
+            {/* Статичный контент */}
+            {staticContent}
 
-        {/* Динамический контент, который рендерится только на клиенте */}
-        {isClient && (
-          <div className={styles.right}>
-            {isAuthenticated ? (
-              <>
-                {whatUrl()}
-                <a href="/logout" className={styles.register__btn}>
-                  Выход
-                </a>
-              </>
-            ) : (
-              <>
-                <a href="/login" className={styles.login__btn}>
-                  <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
-                </a>
-                <a href="/register" className={styles.register__btn}>
-                  Регистрация
-                </a>
-              </>
-            )}
-            {!matches[1200] && <Drawer />}
+            <div className={styles.right}>
+              {isAuthenticated ? (
+                <>
+                  {whatUrl()}
+                  <Link href="/logout" className={styles.register__btn}>
+                    Выход
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/login" className={styles.login__btn}>
+                    <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
+                  </Link>
+                  <Link href="/register" className={styles.register__btn}>
+                    Регистрация
+                  </Link>
+                </>
+              )}
+              {!matches[1200] && <Drawer />}
+            </div>
           </div>
-        )}
-      </div>
-    </header>
+        </header>
+      )}
+    </>
   );
 };
 
