@@ -12,7 +12,6 @@ const Hero = () => {
 
   return (
     <section className={styles.hero}>
-      {/* Статическая версия без JavaScript */}
       <noscript>
         <div className={styles.wrapper}>
           <div className={styles.left}>
