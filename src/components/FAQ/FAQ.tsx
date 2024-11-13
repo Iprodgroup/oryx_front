@@ -28,14 +28,9 @@ const FAQComponent = () => {
       <noscript>
         <div className="static-accordions">
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq1"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq1" className="static-accordion__title">
+            <div className="static-accordion__title">
               Сколько времени занимает доставка?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Доставка в Казахстан в среднем занимает 7-10 дней с момента
@@ -51,14 +46,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq2"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq2" className="static-accordion__title">
+            <div className="static-accordion__title">
               Как мне оплатить доставку?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Оплатить доставку из США нужно банковской картой или наличными
@@ -72,14 +62,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq3"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq3" className="static-accordion__title">
+            <div className="static-accordion__title">
               В каких магазинах США можно делать покупки?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Покупать можно в любых магазинах, которые делают доставку в США.
@@ -90,14 +75,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq4"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq4" className="static-accordion__title">
+            <div className="static-accordion__title">
               Как рассчитать стоимость доставки?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Стоимость доставки из США в Казахстан зависит от веса посылки -
@@ -117,14 +97,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq5"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq5" className="static-accordion__title">
+            <div className="static-accordion__title">
               Какие товары нельзя заказывать?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Мы не сможем привезти товары, которые законодательно выведены из
@@ -140,14 +115,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq6"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq6" className="static-accordion__title">
+            <div className="static-accordion__title">
               Как вернуть приобретенный товар?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Возврат товара осуществляется на условиях магазина, у которого
@@ -158,14 +128,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq7"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq7" className="static-accordion__title">
+            <div className="static-accordion__title">
               Что делать, если неправильно указал адрес доставки?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Если вы указали неверный адрес или допустили ошибку при указании
@@ -179,14 +144,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq8"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq8" className="static-accordion__title">
+            <div className="static-accordion__title">
               Буду ли я оплачивать налог при покупке?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 Клиенты ORYX не платят американский налог с продаж – аналог
@@ -199,14 +159,9 @@ const FAQComponent = () => {
           </div>
 
           <div className="static-accordion__item">
-            <input
-              type="checkbox"
-              id="faq9"
-              className="static-accordion__checkbox"
-            />
-            <label htmlFor="faq9" className="static-accordion__title">
+            <div className="static-accordion__title">
               Какие таможенные лимиты?
-            </label>
+            </div>
             <div className="static-accordion__panel">
               <p>
                 При покупке товаров за рубежом, необходимо помнить о таможенной
