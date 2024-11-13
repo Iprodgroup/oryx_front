@@ -1,0 +1,35 @@
+.static-accordions {
+    user-select: text;
+    margin-top: 20px;
+  
+    .static-accordion__item {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+  
+    .static-accordion__title {
+      background-color: white;
+      font-size: clamp(1rem, 0.909rem + 0.45vw, 1.25rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0;
+      cursor: default;
+    }
+  
+    .static-accordion__panel {
+      text-align: start;
+      font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
+      padding: 10px 0;
+    }
+  
+    .static-accordion__title::before {
+      content: none;
+    }
+  
+    .static-accordion__panel p {
+      margin: 0;
+    }
+  }
+  

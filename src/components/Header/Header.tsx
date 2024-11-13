@@ -81,7 +81,7 @@ const Header = () => {
       <div className={styles.wrapper}>
         {/* Статичные элементы, отображаемые при отключенном JavaScript */}
         <noscript>
-          <div style={{display: "flex", flexDirection: "row"}}>
+          <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: "20px"}}>
             <div style={{ width: "100px", height: "50px" }}>
               <Link href="/">
                 <Image
