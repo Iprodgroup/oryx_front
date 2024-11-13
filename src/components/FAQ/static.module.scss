@@ -5,31 +5,36 @@
     .static-accordion__item {
       margin-bottom: 10px;
       border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
     }
   
     .static-accordion__title {
-      background-color: white;
       font-size: clamp(1rem, 0.909rem + 0.45vw, 1.25rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0;
-      cursor: default;
+      padding: 10px;
+      background-color: #f8f8f8;
+      cursor: pointer;
+      display: block;
+      transition: background-color 0.3s;
+      position: relative;
+    }
+  
+    .static-accordion__checkbox {
+      display: none;
     }
   
     .static-accordion__panel {
-      text-align: start;
-      font-size: clamp(0.625rem, 0.489rem + 0.68vw, 1rem);
-      padding: 10px 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s;
+      padding: 0 10px;
     }
   
-    .static-accordion__title::before {
-      content: none;
+    .static-accordion__checkbox:checked ~ .static-accordion__panel {
+      max-height: 200px;
+      padding: 10px 10px;
     }
   
-    .static-accordion__panel p {
-      margin: 0;
+    .static-accordion__checkbox:checked + .static-accordion__title {
+      background-color: #e2e2e2;
     }
   }
   
