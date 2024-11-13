@@ -69,8 +69,8 @@ const Header = () => {
     } else {
       return (
         <Link href="/profile" className={styles.profile__btn}>
-          <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} /> Личный
-          кабинет
+          <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} />{" "}
+          Личный кабинет
         </Link>
       );
     }
@@ -81,30 +81,60 @@ const Header = () => {
       <div className={styles.wrapper}>
         {/* Статичные элементы, отображаемые при отключенном JavaScript */}
         <noscript>
-          <div className={styles.left}>
-            <Link href="/">
-              <Image src="/logo.svg" alt="logo" width={170} height={70} priority />
-            </Link>
-          </div>
-          <div className={styles.center}>
-            <nav>
-              <ul>
-                <li><Link href="/o-kompanii">О нас</Link></li>
-                <li><Link href="/populyarnye-magaziny">Популярные магазины</Link></li>
-                <li><Link href="/buy-me">Купи вместо меня</Link></li>
-                <li><Link href="/kontakty">Контакты</Link></li>
-                <li><Link href="/#calculator">Калькулятор</Link></li>
-                <li><Link href="/faq">Q&A</Link></li>
-                <li><Link href="/login" className={styles.login__btn}>
-                    <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
-                  </Link></li>
+          <div style={{display: "flex", flexDirection: "row"}}>
+            <div style={{ width: "100px", height: "50px" }}>
+              <Link href="/">
+                <Image
+                  src="/logo.svg"
+                  alt="logo"
+                  width={170}
+                  height={70}
+                  priority
+                />
+              </Link>
+            </div>
+            <div className={styles.center}>
+              <nav>
+                <ul>
                   <li>
-                  <Link href="/register" className={styles.register__btn}>
-                    Регистрация
-                  </Link>
+                    <Link href="/o-kompanii">О нас</Link>
                   </li>
-              </ul>
-            </nav>
+                  <li>
+                    <Link href="/populyarnye-magaziny">
+                      Популярные магазины
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/buy-me">Купи вместо меня</Link>
+                  </li>
+                  <li>
+                    <Link href="/kontakty">Контакты</Link>
+                  </li>
+                  <li>
+                    <Link href="/#calculator">Калькулятор</Link>
+                  </li>
+                  <li>
+                    <Link href="/faq">Q&A</Link>
+                  </li>
+                  <li>
+                    <Link href="/login" className={styles.login__btn}>
+                      <Image
+                        src="/login.svg"
+                        alt="login"
+                        width={16}
+                        height={20}
+                      />{" "}
+                      Вход
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/register" className={styles.register__btn}>
+                      Регистрация
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </noscript>
 
@@ -114,7 +144,13 @@ const Header = () => {
             <div className={styles.left}>
               <Link href="/">
                 {matches[576] ? (
-                  <Image src="/logo.svg" alt="logo" width={170} height={70} priority />
+                  <Image
+                    src="/logo.svg"
+                    alt="logo"
+                    width={170}
+                    height={70}
+                    priority
+                  />
                 ) : (
                   <LogoIcon />
                 )}
@@ -124,14 +160,26 @@ const Header = () => {
               <div className={styles.center}>
                 <nav>
                   <ul>
-                    <li><Link href="/o-kompanii">О нас</Link></li>
-                    <li><Link href="/populyarnye-magaziny">Популярные магазины</Link></li>
-                    <li><Link href="/buy-me">Купи вместо меня</Link></li>
-                    <li><Link href="/kontakty">Контакты</Link></li>
-                    <li><Link href="/#calculator">Калькулятор</Link></li>
-                    <li><Link href="/faq">Q&A</Link></li>
-                    
-                  
+                    <li>
+                      <Link href="/o-kompanii">О нас</Link>
+                    </li>
+                    <li>
+                      <Link href="/populyarnye-magaziny">
+                        Популярные магазины
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/buy-me">Купи вместо меня</Link>
+                    </li>
+                    <li>
+                      <Link href="/kontakty">Контакты</Link>
+                    </li>
+                    <li>
+                      <Link href="/#calculator">Калькулятор</Link>
+                    </li>
+                    <li>
+                      <Link href="/faq">Q&A</Link>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -147,7 +195,13 @@ const Header = () => {
               ) : (
                 <>
                   <Link href="/login" className={styles.login__btn}>
-                    <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
+                    <Image
+                      src="/login.svg"
+                      alt="login"
+                      width={16}
+                      height={20}
+                    />{" "}
+                    Вход
                   </Link>
                   <Link href="/register" className={styles.register__btn}>
                     Регистрация
