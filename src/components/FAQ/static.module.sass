@@ -1,6 +1,6 @@
 .static-accordions
   user-select: none
-  margin-top: 20px
+  margin-top: 60px
 
   .static-accordion__item
     margin-bottom: 10px
@@ -16,6 +16,7 @@
       justify-content: space-between
       cursor: pointer
       padding: 10px
+      font-weight: bold
 
     .static-accordion__panel
       max-height: 0
@@ -26,6 +27,6 @@
       text-align: start
       border-top: 1px solid #ccc
 
-      .accordion-checkbox:checked + .static-accordion__title + &
-        max-height: 100vh
-        padding-bottom: 10px
+    .accordion-checkbox:checked + .static-accordion__title + .static-accordion__panel
+      max-height: 100vh
+      padding-bottom: 10px
