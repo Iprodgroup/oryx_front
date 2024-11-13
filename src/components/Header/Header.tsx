@@ -28,14 +28,12 @@ const Header = () => {
         const token = Cookies.get("access_token");
 
         if (token) {
-          // Отправляем запрос с заголовком Authorization
           const response = await instance.get("/profile/balance", {
             headers: {
-              Authorization: `Bearer ${token}`
-            }
+              Authorization: `Bearer ${token}`,
+            },
           });
-            setBalance(response.data.balance);
-          
+          setBalance(response.data.balance);
         } else {
           console.error("Токен не найден");
         }
@@ -52,8 +50,8 @@ const Header = () => {
   const colorBalance = () => {
     if (balance === null) return "gray";
     if (balance < 0) return "red";
-    if (balance === 0.00) return "gray";
-    if(balance > 0) return "green";
+    if (balance === 0.0) return "gray";
+    if (balance > 0) return "green";
   };
 
   const whatUrl = () => {
@@ -71,20 +69,21 @@ const Header = () => {
     } else {
       return (
         <Link href="/profile" className={styles.profile__btn}>
-          <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} /> Личный
-          кабинет
+          <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} />{" "}
+          Личный кабинет
         </Link>
       );
     }
   };
 
   return (
-    isClient && (
-      <header className={styles.header}>
-        <div className={styles.wrapper}>
-          <div className={styles.left}>
-            <Link href="/">
-              {matches[576] ? (
+    <header className={styles.header}>
+      <div className={styles.wrapper}>
+        {/* Статичные элементы, отображаемые при отключенном JavaScript */}
+        <noscript>
+          <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: "20px"}}>
+            <div style={{ width: "100px", height: "50px" }}>
+              <Link href="/">
                 <Image
                   src="/logo.svg"
                   alt="logo"
@@ -92,12 +91,8 @@ const Header = () => {
                   height={70}
                   priority
                 />
-              ) : (
-                <LogoIcon />
-              )}
-            </Link>
-          </div>
-          {matches[1200] && (
+              </Link>
+            </div>
             <div className={styles.center}>
               <nav>
                 <ul>
@@ -121,33 +116,104 @@ const Header = () => {
                   <li>
                     <Link href="/faq">Q&A</Link>
                   </li>
+                  <li>
+                    <Link href="/login" className={styles.login__btn}>
+                      <Image
+                        src="/login.svg"
+                        alt="login"
+                        width={16}
+                        height={20}
+                      />{" "}
+                      Вход
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/register" className={styles.register__btn}>
+                      Регистрация
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </div>
-          )}
-          <div className={styles.right}>
-            {isAuthenticated ? (
-              <>
-                {whatUrl()}
-                <Link href="/logout" className={styles.register__btn}>
-                  Выход
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href="/login" className={styles.login__btn}>
-                  <Image src="/login.svg" alt="login" width={16} height={20} /> Вход
-                </Link>
-                <Link href="/register" className={styles.register__btn}>
-                  Регистрация
-                </Link>
-              </>
-            )}
-            {!matches[1200] && <Drawer />}
           </div>
-        </div>
-      </header>
-    )
+        </noscript>
+
+        {/* Клиентские элементы, отображаемые при включенном JavaScript */}
+        {isClient && (
+          <>
+            <div className={styles.left}>
+              <Link href="/">
+                {matches[576] ? (
+                  <Image
+                    src="/logo.svg"
+                    alt="logo"
+                    width={170}
+                    height={70}
+                    priority
+                  />
+                ) : (
+                  <LogoIcon />
+                )}
+              </Link>
+            </div>
+            {matches[1200] && (
+              <div className={styles.center}>
+                <nav>
+                  <ul>
+                    <li>
+                      <Link href="/o-kompanii">О нас</Link>
+                    </li>
+                    <li>
+                      <Link href="/populyarnye-magaziny">
+                        Популярные магазины
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/buy-me">Купи вместо меня</Link>
+                    </li>
+                    <li>
+                      <Link href="/kontakty">Контакты</Link>
+                    </li>
+                    <li>
+                      <Link href="/#calculator">Калькулятор</Link>
+                    </li>
+                    <li>
+                      <Link href="/faq">Q&A</Link>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            )}
+            <div className={styles.right}>
+              {isAuthenticated ? (
+                <>
+                  {whatUrl()}
+                  <Link href="/logout" className={styles.register__btn}>
+                    Выход
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="/login" className={styles.login__btn}>
+                    <Image
+                      src="/login.svg"
+                      alt="login"
+                      width={16}
+                      height={20}
+                    />{" "}
+                    Вход
+                  </Link>
+                  <Link href="/register" className={styles.register__btn}>
+                    Регистрация
+                  </Link>
+                </>
+              )}
+              {!matches[1200] && <Drawer />}
+            </div>
+          </>
+        )}
+      </div>
+    </header>
   );
 };
 
