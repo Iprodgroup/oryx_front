@@ -1,0 +1,22 @@
+@import '@/styles/mixins'
+
+.btn
+    @include red-btn(20px)
+
+    width: fit-content
+    height: 50px
+    gap: 5px
+    font-family: 'Gilroy-Bold ☞', sans-serif
+    margin-right: 0
+    padding: 0 20px
+
+    span
+        font-size: 35px
+
+@media (max-width: 576px)
+    .btn
+        height: 30px
+        font-family: 'Gilroy-Medium ☞', sans-serif
+
+        span
+            display: none
