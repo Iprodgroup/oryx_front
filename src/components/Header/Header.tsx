@@ -76,12 +76,41 @@ const Header = () => {
     }
   };
 
+  const whatUrlParcels = () => {
+    if (url === "/profile/parcels") {
+      return (
+        <div className={styles.balance}>
+          <div className={styles.balance__value}>
+            <b style={{ color: colorBalance() }}>
+              {balance !== null ? balance : "Загрузка..."}
+            </b>
+            <b style={{ fontSize: "10px", marginLeft: "3px" }}>₸</b>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <Link href="/logout" className={styles.register__btn}>
+          Выход
+        </Link>
+      );
+    }
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
         {/* Статичные элементы, отображаемые при отключенном JavaScript */}
         <noscript>
-          <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: "20px"}}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
             <div style={{ width: "100px", height: "50px" }}>
               <Link href="/">
                 <Image
@@ -188,9 +217,7 @@ const Header = () => {
               {isAuthenticated ? (
                 <>
                   {whatUrl()}
-                  <Link href="/logout" className={styles.register__btn}>
-                    Выход
-                  </Link>
+                  {whatUrlParcels()}
                 </>
               ) : (
                 <>

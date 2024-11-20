@@ -12,7 +12,7 @@
 <script>
     async function initiatePayment(invoiceId, amount) {
         try {
-            const response = await fetch('/api/create-payment', {
+            const response = await fetch('https://cms.oryx.kz/api/pay', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,6 +20,7 @@
                 },
                 body: JSON.stringify({ invoiceId, amount })
             });
+            console.log(response)
             const paymentObject = await response.json();
 
             halyk.pay(paymentObject);
@@ -31,6 +32,7 @@
     document.getElementById('payButton').addEventListener('click', () => {
         const invoiceId = '000000001';
         const amount = 10000; // Сумма оплаты
+        console.log(invoiceId, amount)
         initiatePayment(invoiceId, amount);
     });
 </script>

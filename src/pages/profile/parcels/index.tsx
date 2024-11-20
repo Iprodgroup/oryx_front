@@ -30,6 +30,7 @@ import statuses from "@/utils/statuses";
 import formatDate from "@/utils/formatDate";
 import Switch from "@/components/Switch/Switch";
 import Cookies from "js-cookie";
+import AddBalance from "@/components/AddBalance/AddBalance";
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get<{ items: Parcel[] }>("/profile/parcels", {
@@ -174,10 +175,11 @@ const ProfileParcels = ({
             <h1>Список ваших посылок</h1>
             <p>Вся информация о ваших посылках и их статусах</p>
             {!matches && (
-              <>
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 <AddParcel />
+                <AddBalance />
                 <Switch />
-              </>
+              </div>
             )}
             <form className={styles.formik} onSubmit={handleSubmit}>
               {matches ? (
@@ -436,7 +438,12 @@ const ProfileParcels = ({
           </div>
           <div className={styles.right}>
             {matches ? (
+              <div className={styles.paba}>
               <AddParcel />
+              <AddBalance />
+            </div>
+            
+              
             ) : (
               <Image
                 src="/man.svg"
