@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/styled": "^11.13.5",
+    "@mui/material": "^6.1.8",
     "@react-input/mask": "^1.2.5",
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
