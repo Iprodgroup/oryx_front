@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import styles from "./styles.module.sass";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
+import { handlePayment } from "../../utils/payment"; // Импортируйте handlePayment из вашего файла
 
 const style = {
   position: "absolute",
@@ -14,16 +14,44 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  transition: "opacity 0.3s ease, transform 0.4s ease",
 };
 
 const AddBalance = () => {
   const [open, setOpen] = useState(false);
+  const [amount, setAmount] = useState(0);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    if (amount <= 0) {
+      alert("Пожалуйста, введите сумму больше 0.");
+      return;
+    }
+
+    try {
+      const paymentSuccess = await handlePayment(amount);
+
+      if (paymentSuccess) {
+        alert("Платёж успешно завершён!");
+        handleClose(); // Закрываем модальное окно, если платеж прошёл
+      } else {
+        alert("Платёж не удался. Пожалуйста, попробуйте снова.");
+      }
+    } catch (error) {
+      console.error("Ошибка при обработке платежа", error);
+      alert("Произошла ошибка при обработке платежа.");
+    }
+  };
+
   return (
     <div>
-      <button onClick={handleOpen} className={styles.btn}>Пополнить баланс</button>
+      <button onClick={handleOpen} className={styles.btn}>
+        Пополнить баланс
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -31,18 +59,47 @@ const AddBalance = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <form action="https://cms.oryx.kz/pay" target="_blank" method="GET" style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="amount" style={{fontSize: "16px", fontWeight: "600"}}>Сумма:</label>
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <label
+              htmlFor="amount"
+              style={{ fontSize: "16px", fontWeight: "600" }}
+            >
+              Сумма:
+            </label>
             <input
-              type="number"
               name="amount"
               id="amount"
+              value={amount}
+              onChange={(e) => setAmount(Number(e.target.value))}
               min="0"
               step="0.01"
               required
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "5px", margin: "10px 0" }}
+              style={{
+                padding: "10px",
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+                margin: "10px 0",
+              }}
             />
-            <button type="submit" style={{ marginTop: "10px", width: "100%", padding: "10px 20px", backgroundColor: "#E65A57", color: "white", border: "none", borderRadius: "5px", cursor: "pointer" }}>Оплатить</button>
+            <button
+              type="submit"
+              onClick={() => {setTimeout(handleClose, 300)}}
+              style={{
+                marginTop: "10px",
+                width: "100%",
+                padding: "10px 20px",
+                backgroundColor: "#E65A57",
+                color: "white",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Оплатить
+            </button>
           </form>
         </Box>
       </Modal>

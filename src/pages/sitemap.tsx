@@ -36,6 +36,47 @@ const Sitemap = ({
           name="description"
           content="Ознакомьтесь с картой сайта компании Oryx по доставке товаров из США в Казахстан. Быстрый доступ к разделам, условиям доставки и популярным онлайн-магазинам"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Карта сайта - Oryx",
+              description:
+                "Карта сайта компании Oryx: полный перечень страниц для быстрого доступа к информации о доставке товаров из США в Казахстан. Удобная навигация для поиска услуг, условий и контактов.",
+              url: "https://oryx.kz/sitemap",
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://oryx.kz/sitemap",
+              },
+              inLanguage: "ru",
+              provider: {
+                "@type": "Organization",
+                name: "Oryx",
+                url: "https://oryx.kz",
+                logo: "https://oryx.kz/logo.svg",
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 700 323 22 22",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: ["Russian"],
+                  },
+                ],
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "KZ",
+                  addressLocality: "Алматы",
+                  streetAddress:
+                    "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+                },
+                sameAs: ["https://www.instagram.com/oryx.usa.kz/"],
+              },
+            }),
+          }}
+        />
       </Head>
       <section>
         <div className={styles.wrapper}>
@@ -126,7 +167,9 @@ const Sitemap = ({
               <ul>
                 {stores.map((store) => (
                   <li key={store.id}>
-                    <Link href={`/populyarnye-magaziny/${store.slug}`}>{store.name}</Link>
+                    <Link href={`/populyarnye-magaziny/${store.slug}`}>
+                      {store.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
