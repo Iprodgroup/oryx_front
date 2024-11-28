@@ -7,6 +7,51 @@ const PrivacyPolicy = () => {
     <>
       <Head>
         <title>Политика конфиденциальности компании Oryx</title>
+        <meta
+          name="description"
+          content="Ознакомьтесь с политикой конфиденциальности компании Oryx. Узнайте, как мы собираем, используем и защищаем ваши персональные данные при доставке товаров из США в Казахстан."
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "PrivacyPolicy",
+              name: "Политика конфиденциальности - Oryx",
+              description:
+                "Ознакомьтесь с политикой конфиденциальности компании Oryx. Узнайте, как мы собираем, используем и защищаем ваши персональные данные при доставке товаров из США в Казахстан.",
+              url: "https://oryx.kz/politika-konfidentsialnosti",
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://oryx.kz/politika-konfidentsialnosti",
+              },
+              inLanguage: "ru",
+              provider: {
+                "@type": "Organization",
+                name: "Oryx",
+                url: "https://oryx.kz",
+                logo: "https://oryx.kz/logo.svg",
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 700 323 22 22",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: ["Russian"],
+                  },
+                ],
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "KZ",
+                  addressLocality: "Алматы",
+                  streetAddress:
+                    "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+                },
+                sameAs: ["https://www.instagram.com/oryx.usa.kz/"],
+              },
+            }),
+          }}
+        />
       </Head>
 
       <section>

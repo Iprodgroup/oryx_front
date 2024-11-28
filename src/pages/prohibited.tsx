@@ -25,6 +25,47 @@ const Prohibited = () => {
           content="Запрещенные к авиаперевозке грузы - Oryx"
         />
         <meta property="og:image" content="https://oryx.kz/logo.svg" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Запрещенные товары - Oryx",
+              description:
+                "Список запрещенных товаров и услуг для доставки через компанию Oryx. Ознакомьтесь с перечнем товаров, которые не подлежат транспортировке из США в Казахстан.",
+              url: "https://oryx.kz/prohibited",
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://oryx.kz/prohibited",
+              },
+              inLanguage: "ru",
+              provider: {
+                "@type": "Organization",
+                name: "Oryx",
+                url: "https://oryx.kz",
+                logo: "https://oryx.kz/logo.svg",
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 700 323 22 22",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: ["Russian"],
+                  },
+                ],
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "KZ",
+                  addressLocality: "Алматы",
+                  streetAddress:
+                    "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+                },
+                sameAs: ["https://www.instagram.com/oryx.usa.kz/"],
+              },
+            }),
+          }}
+        />
       </Head>
       <section>
         <link rel="canonical" href="https://oryx.kz/prohibited" />
@@ -32,9 +73,7 @@ const Prohibited = () => {
           <h1>Перечень запрещенных к авиаперевозке грузов</h1>
           <div className={styles.body}>
             <strong>Запрещены к авиаперевозке:</strong>
-            <div
-            className={styles.list}
-            >
+            <div className={styles.list}>
               <div style={{ maxWidth: "350px" }}>
                 <p>
                   Взрывоопасные, радиоактивные, горючие, инфекционные, ядовитые,

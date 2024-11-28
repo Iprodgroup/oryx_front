@@ -13,8 +13,8 @@ const Contacts = () => {
         <li>
           <b>Адрес:</b>
           <p>
-            Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын
-            Гасыр, кабинет 133
+            Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр,
+            кабинет 133
           </p>
         </li>
         <li>
@@ -58,7 +58,9 @@ const Contacts = () => {
   return (
     <>
       <Head>
-        <title>Контакты компании Oryx. Доставка товаров из США в Казахстан</title>
+        <title>
+          Контакты компании Oryx. Доставка товаров из США в Казахстан
+        </title>
         <meta
           name="description"
           content="Адрес: 📍 Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133📍
@@ -84,6 +86,90 @@ const Contacts = () => {
           content="Контакты компании Oryx. Доставка товаров из США в Казахстан"
         />
         <meta property="og:image" content="https://oryx.kz/logo.svg" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              name: "Контакты компании Oryx. Доставка товаров из США в Казахстан",
+              description:
+                "Адрес: 📍 Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133📍 📱 Телефон: +7 700 323 22 22 📱 📧 Email: info@oryx.kz 📧 Whatsapp +7 747 515 5613",
+              url: "https://oryx.kz//kontakty",
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": "https://oryx.kz/kontakty",
+              },
+              author: {
+                "@type": "Organization",
+                name: "Oryx",
+                url: "https://oryx.kz",
+                logo: "https://oryx.kz/logo.svg",
+                contactPoint: [
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 747 515 56 13",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: "Russian",
+                  },
+                  {
+                    "@type": "ContactPoint",
+                    telephone: "+7 700 323 22 22",
+                    contactType: "customer service",
+                    areaServed: "KZ",
+                    availableLanguage: "Russian",
+                  },
+                ],
+                address: {
+                  "@type": "PostalAddress",
+                  addressCountry: "KZ",
+                  addressLocality: "Алматы",
+                  streetAddress:
+                    "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+                },
+                sameAs: ["https://www.instagram.com/oryx.usa.kz/"],
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ContactPage",
+              name: "Контакты компании Oryx",
+              description:
+                "Адрес: 📍 Республика Казахстан, г.Алматы, улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133📍 Телефон: +7 700 323 22 22 📱 Email: info@oryx.kz 📧 Whatsapp: +7 747 515 5613",
+              url: "https://oryx.kz/kontakty",
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  telephone: "+7 700 323 22 22",
+                  contactType: "customer service",
+                  availableLanguage: "Russian",
+                  areaServed: "KZ",
+                },
+                {
+                  "@type": "ContactPoint",
+                  telephone: "+7 747 515 56 13",
+                  contactType: "customer service",
+                  availableLanguage: "Russian",
+                  areaServed: "KZ",
+                },
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "KZ",
+                addressLocality: "Алматы",
+                streetAddress:
+                  "улица Шевченко 118, БЦ Алтын Гасыр, кабинет 133",
+              },
+              sameAs: ["https://www.instagram.com/oryx.usa.kz/"],
+            }),
+          }}
+        />
       </Head>
 
       <section>
