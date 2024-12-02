@@ -11,6 +11,13 @@ const PrivacyPolicy = () => {
           name="description"
           content="Ознакомьтесь с политикой конфиденциальности компании Oryx. Узнайте, как мы собираем, используем и защищаем ваши персональные данные при доставке товаров из США в Казахстан."
         />
+        <meta property="og:title" content="Политика конфиденциальности компании Oryx" />
+        <meta property="og:description" content="Ознакомьтесь с политикой конфиденциальности компании Oryx. Узнайте, как мы собираем, используем и защищаем ваши персональные данные при доставке товаров из США в Казахстан." />
+        <meta property="og:url" content="https://oryx.kz/politika-konfidentsialnosti" />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Oryx" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
