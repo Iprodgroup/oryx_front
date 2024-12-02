@@ -12,6 +12,7 @@ export default function Document() {
           content="vp6g7rjn5equhL-Lf8Drs_xJAPsSb3ddlCuWnTSnLTg"
         />
         <meta name="yandex-verification" content="cf6f970418b0ab07" />
+        <link rel="icon" href="/favicon.ico" />
         {/* Google Analytics */}
         <script
           async

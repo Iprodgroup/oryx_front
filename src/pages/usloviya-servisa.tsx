@@ -14,6 +14,15 @@ const Support = () => {
           name="description"
           content="Узнайте условия сервиса компании Oryx по доставке товаров из США в Казахстан. Ознакомьтесь с правилами использования услуг, возвратами и гарантиями. Надежность и прозрачность для удобства клиентов."
         />
+        <meta
+          property="og:title"
+          content="Условия сервиса по доставке товаров из США в Казахстан - Oryx"
+        />
+        <meta
+          property="og:description"
+          content="Узнайте условия сервиса компании Oryx по доставке товаров из США в Казахстан. Ознакомьтесь с правилами использования услуг, возвратами и гарантиями. Надежность и прозрачность для удобства клиентов."
+        />
+        <meta property="og:url" content="https://oryx.kz/usloviya-servisa" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
