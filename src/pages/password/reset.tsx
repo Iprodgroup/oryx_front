@@ -7,6 +7,13 @@ const PasswordReset = () => {
       <Head>
         <title>Восстановление пароля</title>
         <meta name="description" content="Восстановление пароля" />
+        <meta property="og:title" content="Восстановление пароля" />
+        <meta property="og:description" content="Восстановление пароля" />
+        <meta property="og:url" content="https://oryx.kz/password/reset" />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Oryx" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

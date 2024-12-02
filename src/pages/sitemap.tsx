@@ -31,11 +31,25 @@ const Sitemap = ({
   return (
     <>
       <Head>
-        <title>Доставка товаров из США в Казахстан - Карта сайта </title>
+        <title>Доставка товаров из США в Казахстан - Карта сайта</title>
         <meta
           name="description"
           content="Ознакомьтесь с картой сайта компании Oryx по доставке товаров из США в Казахстан. Быстрый доступ к разделам, условиям доставки и популярным онлайн-магазинам"
         />
+        <meta
+          property="og:title"
+          content="Доставка товаров из США в Казахстан - Карта сайта"
+        />
+        <meta
+          property="og:description"
+          content="Ознакомьтесь с картой сайта компании Oryx по доставке товаров из США в Казахстан. Быстрый доступ к разделам, условиям доставки и популярным онлайн-магазинам"
+        />
+        <meta property="og:url" content="https://oryx.kz/sitemap" />
+        <meta
+          property="og:site_name"
+          content="Доставка товаров из США в Казахстан - Карта сайта"
+        />
+        <meta property="og:image" content="https://oryx.kz/logo.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
