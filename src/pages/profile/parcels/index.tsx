@@ -426,7 +426,7 @@ const ProfileParcels = ({
                                           <td style={{ textAlign: "left" }}>
                                             <strong>Получатель:</strong>
                                             &nbsp;&nbsp;
-                                            {isDisplay.data.user_fio}
+                                            {isDisplay.data.recipient_fio}
                                           </td>
                                         </div>
                                       ))}
