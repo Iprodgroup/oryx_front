@@ -175,7 +175,13 @@ const ProfileParcels = ({
             <h1>Список ваших посылок</h1>
             <p>Вся информация о ваших посылках и их статусах</p>
             {!matches && (
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+              >
                 <AddParcel />
                 <AddBalance />
                 <Switch />
@@ -439,11 +445,9 @@ const ProfileParcels = ({
           <div className={styles.right}>
             {matches ? (
               <div className={styles.paba}>
-              <AddParcel />
-              <AddBalance />
-            </div>
-            
-              
+                <AddParcel />
+                <AddBalance />
+              </div>
             ) : (
               <Image
                 src="/man.svg"
