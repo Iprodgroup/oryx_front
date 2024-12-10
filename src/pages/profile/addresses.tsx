@@ -16,7 +16,6 @@ import passToken from "@/utils/passToken";
 import Switch from "@/components/Switch/Switch";
 import CountrySelect from "@/components/CountrySelect/CountrySelect";
 
-
 export const getServerSideProps = (async (context) => {
   const res = await instance.get("/user", { ...passToken(context) });
   const user: User = await res.data;
@@ -55,7 +54,7 @@ const ProfileAddresses = ({
           <div className={styles.left}>
             {matches ? (
               <div className={styles.head}>
-                  <Image src="/plane.svg" alt="plane" width={50} height={50} />
+                <Image src="/plane.svg" alt="plane" width={50} height={50} />
                 <h1>Ваши персональные адреса</h1>
               </div>
             ) : (
@@ -87,8 +86,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.address1)}
                 >
-                  
-                    <Image src="/copy.svg" alt="copy" width={35} height={35} />
+                  <Image src="/copy.svg" alt="copy" width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -103,8 +101,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.address2)}
                 >
-                 
-                    <Image src="/copy.svg" alt="copy" width={35} height={35} />
+                  <Image src="/copy.svg" alt="copy" width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -114,8 +111,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.city)}
                 >
-                 
-                    <Image src="/copy.svg" alt="copy" width={35} height={35} />
+                  <Image src="/copy.svg" alt="copy" width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -125,8 +121,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.state)}
                 >
-                 
-                    <Image src="/copy.svg" alt="copy" width={35} height={35} />
+                  <Image src="/copy.svg" alt="copy" width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -136,8 +131,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.zip.toString())}
                 >
-                
-                    <Image src="/copy.svg" alt="copy" width={35} height={35} />
+                  <Image src="/copy.svg" alt="copy" width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -147,8 +141,7 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.country)}
                 >
-                
-                    <Image src="/copy.svg" alt="copy" width={35} height={35} />
+                  <Image src="/copy.svg" alt="copy" width={35} height={35} />
                 </button>
               </label>
               <label>
@@ -158,13 +151,13 @@ const ProfileAddresses = ({
                   className={styles.copy__btn}
                   onClick={() => copyToClipboard(fields.phone.toString())}
                 >
-                 
-                    <Image src="/copy.svg" alt="copy" width={35} height={35} />
+                  <Image src="/copy.svg" alt="copy" width={35} height={35} />
                 </button>
               </label>
             </div>
             <p className={styles.schedule}>
-              09:00 - 17:00 понедельник-пятница, по времени Делавэра
+              Посылки принимаются на склад только в рабочие дни и в рабочее
+              время.
             </p>
           </div>
           <div className={styles.right}>
@@ -180,11 +173,11 @@ const ProfileAddresses = ({
                 <Link href="/prohibited">
                   Смотреть список запрещенных товаров
                 </Link>
-              
-                  <Image src="/man.svg" alt="man" {...responsiveImg} />
+
+                <Image src="/man.svg" alt="man" {...responsiveImg} />
               </>
             ) : (
-                <Image
+              <Image
                 src="/man.svg"
                 alt="man"
                 {...responsiveImg}
@@ -194,7 +187,7 @@ const ProfileAddresses = ({
                 }}
                 priority
               />
-              )}
+            )}
           </div>
         </div>
       </ProfileLayout>
