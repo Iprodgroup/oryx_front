@@ -26,7 +26,7 @@ export interface Parcel {
   in_phone: string | null;
   in_status: string;
   integration_id: string | null;
-  user_fio: string;
+  recipient_fio: string;
   goods: Good[];
 }
 
