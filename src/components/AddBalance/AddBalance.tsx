@@ -14,6 +14,7 @@ import Modal from "@mui/material/Modal";
 import { FormEvent, useState } from "react";
 import axios from "axios";
 import generateInvoiceId from "@/utils/generateInvoiceId";
+import Link from "next/link";
 
 const style = {
   position: "absolute",
@@ -150,8 +151,14 @@ const AddBalance = () => {
               Оплатить
             </button>
             <b style={{ fontSize: "12px", marginTop: "10px" }}>
-              Нажимая на кнопку <q>Оплатить</q>, вы соглашаетесь с условиями
-              платежа
+              Нажимая на кнопку <q>Оплатить</q>, вы соглашаетесь с
+              <br />
+              <Link
+                href="/obshchie-usloviya"
+                style={{ borderBottom: "1px solid #f1f1f1" }}
+              >
+                условиями нашего сервиса
+              </Link>
             </b>
           </form>
         </Box>
