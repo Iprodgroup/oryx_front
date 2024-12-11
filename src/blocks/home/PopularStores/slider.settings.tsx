@@ -1,14 +1,14 @@
-import styles from './styles.module.sass';
+import styles from "./styles.module.sass";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { SampleNextArrow, SamplePrevArrow } from './arrows';
+import { SampleNextArrow, SamplePrevArrow } from "./arrows";
 
 const settings = {
   dots: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 5,
+  slidesToShow: 4,
   slidesToScroll: 1,
   initialSlide: 0,
   swipeToSlide: true,
@@ -18,7 +18,7 @@ const settings = {
     {
       breakpoint: 992,
       settings: {
-        slidesToShow: 4,
+        slidesToShow: 3,
       },
     },
     {
@@ -30,11 +30,11 @@ const settings = {
     {
       breakpoint: 576,
       settings: {
-        className: classNames('center', styles.slider),
+        className: classNames("center", styles.slider),
         centerMode: true,
         infinite: true,
-        centerPadding: '60px',
-        slidesToShow: 1.3,
+        centerPadding: "60px",
+        slidesToShow: 1,
         speed: 500,
         arrows: false,
       },

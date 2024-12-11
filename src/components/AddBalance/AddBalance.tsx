@@ -1,17 +1,10 @@
-export {};
-
-declare global {
-  interface Window {
-    halyk: any;
-  }
-}
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Box } from "@mui/material";
 import styles from "./styles.module.sass";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { FormEvent, useState } from "react";
 import axios from "axios";
-
 import generateInvoiceId from "@/utils/generateInvoiceId";
 
 const style = {
@@ -40,53 +33,56 @@ const AddBalance = () => {
     const invoiceId = generateInvoiceId();
     const backUrl = process.env.NEXT_PUBLIC_URL + "/profile/parcels";
 
-    const { data: paymentTokenData } = await axios.postForm(
-      "https://epay-oauth.homebank.kz/oauth2/token",
-      {
-        grant_type: "client_credentials",
-        scope:
-          "webapi usermanagement email_send verification statement statistics payment",
-        client_id: process.env.NEXT_PUBLIC_EPAY_CLIENT_ID,
-        client_secret: process.env.NEXT_PUBLIC_EPAY_CLIENT_SECRET,
-        invoiceID: invoiceId,
-        amount: fields.amount,
-        currency: "KZT",
-        terminal: process.env.NEXT_PUBLIC_EPAY_CLIENT_TERMINAL,
-      }
-    );
-
-    const script = document.createElement("script");
-    script.src = "https://epay.homebank.kz/payform/payment-api.js";
-    script.onload = () => {
-      window.halyk.showPaymentWidget(
+    try {
+      const { data: paymentTokenData } = await axios.postForm(
+        "https://epay-oauth.homebank.kz/oauth2/token",
         {
-          invoiceId,
-          invoiceIdAlt: invoiceId,
-          backLink: backUrl,
-          failureBackLink: backUrl,
-          language: "RUS",
-          description: "Оплата на сайте oryx.kz",
-          // accountId: process.env.NEXT_PUBLIC_EPAY_CLIENT_ID,
-          terminal: process.env.NEXT_PUBLIC_EPAY_CLIENT_TERMINAL,
+          grant_type: "client_credentials",
+          scope:
+            "webapi usermanagement email_send verification statement statistics payment",
+          client_id: process.env.NEXT_PUBLIC_EPAY_CLIENT_ID,
+          client_secret: process.env.NEXT_PUBLIC_EPAY_CLIENT_SECRET,
+          invoiceID: invoiceId,
           amount: fields.amount,
-          // name: 'ORYX.KZ',
           currency: "KZT",
-          auth: paymentTokenData,
-        },
-        (clb: { success: boolean }) => {
-          if (clb.success) {
-            alert("OK");
-          } else {
-            alert("FAILED");
-          }
+          terminal: process.env.NEXT_PUBLIC_EPAY_CLIENT_TERMINAL,
         }
       );
-    };
-    document.body.appendChild(script);
+
+      const script = document.createElement("script");
+      script.src = "https://epay.homebank.kz/payform/payment-api.js";
+      script.onload = () => {
+        window.halyk.showPaymentWidget(
+          {
+            invoiceId,
+            invoiceIdAlt: invoiceId,
+            backLink: backUrl,
+            failureBackLink: backUrl,
+            language: "RUS",
+            description: "Оплата на сайте oryx.kz",
+            terminal: process.env.NEXT_PUBLIC_EPAY_CLIENT_TERMINAL,
+            amount: fields.amount,
+            currency: "KZT",
+            auth: paymentTokenData,
+          },
+          (clb: { success: boolean }) => {
+            if (clb.success) {
+              toast.success("Оплата прошла успешно! 🎉");
+            } else {
+              toast.error("Оплата отменена. Попробуйте снова.");
+            }
+          }
+        );
+      };
+      document.body.appendChild(script);
+    } catch (error) {
+      toast.error("Ошибка при инициализации платежа. Проверьте данные.");
+    }
   };
 
   return (
     <div>
+      <ToastContainer />
       <button onClick={handleOpen} className={styles.btn}>
         Пополнить баланс
       </button>
@@ -97,6 +93,14 @@ const AddBalance = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <strong
+            style={{ fontSize: "20px", borderBottom: "1px solid #E65A57" }}
+          >
+            Пополнение баланса
+          </strong>
+          <br />
+          <br />
+
           <form
             onSubmit={handleSubmit}
             style={{ display: "flex", flexDirection: "column" }}
@@ -123,6 +127,7 @@ const AddBalance = () => {
             />
             <button
               type="submit"
+              onClick={() => setTimeout(() => handleClose(), 500)}
               style={{
                 marginTop: "10px",
                 width: "100%",
@@ -136,6 +141,10 @@ const AddBalance = () => {
             >
               Оплатить
             </button>
+            <b style={{ fontSize: "12px", marginTop: "10px" }}>
+              Нажимая на кнопку <q>Оплатить</q>, вы соглашаетесь с условиями
+              платежа
+            </b>
           </form>
         </Box>
       </Modal>
