@@ -78,7 +78,10 @@ const BuyItForMe = () => {
   return (
     <>
       <Head>
-        <title>Сервис &quot;Купи вместо меня&quot; от Oryx. Доставка товаров из США в Казахстан</title>
+        <title>
+          Сервис &quot;Купи вместо меня&quot; от Oryx. Доставка товаров из США в
+          Казахстан
+        </title>
         <meta
           name="description"
           content="Oryx покупает товары вместо Вас. Доставка до 10 рабочих дней. Минимальная комиссия за заказ. Экономия времени."
@@ -87,7 +90,7 @@ const BuyItForMe = () => {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="Сервис &quot;Купи вместо меня&quot; от Oryx. Доставка товаров из США в Казахстан"
+          content='Сервис "Купи вместо меня" от Oryx. Доставка товаров из США в Казахстан'
         />
         <meta
           property="og:description"
@@ -96,7 +99,7 @@ const BuyItForMe = () => {
         <meta property="og:url" content="https://oryx.kz/buy-me" />
         <meta
           property="og:site_name"
-          content="Сервис &quot;Купи вместо меня&quot; от Oryx. Доставка товаров из США в Казахстан"
+          content='Сервис "Купи вместо меня" от Oryx. Доставка товаров из США в Казахстан'
         />
         <meta property="og:image" content="https://oryx.kz/logo.svg" />
         <script
@@ -126,21 +129,21 @@ const BuyItForMe = () => {
       <section>
         <link rel="canonical" href="https://oryx.kz/buy-me" />
         <div className={styles.wrapper}>
-        <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          right: "7",
-          gap: "10px",
-          marginBottom: "20px",
-          color: "#706e6e",
-        }}
-      >
-        <Link href="/" style={{ textDecoration: "underline" }}>
-          Главная
-        </Link>
-        / Купи вместо меня
-      </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              right: "7",
+              gap: "10px",
+              marginBottom: "20px",
+              color: "#706e6e",
+            }}
+          >
+            <Link href="/" style={{ textDecoration: "underline" }}>
+              Главная
+            </Link>
+            / Купи вместо меня
+          </div>
           <h1>ORYX осуществит покупку вместо Вас</h1>
           <Steps />
           <form className={styles.formik} onSubmit={handleSubmit}>

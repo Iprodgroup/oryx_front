@@ -1,3 +1,11 @@
+export {};
+
+declare global {
+  interface Window {
+    halyk: any;
+  }
+}
+
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Box } from "@mui/material";
