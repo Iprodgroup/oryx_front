@@ -157,7 +157,9 @@ const ProfileAddresses = ({
             </div>
             <p className={styles.schedule}>
               Посылки принимаются на склад только в рабочие дни и в рабочее
-              время.
+              время.***
+              <br />
+              09:00-17:00 понедельник-пятница, по времени Делавэр
             </p>
           </div>
           <div className={styles.right}>

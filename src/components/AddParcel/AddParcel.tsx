@@ -1,11 +1,12 @@
-import styles from './styles.module.sass';
+import styles from "./styles.module.sass";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 const AddParcel = () => {
   return (
-    <Link href='/profile/parcels/create' className={styles.btn}>
-      <span>+</span> Добавить посылку
+    <Link href="/profile/parcels/create" className={styles.btn}>
+      <span>+</span>
+      <p>Добавить посылку</p>
     </Link>
   );
 };
