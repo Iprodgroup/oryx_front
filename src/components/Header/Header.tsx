@@ -68,7 +68,13 @@ const Header = () => {
       );
     } else {
       return (
-        <Link href="/profile" className={styles.profile__btn}>
+        <Link
+          href="/profile"
+          className={styles.profile__btn}
+          style={{
+            display: isClient && window.innerWidth < 576 ? "none" : "flex",
+          }}
+        >
           <Image src="/lock-red.svg" alt="lock-red" width={16} height={16} />{" "}
           Личный кабинет
         </Link>
