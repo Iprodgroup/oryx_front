@@ -30,6 +30,10 @@ const style = {
 
 const AddBalance = () => {
   const [open, setOpen] = useState(false);
+  const [fields, setFields] = useState({
+    amount: 0,
+  });
+  console.log(fields);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -74,8 +78,25 @@ const AddBalance = () => {
             currency: "KZT",
             auth: paymentTokenData,
           },
-          (clb: { success: boolean }) => {
+          async (clb: { success: boolean }) => {
             if (clb.success) {
+              await axios.post(
+                `${process.env.NEXT_PUBLIC_API}/transaction`,
+                {
+                  userId: fields.userId,
+                  invoiceId,
+                  amount: fields.amount,
+                  tenge: fields,
+                  type: 1,
+                  outgo: 1,
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                  },
+                }
+              );
               toast.success("Оплата прошла успешно! 🎉");
             } else {
               toast.error("Оплата отменена. Попробуйте снова.");
@@ -126,6 +147,9 @@ const AddBalance = () => {
               id="amount"
               min="0"
               step="0.01"
+              onChange={(event) =>
+                setFields({ ...fields, amount: parseFloat(event.target.value) })
+              }
               required
               style={{
                 padding: "10px",
