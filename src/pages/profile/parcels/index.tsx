@@ -417,7 +417,9 @@ const ProfileParcels = ({
                                           </td>
                                           <td style={{ textAlign: "left" }}>
                                             <strong>Доп. услуга:</strong>
-                                            &nbsp;&nbsp;Не указано
+                                            &nbsp;&nbsp;
+                                            {item.additional_function ||
+                                              "Не указано"}
                                           </td>
                                           <td style={{ textAlign: "left" }}>
                                             <strong>Город:</strong>&nbsp;&nbsp;

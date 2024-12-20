@@ -26,6 +26,7 @@ export interface Parcel {
   in_phone: string | null;
   in_status: string;
   integration_id: string | null;
+  additional_function: string | null;
   recipient_fio: string;
   goods: Good[];
 }
@@ -37,6 +38,7 @@ interface Good {
   deleted_at: string | null;
   parcel_id: string;
   name: string;
+  additional_function: string | null;
   currency: string;
   price: string;
 }
