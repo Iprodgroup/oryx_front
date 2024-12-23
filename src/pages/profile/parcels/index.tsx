@@ -32,8 +32,15 @@ import Switch from "@/components/Switch/Switch";
 import Cookies from "js-cookie";
 import AddBalance from "@/components/AddBalance/AddBalance";
 
-export const getServerSideProps = (async (context) => {
-  const res = await instance.get<{ items: Parcel[] }>("/profile/parcels", {
+export const getServerSideProps: GetServerSideProps<{
+  parcels: Parcel[];
+  recipients: Recipient[];
+  user_id: number;
+}> = async (context) => {
+  const res = await instance.get<{
+    user_id: number;
+    items: Parcel[];
+  }>("/profile/parcels", {
     ...passToken(context),
     params: {
       status: context.query.status,
@@ -48,13 +55,14 @@ export const getServerSideProps = (async (context) => {
 
   const parcels = res.data.items;
   const recipients = res2.data.recipients;
-
-  return { props: { parcels, recipients } };
-}) satisfies GetServerSideProps<{ parcels: Parcel[]; recipients: Recipient[] }>;
+  const user_id = res.data.user_id;
+  return { props: { parcels, recipients, user_id } };
+};
 
 const ProfileParcels = ({
   parcels,
   recipients,
+  user_id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [isDisplay, setIsDisplay] = useState<{
     state: boolean;
@@ -69,7 +77,6 @@ const ProfileParcels = ({
   const ref = useRef(null);
 
   const router = useRouter();
-
   const onDisplay = (data: Parcel) => {
     if (isDisplay.state && isDisplay.data.id === data.id) {
       setIsDisplay({ state: false, data: {} });
@@ -183,7 +190,7 @@ const ProfileParcels = ({
                 }}
               >
                 <AddParcel />
-                <AddBalance />
+                <AddBalance user_id={user_id} />
                 <Switch />
               </div>
             )}
@@ -448,7 +455,7 @@ const ProfileParcels = ({
             {matches ? (
               <div className={styles.paba}>
                 <AddParcel />
-                <AddBalance />
+                <AddBalance user_id={user_id} />
               </div>
             ) : (
               <Image

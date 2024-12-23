@@ -28,12 +28,15 @@ const style = {
   p: 4,
 };
 
-const AddBalance = () => {
+interface AddBalanceProps {
+  user_id: number;
+}
+
+const AddBalance = ({ user_id }: AddBalanceProps) => {
   const [open, setOpen] = useState(false);
   const [fields, setFields] = useState({
     amount: 0,
   });
-  console.log(fields);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -48,7 +51,8 @@ const AddBalance = () => {
 
     try {
       const { data: paymentTokenData } = await axios.postForm(
-        "https://epay-oauth.homebank.kz/oauth2/token",
+        "https://testoauth.homebank.kz/epay2/oauth2/token",
+        // "https://epay-oauth.homebank.kz/oauth2/token",
         {
           grant_type: "client_credentials",
           scope:
@@ -63,7 +67,8 @@ const AddBalance = () => {
       );
 
       const script = document.createElement("script");
-      script.src = "https://epay.homebank.kz/payform/payment-api.js";
+      script.src = "https://test-epay.homebank.kz/payform/payment-api.js";
+      // "https://epay.homebank.kz/payform/payment-api.js";
       script.onload = () => {
         window.halyk.showPaymentWidget(
           {
@@ -81,12 +86,11 @@ const AddBalance = () => {
           async (clb: { success: boolean }) => {
             if (clb.success) {
               await axios.post(
-                `${process.env.NEXT_PUBLIC_API}/transaction`,
+                `${process.env.NEXT_PUBLIC_API}/transactions`,
                 {
-                  userId: fields.userId,
-                  invoiceId,
-                  amount: fields.amount,
-                  tenge: fields,
+                  user_id: user_id,
+                  order: invoiceId,
+                  tenge: fields.amount,
                   type: 1,
                   outgo: 1,
                 },
