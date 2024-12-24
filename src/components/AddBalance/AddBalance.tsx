@@ -15,6 +15,7 @@ import { FormEvent, useState } from "react";
 import axios from "axios";
 import generateInvoiceId from "@/utils/generateInvoiceId";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 const style = {
   position: "absolute",
@@ -37,6 +38,8 @@ const AddBalance = ({ user_id }: AddBalanceProps) => {
   const [fields, setFields] = useState({
     amount: 0,
   });
+  const accessToken = Cookies.get("access_token");
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -51,7 +54,8 @@ const AddBalance = ({ user_id }: AddBalanceProps) => {
 
     try {
       const { data: paymentTokenData } = await axios.postForm(
-        "https://epay-oauth.homebank.kz/oauth2/token",
+        // "https://epay-oauth.homebank.kz/oauth2/token",
+        "https://testoauth.homebank.kz/epay2/oauth2/token",
         {
           grant_type: "client_credentials",
           scope:
@@ -66,7 +70,9 @@ const AddBalance = ({ user_id }: AddBalanceProps) => {
       );
 
       const script = document.createElement("script");
-      script.src = "https://epay.homebank.kz/payform/payment-api.js";
+      script.src = "https://test-epay.homebank.kz/payform/payment-api.js";
+      // script.src = "https://epay.homebank.kz/payform/payment-api.js";
+
       script.onload = () => {
         window.halyk.showPaymentWidget(
           {
@@ -96,10 +102,17 @@ const AddBalance = ({ user_id }: AddBalanceProps) => {
                   headers: {
                     "Content-Type": "application/json",
                     Accept: "application/json",
+                    Authorization: `Bearer ${accessToken}`, // Include the access token in the headers
                   },
                 }
               );
-              toast.success("Оплата прошла успешно! 🎉");
+
+              toast.success(
+                "Оплата прошла успешно! 🎉. Страница сейчас перезагрузится."
+              );
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
             } else {
               toast.error("Оплата отменена. Попробуйте снова.");
             }
