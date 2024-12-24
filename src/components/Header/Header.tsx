@@ -42,7 +42,7 @@ const Header = () => {
       }
     };
 
-    if (url === "/profile" && isAuthenticated) {
+    if (url === "/profile" || (url === "/profile/parcels" && isAuthenticated)) {
       fetchBalance();
     }
   }, [url, isAuthenticated]);
