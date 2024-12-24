@@ -140,7 +140,7 @@ const ProfileParcels = ({
   const payParcel = async (id: number) => {
     try {
       const accessToken = Cookies.get("access_token");
-      const res = await instance.post(
+      await instance.post(
         `/parcels/${id}/pay`,
         {
           // type: 1,
@@ -426,6 +426,7 @@ const ProfileParcels = ({
                                   display: "flex",
                                   alignItems: "center",
                                   justifyContent: "center",
+                                  userSelect: "none",
                                 }}
                                 onMouseOver={(e) => {
                                   e.currentTarget.style.boxShadow =
@@ -437,8 +438,8 @@ const ProfileParcels = ({
                                 }}
                                 title={
                                   +parcel.payed === 1
-                                    ? "Already Paid"
-                                    : "Pay Now"
+                                    ? "Посылка оплачена"
+                                    : "Оплатить посылку"
                                 }
                               >
                                 $
