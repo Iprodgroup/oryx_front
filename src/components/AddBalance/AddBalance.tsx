@@ -89,8 +89,8 @@ const AddBalance = ({ user_id }: AddBalanceProps) => {
                   user_id: user_id,
                   order: invoiceId,
                   tenge: fields.amount,
-                  type: 1,
-                  outgo: 1,
+                  type: 0,
+                  outgo: 0,
                 },
                 {
                   headers: {

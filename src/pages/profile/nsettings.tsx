@@ -1,17 +1,18 @@
-import styles from '@/styles/profile/ProfileNotifications.module.sass';
+import styles from "@/styles/profile/ProfileNotifications.module.sass";
 
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
-import { Notification } from '@/types/notification.interface';
-import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
-import AddParcel from '@/components/AddParcel/AddParcel';
-import instance from '@/utils/axios';
-import passToken from '@/utils/passToken';
-import formatDate from '@/utils/formatDate';
+import { Notification } from "@/types/notification.interface";
+import ProfileLayout from "@/components/ProfileLayout/ProfileLayout";
+import AddParcel from "@/components/AddParcel/AddParcel";
+import instance from "@/utils/axios";
+import passToken from "@/utils/passToken";
+import formatDate from "@/utils/formatDate";
+import Head from "next/head";
 
 export const getServerSideProps = (async (context) => {
-  const res = await instance.get('/profile/notifications', {
+  const res = await instance.get("/profile/notifications", {
     ...passToken(context),
   });
   const notifications: Notification[] = await res.data.notifications;
@@ -25,7 +26,7 @@ const ProfileNotifications = ({
   const router = useRouter();
   const status = +router.query.status! || 0;
 
-  const buttons = ['Все уведомления', 'Непрочитанные', 'В пути', 'В стране'];
+  const buttons = ["Все уведомления", "Непрочитанные", "В пути", "В стране"];
 
   const changeStatus = (index: number) => {
     router.replace({
@@ -38,15 +39,15 @@ const ProfileNotifications = ({
     switch (status) {
       case 1:
         return notifications.filter(
-          (notification) => notification.read === '0'
+          (notification) => notification.read === "0"
         );
       case 2:
         return notifications.filter(
-          (notification) => notification.title === 'В пути'
+          (notification) => notification.title === "В пути"
         );
       case 3:
         return notifications.filter(
-          (notification) => notification.title === 'В стране'
+          (notification) => notification.title === "В стране"
         );
       default:
         return notifications;
@@ -57,6 +58,9 @@ const ProfileNotifications = ({
 
   return (
     <ProfileLayout>
+      <Head>
+        <title>Мои уведомления</title>
+      </Head>
       <div className={styles.btn}>
         <AddParcel />
       </div>
@@ -66,7 +70,7 @@ const ProfileNotifications = ({
         {buttons.map((button, index) => (
           <button
             key={index}
-            className={status === index ? styles.active : ''}
+            className={status === index ? styles.active : ""}
             onClick={() => changeStatus(index)}
           >
             {button}

@@ -31,6 +31,7 @@ import formatDate from "@/utils/formatDate";
 import Switch from "@/components/Switch/Switch";
 import Cookies from "js-cookie";
 import AddBalance from "@/components/AddBalance/AddBalance";
+import Head from "next/head";
 
 export const getServerSideProps: GetServerSideProps<{
   parcels: Parcel[];
@@ -141,19 +142,27 @@ const ProfileParcels = ({
       const accessToken = Cookies.get("access_token");
       const res = await instance.post(
         `/parcels/${id}/pay`,
-        {},
+        {
+          // type: 1,
+          // outgo: 1,
+        },
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         }
       );
-      toast.success("Посылка успешно оплачена!");
+      toast.success("Посылка успешно оплачена! Страница буде перезагружена.");
       setTimeout(() => {
         window.location.reload();
       }, 1000);
     } catch (error) {
-      toast.error("Ошибка при оплате посылки");
+      toast.loading(
+        "Производится оплата посылки. Страница будет перезагрежена."
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     }
   };
 
@@ -177,6 +186,10 @@ const ProfileParcels = ({
   return (
     isClient && (
       <ProfileLayout>
+        <Head>
+          <title>Мои посылки</title>
+        </Head>
+
         <div className={styles.wrapper}>
           <div className={styles.left}>
             <h1>Список ваших посылок</h1>
@@ -323,7 +336,13 @@ const ProfileParcels = ({
                       <th>Стоимость доставки</th>
                       {/* <th>Цена посылки</th> */}
                       <th></th>
-                      <th>Статус оплаты</th>
+                      <th
+                        style={{
+                          fontWeight: "400",
+                        }}
+                      >
+                        Оплата
+                      </th>
                     </tr>
                     {/* Трек-код */}
                     {parcels
@@ -381,19 +400,48 @@ const ProfileParcels = ({
                                 )}
                               </button>
                             </td>
-                            <td>
+                            <td
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                              }}
+                            >
                               <button
                                 disabled={+parcel.payed === 1}
                                 onClick={() => confirmPayParcel(parcel.id)}
                                 style={{
+                                  width: "40px",
+                                  height: "40px",
                                   color: "white",
-                                  padding: "3px 5px",
+                                  fontWeight: "500",
                                   backgroundColor:
                                     +parcel.payed === 1 ? "green" : "#EB3738",
-                                  borderRadius: "5px",
+                                  borderRadius: "50%",
+                                  border: "none",
+                                  boxShadow:
+                                    "0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)",
+                                  transition: "all 0.2s ease-in-out",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
                                 }}
+                                onMouseOver={(e) => {
+                                  e.currentTarget.style.boxShadow =
+                                    "0 6px 8px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.15)";
+                                }}
+                                onMouseOut={(e) => {
+                                  e.currentTarget.style.boxShadow =
+                                    "0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)";
+                                }}
+                                title={
+                                  +parcel.payed === 1
+                                    ? "Already Paid"
+                                    : "Pay Now"
+                                }
                               >
-                                {+parcel.payed === 1 ? "Оплачен" : "Оплатить"}
+                                $
                               </button>
                             </td>
                           </tr>

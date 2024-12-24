@@ -15,6 +15,7 @@ import instance from "@/utils/axios";
 import passToken from "@/utils/passToken";
 import Switch from "@/components/Switch/Switch";
 import CountrySelect from "@/components/CountrySelect/CountrySelect";
+import Head from "next/head";
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get("/user", { ...passToken(context) });
@@ -50,6 +51,9 @@ const ProfileAddresses = ({
   return (
     isClient && (
       <ProfileLayout>
+        <Head>
+          <title>Мои персональные адреса</title>
+        </Head>
         <div className={styles.wrapper}>
           <div className={styles.left}>
             {matches ? (

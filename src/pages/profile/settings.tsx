@@ -1,24 +1,25 @@
-import { FormEvent } from 'react';
-import styles from '@/styles/profile/ProfileSettings.module.sass';
+import { FormEvent } from "react";
+import styles from "@/styles/profile/ProfileSettings.module.sass";
 
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next';
-import { InputMask } from '@react-input/mask';
-import axios from 'axios';
-import toast from 'react-hot-toast';
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import { InputMask } from "@react-input/mask";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-import { User } from '@/types/user.interface';
-import { Recipient } from '@/types/recipient.interface';
-import { formatPhoneNumber, unformatPhoneNumber } from '@/utils/phoneNumber';
-import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
-import CheckIcon from '@/components/icons/Check';
-import AddRecipientModal from '@/components/modal/AddRecipientModal/AddRecipientModal';
-import DeliveryMethod from '@/components/DeliveryMethod';
-import instance from '@/utils/axios';
-import passToken from '@/utils/passToken';
+import { User } from "@/types/user.interface";
+import { Recipient } from "@/types/recipient.interface";
+import { formatPhoneNumber, unformatPhoneNumber } from "@/utils/phoneNumber";
+import ProfileLayout from "@/components/ProfileLayout/ProfileLayout";
+import CheckIcon from "@/components/icons/Check";
+import AddRecipientModal from "@/components/modal/AddRecipientModal/AddRecipientModal";
+import DeliveryMethod from "@/components/DeliveryMethod";
+import instance from "@/utils/axios";
+import passToken from "@/utils/passToken";
+import Head from "next/head";
 
 export const getServerSideProps = (async (context) => {
-  const res = await instance.get('/user', { ...passToken(context) });
-  const res2 = await instance.get('/profile/settings', {
+  const res = await instance.get("/user", { ...passToken(context) });
+  const res2 = await instance.get("/profile/settings", {
     ...passToken(context),
   });
   const user: User = res.data;
@@ -34,7 +35,7 @@ const ProfileSettings = ({
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const loadingToastId = toast.loading('Загрузка...');
+    const loadingToastId = toast.loading("Загрузка...");
 
     try {
       const formData = new FormData(event.currentTarget);
@@ -49,7 +50,7 @@ const ProfileSettings = ({
         delivery_address,
       } = Object.fromEntries(formData);
 
-      await axios.post('/api/profile/settings', {
+      await axios.post("/api/profile/settings", {
         surname,
         name,
         fname,
@@ -58,12 +59,12 @@ const ProfileSettings = ({
         password,
         delivery_method,
         delivery_address:
-          delivery_method === 'pickup' ? null : delivery_address,
+          delivery_method === "pickup" ? null : delivery_address,
       });
 
-      toast.success('Данные обновлены');
+      toast.success("Данные обновлены");
     } catch (error) {
-      toast.error('Ошибка при обновлении данных');
+      toast.error("Ошибка при обновлении данных");
     } finally {
       toast.dismiss(loadingToastId);
     }
@@ -71,6 +72,9 @@ const ProfileSettings = ({
 
   return (
     <ProfileLayout>
+      <Head>
+        <title>Мои личные данные</title>
+      </Head>
       <h1 className={styles.title}>Личные данные пользователя</h1>
       <p className={styles.description}>
         В данном разделе собрана вся ваша персональная информация
@@ -83,43 +87,43 @@ const ProfileSettings = ({
           </div>
           <form onSubmit={handleSubmit}>
             <input
-              type='text'
-              name='surname'
-              placeholder='Фамилия*'
+              type="text"
+              name="surname"
+              placeholder="Фамилия*"
               defaultValue={user.surname}
               required
             />
             <input
-              type='text'
-              name='name'
-              placeholder='Имя*'
+              type="text"
+              name="name"
+              placeholder="Имя*"
               defaultValue={user.name}
               required
             />
             <input
-              type='text'
-              name='fname'
-              placeholder='Отчество'
+              type="text"
+              name="fname"
+              placeholder="Отчество"
               defaultValue={user.fname}
             />
             <input
-              type='email'
-              name='email'
-              placeholder='Почта'
+              type="email"
+              name="email"
+              placeholder="Почта"
               defaultValue={user.email}
             />
             <InputMask
-              mask='+7 (___) ___-__-__'
+              mask="+7 (___) ___-__-__"
               replacement={{ _: /\d/ }}
-              name='phone'
-              placeholder='Номер телефона'
+              name="phone"
+              placeholder="Номер телефона"
               defaultValue={formatPhoneNumber(user.phone)}
             />
-            <input type='password' name='password' placeholder='Пароль' />
+            <input type="password" name="password" placeholder="Пароль" />
             <DeliveryMethod user={user} />
             <div className={styles.btns}>
-              <button type='submit'>Сохранить изменения</button>
-              <button type='reset'>Отменить изменения</button>
+              <button type="submit">Сохранить изменения</button>
+              <button type="reset">Отменить изменения</button>
             </div>
           </form>
         </div>
