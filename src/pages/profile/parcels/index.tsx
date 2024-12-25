@@ -292,7 +292,9 @@ const ProfileParcels = ({
                       height={16}
                     />
                   </button>
-                  <span>{isDisplay.data.track}</span>
+                  <span style={{ fontWeight: "600", color: "#000" }}>
+                    {isDisplay.data.track}
+                  </span>
 
                   <Image src="/warn.svg" alt="warn" width={24} height={24} />
                 </div>
@@ -301,31 +303,32 @@ const ProfileParcels = ({
                   style={{ fontWeight: "600", color: "#000" }}
                 >
                   <label htmlFor="status">
-                    <b style={{ fontWeight: "600", color: "#000" }}>Статус</b>
+                    <b>Статус</b>
                     <input
                       type="text"
                       id="status"
                       value={statuses[+isDisplay.data.status!].value}
+                      style={{ fontWeight: "600", color: "#000" }}
                       disabled
                     />
                   </label>
                   <label htmlFor="recipient">
-                    <b style={{ fontWeight: "600", color: "#000" }}>
-                      Получатель
-                    </b>
+                    <b>Получатель</b>
                     <input
                       type="text"
                       id="recipient"
                       value={isDisplay.data.recipient_fio}
+                      style={{ fontWeight: "600", color: "#000" }}
                       disabled
                     />
                   </label>
                   <label htmlFor="weight">
-                    <b style={{ fontWeight: "600", color: "#000" }}>Вес</b>
+                    <b>Вес</b>
                     <input
                       type="text"
                       id="weight"
                       value={isDisplay.data.weight! || "Не указан"}
+                      style={{ fontWeight: "600", color: "#000" }}
                       disabled
                     />
                   </label>
@@ -341,6 +344,53 @@ const ProfileParcels = ({
                           ? isDisplay.data.prod_price
                           : "Не указан"
                       }
+                      style={{ fontWeight: "600", color: "#000" }}
+                      disabled
+                    />
+                  </label>
+                  <label>
+                    <b style={{ fontWeight: "600", color: "#000" }}>
+                      Дата добавления
+                    </b>
+                    <input
+                      type="text"
+                      value={
+                        isDisplay.data.created_at
+                          ? formatDate(isDisplay.data.created_at)
+                          : ""
+                      }
+                      style={{ fontWeight: "600", color: "#000" }}
+                      disabled
+                    />
+                  </label>
+                  <label>
+                    <b style={{ fontWeight: "600", color: "#000" }}>
+                      Направление
+                    </b>
+                    <input
+                      type="text"
+                      value={`${
+                        +(isDisplay.data.city_out ?? 0) === 1
+                          ? "Нью-Йорк"
+                          : "Делавэр"
+                      } - ${isDisplay.data.city}`}
+                      style={{ fontWeight: "600", color: "#000" }}
+                      disabled
+                    />
+                  </label>
+                  <label>
+                    <b style={{ fontWeight: "600", color: "#000" }}>
+                      Стоимость доставки
+                    </b>
+                    <input
+                      type="text"
+                      value={
+                        isDisplay.data.prod_price !== undefined &&
+                        +isDisplay.data.prod_price > 0
+                          ? `${isDisplay.data.prod_price}₸`
+                          : "Не указано"
+                      }
+                      style={{ fontWeight: "600", color: "#000" }}
                       disabled
                     />
                   </label>
@@ -353,11 +403,21 @@ const ProfileParcels = ({
                     </span>
                   </strong>
                   <strong>Товары:</strong>
-                  <ul>
+                  <ul
+                    style={{
+                      backgroundColor: "#f5f5f5",
+                      padding: "5px",
+                      borderRadius: "5px",
+                    }}
+                  >
                     {isDisplay.data.goods?.map((item) => (
                       <li
                         key={item.id}
-                        style={{ fontWeight: "600", marginLeft: "10px" }}
+                        style={{
+                          fontWeight: "600",
+                          backgroundColor: "#fff",
+                          padding: "5px",
+                        }}
                       >
                         {item.name} {item.price}
                         {item.currency === "USD" || item.currency === "$"
