@@ -260,7 +260,7 @@ const ProfileParcels = ({
                   fontWeight: "bold",
                   backgroundColor: "#ffffff",
                   padding: "12px",
-                  borderRadius: "25px 25px 0 0",
+                  borderRadius: "25px 25px 25px 0",
                   color: total_unpaid_price === 0 ? "green" : "#ff0000",
                   marginLeft: "10px",
                   margin: "10px",
@@ -296,9 +296,12 @@ const ProfileParcels = ({
 
                   <Image src="/warn.svg" alt="warn" width={24} height={24} />
                 </div>
-                <div className={styles.card__fields}>
+                <div
+                  className={styles.card__fields}
+                  style={{ fontWeight: "600", color: "#000" }}
+                >
                   <label htmlFor="status">
-                    <span>Статус</span>
+                    <b style={{ fontWeight: "600", color: "#000" }}>Статус</b>
                     <input
                       type="text"
                       id="status"
@@ -307,21 +310,18 @@ const ProfileParcels = ({
                     />
                   </label>
                   <label htmlFor="recipient">
-                    <span>Получатель</span>
+                    <b style={{ fontWeight: "600", color: "#000" }}>
+                      Получатель
+                    </b>
                     <input
                       type="text"
                       id="recipient"
-                      value={
-                        recipients.find(
-                          (recipient) =>
-                            recipient.id === +isDisplay.data.recipient_id!
-                        )?.fio
-                      }
+                      value={isDisplay.data.recipient_fio}
                       disabled
                     />
                   </label>
                   <label htmlFor="weight">
-                    <span>Вес</span>
+                    <b style={{ fontWeight: "600", color: "#000" }}>Вес</b>
                     <input
                       type="text"
                       id="weight"
@@ -330,7 +330,9 @@ const ProfileParcels = ({
                     />
                   </label>
                   <label htmlFor="prod_price">
-                    <span>Стоимость доставки</span>
+                    <b style={{ fontWeight: "600", color: "#000" }}>
+                      Стоимость доставки
+                    </b>
                     <input
                       type="text"
                       id="prod_price"
@@ -346,12 +348,17 @@ const ProfileParcels = ({
                 <div className={styles.card__info}>
                   <strong>
                     Оплачен:
-                    <span>{isDisplay.data.payed === "1" ? "Да" : "Нет"}</span>
+                    <span style={{ fontWeight: "600", marginLeft: "10px" }}>
+                      {isDisplay.data.payed === "1" ? "Да" : "Нет"}
+                    </span>
                   </strong>
                   <strong>Товары:</strong>
                   <ul>
                     {isDisplay.data.goods?.map((item) => (
-                      <li key={item.id}>
+                      <li
+                        key={item.id}
+                        style={{ fontWeight: "600", marginLeft: "10px" }}
+                      >
                         {item.name} {item.price}
                         {item.currency === "USD" || item.currency === "$"
                           ? "$"
@@ -368,11 +375,16 @@ const ProfileParcels = ({
                     <tr>
                       <th>Трек-код</th>
                       <th>Статус</th>
-                      <th>Дата добавления</th>
-                      <th>Направление</th>
-                      <th>Стоимость доставки</th>
-                      {/* <th>Цена посылки</th> */}
-                      <th></th>
+                      {matches && (
+                        <>
+                          <th>Дата добавления</th>
+                          <th>Направление</th>
+                          <th>Стоимость доставки</th>
+                          {/* <th>Цена посылки</th> */}
+                          <th></th>
+                        </>
+                      )}
+
                       <th
                         style={{
                           fontWeight: "400",
@@ -406,37 +418,45 @@ const ProfileParcels = ({
                                 )}
                               </button>
                             </td>
-                            {/* Дата добавления */}
-                            <td>{formatDate(parcel.created_at)}</td>
-                            {/* Направление */}
-                            <td>
-                              {+parcel.city_out === 1 ? "Нью-Йорк" : "Делавэр"}-{" "}
-                              {parcel.city}
-                            </td>
-                            {/* стоимость доставки */}
-                            {+parcel.prod_price > 0 ? (
-                              <td>{parcel.prod_price}₸</td>
-                            ) : (
-                              <td>Не указано</td>
-                            )}
-                            {/* Цена посылки */}
-                            {/* <td>Цена посылки</td> */}
-                            <td>
-                              <button onClick={() => deleteParcel(parcel.id)}>
-                                <TrashIcon />
-                              </button>
-                              <button>
-                                <PenIcon />
-                              </button>
-                              <button onClick={() => onDisplay(parcel)}>
-                                {isDisplay.state &&
-                                isDisplay.data.id === parcel.id ? (
-                                  <ArrowDownIcon />
+                            {matches && (
+                              <>
+                                <td>{formatDate(parcel.created_at)}</td>
+                                {/* Направление */}
+                                <td>
+                                  {+parcel.city_out === 1
+                                    ? "Нью-Йорк"
+                                    : "Делавэр"}
+                                  - {parcel.city}
+                                </td>
+                                {/* стоимость доставки */}
+                                {+parcel.prod_price > 0 ? (
+                                  <td>{parcel.prod_price}₸</td>
                                 ) : (
-                                  <ArrowRightIcon />
+                                  <td>Не указано</td>
                                 )}
-                              </button>
-                            </td>
+                                {/* Цена посылки */}
+                                {/* <td>Цена посылки</td> */}
+                                <td>
+                                  <button
+                                    onClick={() => deleteParcel(parcel.id)}
+                                  >
+                                    <TrashIcon />
+                                  </button>
+                                  <button>
+                                    <PenIcon />
+                                  </button>
+                                  <button onClick={() => onDisplay(parcel)}>
+                                    {isDisplay.state &&
+                                    isDisplay.data.id === parcel.id ? (
+                                      <ArrowDownIcon />
+                                    ) : (
+                                      <ArrowRightIcon />
+                                    )}
+                                  </button>
+                                </td>
+                              </>
+                            )}
+                            {/* Дата добавления */}
                             <td
                               style={{
                                 display: "flex",
