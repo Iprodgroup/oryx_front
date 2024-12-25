@@ -2,6 +2,7 @@ export interface Parcel {
   id: number;
   name: string | null;
   user_id: string;
+  total_unpaid_price: string | null;
   track: string;
   status: string;
   created_at: string;

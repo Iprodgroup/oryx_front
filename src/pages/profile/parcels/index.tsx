@@ -37,9 +37,11 @@ export const getServerSideProps: GetServerSideProps<{
   parcels: Parcel[];
   recipients: Recipient[];
   user_id: number;
+  total_unpaid_price: number;
 }> = async (context) => {
   const res = await instance.get<{
     user_id: number;
+    total_unpaid_price: number;
     items: Parcel[];
   }>("/profile/parcels", {
     ...passToken(context),
@@ -57,13 +59,15 @@ export const getServerSideProps: GetServerSideProps<{
   const parcels = res.data.items;
   const recipients = res2.data.recipients;
   const user_id = res.data.user_id;
-  return { props: { parcels, recipients, user_id } };
+  const total_unpaid_price = res.data.total_unpaid_price;
+  return { props: { parcels, recipients, user_id, total_unpaid_price } };
 };
 
 const ProfileParcels = ({
   parcels,
   recipients,
   user_id,
+  total_unpaid_price,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [isDisplay, setIsDisplay] = useState<{
     state: boolean;
@@ -241,6 +245,39 @@ const ProfileParcels = ({
               <button type="submit">Поиск</button>
               <button type="reset">Очистить</button>
             </form>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                marginTop: "10px",
+                textAlign: "center",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "1.2em",
+                  fontWeight: "bold",
+                  backgroundColor: "#ffffff",
+                  padding: "12px",
+                  borderRadius: "25px 25px 0 0",
+                  color: total_unpaid_price === 0 ? "green" : "#ff0000",
+                  marginLeft: "10px",
+                  margin: "10px",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "18px",
+                    color: "black",
+                    marginRight: "6px",
+                  }}
+                >
+                  Общая сумма к оплате:
+                </span>
+                {total_unpaid_price}$
+              </span>
+            </div>
             {!matches && isDisplay.state ? (
               <div className={styles.card}>
                 <b>Трек-номер</b>
