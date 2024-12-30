@@ -1,0 +1,1 @@
+{"version":1,"functions":{"/api/profile/add-recipient":{},"/email/verify/[id]/[hash]":{},"/email/notif":{},"/login":{},"/populyarnye-magaziny/[slug]":{},"/populyarnye-magaziny":{},"/profile/addresses":{},"/profile":{},"/profile/nsettings":{},"/profile/settings":{},"/profile/parcels/create":{},"/register":{},"/sitemap":{},"/profile/parcels":{}}}
