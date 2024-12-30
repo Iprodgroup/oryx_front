@@ -58,7 +58,7 @@ const PasswordReset = () => {
       </Head>
       <section>
         <div className={styles.wrapper}>
-          <h2>СБРОСИТЬ ПАРОЛЬ</h2>
+          <h1>СБРОСИТЬ ПАРОЛЬ</h1>
           <form>
             <input type="email" placeholder="Электронная почта" />
             <button type="submit">Отправить ссылку для сброса пароля</button>

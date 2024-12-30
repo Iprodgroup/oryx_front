@@ -71,19 +71,13 @@ const Login = () => {
           name="description"
           content="Войдите в личный кабинет Oryx для получения доступа к услугам доставки товаров из США в Казахстан. Удобный и безопасный процесс авторизации для клиентов компании Oryx."
         />
-        <meta
-          property="og:title"
-          content="Авторизация - Oryx"
-        />
+        <meta property="og:title" content="Авторизация - Oryx" />
         <meta
           property="og:description"
           content="Войдите в личный кабинет Oryx для получения доступа к услугам доставки товаров из США в Казахстан. Удобный и безопасный процесс авторизации для клиентов компании Oryx."
         />
         <meta property="og:url" content="https://oryx.kz/login" />
-        <meta
-          property="og:site_name"
-          content="Авторизация - Oryx"
-        />
+        <meta property="og:site_name" content="Авторизация - Oryx" />
         <meta property="og:image" content="https://oryx.kz/logo.svg" />
         <script
           type="application/ld+json"
@@ -131,7 +125,7 @@ const Login = () => {
         <link rel="canonical" href="https://oryx.kz/login" />
         <div className={styles.wrapper}>
           <div className={styles.left}>
-            <h2>ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ</h2>
+            <h1>ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ</h1>
             <p>Чтобы войти введите ваш email и пароль</p>
             <form onSubmit={handleSubmit}>
               <input

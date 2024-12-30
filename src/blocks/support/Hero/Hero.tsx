@@ -10,10 +10,14 @@ const Hero = () => {
       <link rel="canonical" href="https://oryx.kz/usloviya-servisa" />
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <Image src="/hero-support.svg" alt="hero-support" {...responsiveImg} />
+          <Image
+            src="/hero-support.svg"
+            alt="hero-support"
+            {...responsiveImg}
+          />
         </div>
         <div className={styles.right}>
-          <h2>Условия сервиса и стоимость</h2>
+          <h1>Условия сервиса и стоимость</h1>
           <p>
             Компания ORYX – является мэйлфорвард сервисом, который предоставляет
             каждому клиенту бесплатный адрес в США в безналоговом штате для

@@ -72,6 +72,7 @@ const Terms = () => {
 
       <section>
         <link rel="canonical" href="https://oryx.kz/obshchie-usloviya" />
+        <h1 style={{ textAlign: "center" }}>Общие условия</h1>
         <div className={styles.wrapper}>
           <strong>Глава 1. ОБЩИЕ УСЛОВИЯ</strong>
           <ul>
