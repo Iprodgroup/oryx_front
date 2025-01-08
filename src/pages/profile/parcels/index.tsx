@@ -275,7 +275,7 @@ const ProfileParcels = ({
                 >
                   Общая сумма к оплате:
                 </span>
-                {total_unpaid_price}$
+                {total_unpaid_price}₸
               </span>
             </div>
             {!matches && isDisplay.state ? (

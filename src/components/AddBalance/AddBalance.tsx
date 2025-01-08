@@ -152,7 +152,7 @@ const AddBalance = ({ user_id }: AddBalanceProps) => {
           >
             <label
               htmlFor="amount"
-              style={{ fontSize: "16px", fontWeight: "600" }}
+              style={{ fontSize: "18px", fontWeight: "600" }}
             >
               Сумма:
             </label>
