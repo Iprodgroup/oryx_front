@@ -168,6 +168,7 @@ const Store = ({
             alt={store?.name || "неизвестный магазин"}
             width={350}
             height={350}
+            loading="eager"
           />
           <div className={styles.titleanddescr}>
             <h1 style={{ marginBottom: "50px", fontSize: "30px" }}>
