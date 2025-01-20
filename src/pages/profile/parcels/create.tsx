@@ -1,35 +1,35 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-import styles from '@/styles/profile/CreateParcel.module.sass';
+import { ChangeEvent, FormEvent, useState } from "react";
+import styles from "@/styles/profile/CreateParcel.module.sass";
 
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import toast from 'react-hot-toast';
-import axios from 'axios';
-
-import { Recipient } from '@/types/recipient.interface';
-import { User } from '@/types/user.interface';
-import ProfileLayout from '@/components/ProfileLayout/ProfileLayout';
-import instance from '@/utils/axios';
-import passToken from '@/utils/passToken';
-import cities from '@/utils/cities';
-import DeliveryMethod from '@/components/DeliveryMethod';
+import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import toast from "react-hot-toast";
+import axios from "axios";
+import AddRecipientModal from "@/components/modal/AddRecipientModal/AddRecipientModal";
+import { Recipient } from "@/types/recipient.interface";
+import { User } from "@/types/user.interface";
+import ProfileLayout from "@/components/ProfileLayout/ProfileLayout";
+import instance from "@/utils/axios";
+import passToken from "@/utils/passToken";
+import cities from "@/utils/cities";
+import DeliveryMethod from "@/components/DeliveryMethod";
 
 type Parcel = {
   id: number;
   name: string;
-  currency: 'USD' | 'EUR';
+  currency: "USD" | "EUR";
   price: number;
 };
 
 export const getServerSideProps = (async (context) => {
   const res = await instance.get<{ recipients: Recipient[] }>(
-    '/profile/settings',
+    "/profile/settings",
     {
       ...passToken(context),
     }
   );
-  const res2 = await instance.get('/user', { ...passToken(context) });
+  const res2 = await instance.get("/user", { ...passToken(context) });
   const recipients = res.data.recipients;
   const user: User = res2.data;
 
@@ -41,7 +41,7 @@ const CreateParcel = ({
   user,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [parcels, setParcels] = useState<Parcel[]>([
-    { id: 1, name: '', currency: 'USD', price: 0 },
+    { id: 1, name: "", currency: "USD", price: 0 },
   ]);
   const router = useRouter();
 
@@ -50,7 +50,7 @@ const CreateParcel = ({
   const addParcel = () => {
     setParcels((prev) => [
       ...prev,
-      { id: prev.length + 1, name: '', currency: 'USD', price: 0 },
+      { id: prev.length + 1, name: "", currency: "USD", price: 0 },
     ]);
   };
 
@@ -61,11 +61,11 @@ const CreateParcel = ({
   const handleChange = (
     event: ChangeEvent<HTMLInputElement>,
     id: number,
-    type: 'name' | 'price'
+    type: "name" | "price"
   ) => {
     const newArr = parcels.map((parcel) => {
       if (parcel.id === id) {
-        if (type === 'name') {
+        if (type === "name") {
           return { ...parcel, name: event.target.value };
         } else {
           return { ...parcel, price: +event.target.value };
@@ -84,16 +84,16 @@ const CreateParcel = ({
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const loadingToastId = toast.loading('Загрузка...');
+    const loadingToastId = toast.loading("Загрузка...");
 
     try {
       const formData = new FormData(event.currentTarget);
       const postData = Object.fromEntries(formData);
 
       const goods: {
-        name: Parcel['name'][];
-        currency: Parcel['currency'][];
-        price: Parcel['price'][];
+        name: Parcel["name"][];
+        currency: Parcel["currency"][];
+        price: Parcel["price"][];
       } = {
         name: [],
         currency: [],
@@ -106,15 +106,15 @@ const CreateParcel = ({
         goods.price.push(parcel.price);
       });
 
-      await axios.post('/api/profile/add-parcel', {
+      await axios.post("/api/profile/add-parcel", {
         ...postData,
         goods,
       });
 
-      toast.success('Посылка добавлена');
-      router.push('/profile/parcels');
+      toast.success("Посылка добавлена");
+      router.push("/profile/parcels");
     } catch (error) {
-      toast.error('Ошибка при добавлении посылки');
+      toast.error("Ошибка при добавлении посылки");
     } finally {
       toast.dismiss(loadingToastId);
     }
@@ -127,16 +127,16 @@ const CreateParcel = ({
           <h1>Добавление посылки</h1>
           <form className={styles.card} onSubmit={handleSubmit}>
             <div className={styles.head}>
-              <label htmlFor='departure'>
+              <label htmlFor="departure">
                 Город отправки
-                <select name='city_out' id='departure' defaultValue='2'>
-                  <option value='1'>Нью-Йорк (США)</option>
-                  <option value='2'>Делавэр (США)</option>
+                <select name="city_out" id="departure" defaultValue="2">
+                  <option value="1">Нью-Йорк (США)</option>
+                  <option value="2">Делавэр (США)</option>
                 </select>
               </label>
-              <label htmlFor='delivery'>
+              <label htmlFor="delivery">
                 Город доставки
-                <select name='city' id='delivery' defaultValue='Алматы'>
+                <select name="city" id="delivery" defaultValue="Алматы">
                   {cities.map((city, index) => (
                     <option key={index} value={city}>
                       {city}
@@ -146,9 +146,9 @@ const CreateParcel = ({
               </label>
               <DeliveryMethod user={user} isParcels />
               <div className={styles.flex}>
-                <label htmlFor='track'>
+                <label htmlFor="track">
                   Номер трекинга
-                  <input type='text' name='track' id='track' required />
+                  <input type="text" name="track" id="track" required />
                 </label>
                 <p>
                   Трекинг-номер – это номер, по которому отслеживается доставка
@@ -159,39 +159,39 @@ const CreateParcel = ({
             <ul>
               {parcels.map((parcel) => (
                 <li key={parcel.id}>
-                  <label htmlFor='declaration'>
+                  <label htmlFor="declaration">
                     Декларация
                     <input
-                      type='text'
-                      id='declaration'
-                      placeholder='Наименование'
+                      type="text"
+                      id="declaration"
+                      placeholder="Наименование"
                       value={getObjectById(parcel.id)?.name}
                       onChange={(event) =>
-                        handleChange(event, parcel.id, 'name')
+                        handleChange(event, parcel.id, "name")
                       }
                       required
                     />
                   </label>
-                  <select defaultValue='USD'>
-                    <option value='USD'>$</option>
-                    <option value='EUR'>€</option>
+                  <select defaultValue="USD">
+                    <option value="USD">$</option>
+                    <option value="EUR">€</option>
                   </select>
-                  <label htmlFor='price'>
+                  <label htmlFor="price">
                     Стоимость
                     <input
-                      type='number'
-                      id='price'
-                      placeholder='Введите сумму'
-                      value={getObjectById(parcel.id)?.price || ''}
+                      type="number"
+                      id="price"
+                      placeholder="Введите сумму"
+                      value={getObjectById(parcel.id)?.price || ""}
                       onChange={(event) =>
-                        handleChange(event, parcel.id, 'price')
+                        handleChange(event, parcel.id, "price")
                       }
                       required
                     />
                   </label>
                   {parcel.id !== 1 && (
                     <button
-                      type='button'
+                      type="button"
                       onClick={() => removeParcel(parcel.id)}
                     >
                       ✕
@@ -202,15 +202,15 @@ const CreateParcel = ({
             </ul>
             <strong>Итого: {total}$</strong>
             <button
-              type='button'
+              type="button"
               onClick={addParcel}
               className={styles.product__btn}
             >
               + Добавить еще один товар
             </button>
             <div className={styles.recipient}>
-              Получатель{' '}
-              <select name='recipient_id' required>
+              Получатель{" "}
+              <select name="recipient_id" required>
                 {recipients.map((recipient) => (
                   <option key={recipient.id} value={recipient.id}>
                     {recipient.surname} {recipient.name} {recipient.fname}
@@ -218,9 +218,11 @@ const CreateParcel = ({
                 ))}
               </select>
             </div>
+            <AddRecipientModal />
+
             <div className={styles.btns}>
-              <button type='submit'>Сохранить</button>
-              <button type='reset'>Отменить</button>
+              <button type="submit">Сохранить</button>
+              <button type="reset">Отменить</button>
             </div>
           </form>
         </div>
@@ -229,7 +231,7 @@ const CreateParcel = ({
             ВНИМАНИЕ! *Во избежание проблем при таможенной очистке, просим
             вводить детальное описание наименования товара на русском
           </p>
-          <Link href='/prohibited'>Смотреть список запрещенных товаров</Link>
+          <Link href="/prohibited">Смотреть список запрещенных товаров</Link>
         </div>
       </div>
     </ProfileLayout>
