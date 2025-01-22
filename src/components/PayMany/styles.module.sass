@@ -1,0 +1,42 @@
+@import '@/styles/mixins'
+
+.btn
+    display: flex
+    object-fit: contain
+    width: fit-content
+    height: 50px
+    gap: 5px
+    font-family: 'Gilroy-Bold ☞', sans-serif
+    margin-right: 0
+    padding: 0 20px
+    border: 1px solid black
+    border-radius: 20px
+    color: #EB3738
+    align-items: center
+    font-size: 15px
+    cursor: pointer
+    background-color: white
+    margin-top: 48px
+
+    &:hover
+        width: fit-content
+        background-color: #EB3738
+        height: 50px
+        gap: 5px
+        font-family: 'Gilroy-Bold ☞', sans-serif
+        margin-right: 0
+        padding: 0 20px
+        border: 1px solid #EB3738
+        border-radius: 20px
+        color: white
+        display: flex
+        flex-direction: row
+        align-items: center
+
+    span
+        font-size: 35px
+
+@media (max-width: 576px)
+    .btn
+        height: 30px
+        font-family: 'Gilroy-Medium ☞', sans-serif
