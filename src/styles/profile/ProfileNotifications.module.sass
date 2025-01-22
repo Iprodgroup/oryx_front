@@ -21,15 +21,23 @@
 
 .list
     display: flex
-    flex-direction: column
+    flex-direction: row
+    justify-content: space-between
     gap: 30px
     margin-top: 50px
+    border-radius: 10px
+    background-color: white
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+    padding: 30px
+    transition: transform 0.5s ease, opacity 0.5s ease, height 0.5s ease, margin 0.5s ease, padding 0.5s ease
 
-    li
-        border-radius: 10px
-        background-color: white
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
-        padding: 30px
+.hidden
+    transform: translateY(-100%)
+    opacity: 0
+    height: 0
+    margin: 0
+    padding: 0
+    overflow: hidden
 
 @media (max-width: 768px)
     .filter
@@ -49,6 +57,7 @@
     .list
         gap: 20px
         margin-top: 20px
+        flex-direction: column
 
         li
             padding: 20px

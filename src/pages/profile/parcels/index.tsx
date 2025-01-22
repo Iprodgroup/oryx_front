@@ -32,6 +32,7 @@ import Switch from "@/components/Switch/Switch";
 import Cookies from "js-cookie";
 import AddBalance from "@/components/AddBalance/AddBalance";
 import Head from "next/head";
+import PayMany from "@/components/PayMany/PayMany";
 
 export const getServerSideProps: GetServerSideProps<{
   parcels: Parcel[];
@@ -207,6 +208,7 @@ const ProfileParcels = ({
                 }}
               >
                 <AddParcel />
+                <PayMany />
                 <AddBalance user_id={user_id} />
                 <Switch />
               </div>
@@ -621,6 +623,7 @@ const ProfileParcels = ({
             {matches ? (
               <div className={styles.paba}>
                 <AddParcel />
+                <PayMany />
                 <AddBalance user_id={user_id} />
               </div>
             ) : (
