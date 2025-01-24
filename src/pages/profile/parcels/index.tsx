@@ -208,7 +208,7 @@ const ProfileParcels = ({
                 }}
               >
                 <AddParcel />
-                <PayMany />
+                <PayMany parcels={parcels} />
                 <AddBalance user_id={user_id} />
                 <Switch />
               </div>
@@ -623,7 +623,7 @@ const ProfileParcels = ({
             {matches ? (
               <div className={styles.paba}>
                 <AddParcel />
-                <PayMany />
+                <PayMany parcels={parcels} />
                 <AddBalance user_id={user_id} />
               </div>
             ) : (
